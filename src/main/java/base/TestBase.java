@@ -10,6 +10,7 @@ import static java.lang.System.setProperty;
 public class TestBase {
 
     private long time;
+    public static final String token = "@#$^&@#%$@#%^$!@#&^";
 
     @BeforeSuite(alwaysRun = true)
     public void beforeSuite() {

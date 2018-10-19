@@ -14,6 +14,7 @@ import pageObjects.HomePage;
 
 import java.util.concurrent.TimeUnit;
 
+import static enums.Users.PITER_CHALOVSKII;
 import static org.testng.Assert.assertEquals;
 
 public class SimpleTestPageObject extends TestBase {
@@ -47,9 +48,9 @@ public class SimpleTestPageObject extends TestBase {
         homePage.checkTitle(driver);
 
         //4 Login
-        homePage.login("epam", "1234");
+        homePage.login(PITER_CHALOVSKII.login, PITER_CHALOVSKII.password);
 
-        //5
+        //5 Check main title
         homePage.checkMainText();
     }
 }
