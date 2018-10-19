@@ -2,11 +2,12 @@ package pageObjects;
 
 
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.testng.Assert.assertEquals;
 
 public class HomePageSelenide {
@@ -23,8 +24,8 @@ public class HomePageSelenide {
     @FindBy(css = "[type = 'submit']")
     private SelenideElement submit;
 
-    @FindBy(css = "")
-    private SelenideElement mainText;
+    @FindBy(css = "h3.main-title")
+    private SelenideElement mainTitle;
 
     //================================methods===================================
 
@@ -41,11 +42,12 @@ public class HomePageSelenide {
 
     //================================checks===================================
 
-    public void checkTitle(WebDriver driver) {
-        assertEquals(driver, "");
+    public void checkTitle() {
+        assertEquals(getWebDriver().getTitle(), "Home Page");
     }
 
     public void checkMainText() {
-        assertEquals(mainText.getText(), "");
+        mainTitle.shouldBe(visible);
+        mainTitle.shouldHave(text("EPAM FRAMEWORK WISHES…"));
     }
 }
