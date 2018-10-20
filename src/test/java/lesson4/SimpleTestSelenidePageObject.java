@@ -1,7 +1,12 @@
 package lesson4;
 
 import base.SelenideTestBase;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Flaky;
+import io.qameta.allure.Story;
+import listeners.AllureAttachmentListener;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageObjects.HomePageSelenide;
 
@@ -9,6 +14,9 @@ import static com.codeborne.selenide.Selenide.page;
 import static enums.Users.PITER_CHALOVSKII;
 import static java.lang.System.setProperty;
 
+@Feature("Smoke tests")
+@Story("Home Page Testing")
+@Listeners(AllureAttachmentListener.class)
 public class SimpleTestSelenidePageObject extends SelenideTestBase {
 
     private HomePageSelenide homePageSelenide;
@@ -18,6 +26,7 @@ public class SimpleTestSelenidePageObject extends SelenideTestBase {
         homePageSelenide = page(HomePageSelenide.class);
     }
 
+    @Flaky
     @Test
     public void simpleTest() {
         setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");

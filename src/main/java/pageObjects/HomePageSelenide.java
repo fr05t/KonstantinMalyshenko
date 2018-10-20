@@ -2,6 +2,7 @@ package pageObjects;
 
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 
 import static com.codeborne.selenide.Condition.text;
@@ -29,10 +30,12 @@ public class HomePageSelenide {
 
     //================================methods===================================
 
+    @Step("Open JDI Test Application - Home Page")
     public void openPage() {
         open("https://epam.github.io/JDI/index.html");
     }
 
+    @Step
     public void login(String name, String passwd) {
         profileButton.click();
         login.sendKeys(name);
@@ -42,12 +45,14 @@ public class HomePageSelenide {
 
     //================================checks===================================
 
+    @Step
     public void checkTitle() {
         assertEquals(getWebDriver().getTitle(), "Home Page");
     }
 
+    @Step
     public void checkMainText() {
         mainTitle.shouldBe(visible);
-        mainTitle.shouldHave(text("EPAM FRAMEWORK WISHES…"));
+        mainTitle.shouldHave(text("EPA FRAMEWORK WISHES…"));
     }
 }
