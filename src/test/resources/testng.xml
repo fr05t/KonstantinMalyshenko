@@ -4,7 +4,7 @@
     <test name="Simple Test" >
 
         <classes>
-            <class name="lesson4.SimpleTestSelenidePageObject" />
+            <class name="lesson5.SimpleTestSelenidePageObject" />
         </classes>
 
     </test>
