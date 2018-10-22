@@ -1,11 +1,11 @@
-package hw1;
+package hw2.ex3;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,14 +14,46 @@ import static java.lang.System.setProperty;
 
 public class HardAssertTest {
 
+    private WebDriver webDriver;
+    private long time = System.currentTimeMillis();
+
+    @BeforeSuite(alwaysRun = true)
+    public void beforeSuit() {
+        setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
+    }
+
+    @AfterSuite(alwaysRun = true)
+    public void afterSuit() {
+        System.out.println(System.currentTimeMillis() - time);
+
+    }
+
+
+    @BeforeClass(alwaysRun = true)
+    public void beforeClass() {
+        webDriver = new ChromeDriver();
+    }
+
+    @AfterClass(alwaysRun = true)
+    public void afterClass() {
+        webDriver.close();
+    }
+
+    @BeforeMethod(alwaysRun = true)
+    public void beforeMethod() {
+        webDriver.manage().window().maximize();
+    }
+
+    @AfterMethod(alwaysRun = true)
+    public void afterMethod() {
+        System.out.println(webDriver.getTitle());
+
+    }
+
     @Test
     public void homePageTests() {
 
-        setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
-
         //1. Open test site by URL
-        WebDriver webDriver = new ChromeDriver();
-        webDriver.manage().window().maximize();
         webDriver.navigate().to("https://epam.github.io/JDI/index.html");
 
         //2. Assert Browser title

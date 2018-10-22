@@ -1,70 +1,74 @@
-package hw1;
+package hw3;
 
+import base.HWTestBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Factory;
 import org.testng.annotations.Test;
+import pageObjects.HWHomePage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
+import static java.lang.System.setOut;
 import static java.lang.System.setProperty;
 
-public class HardAssertTest {
+public class WebObjectTest extends HWTestBase {
 
+    private WebDriver driver;
+    private HWHomePage hwHomePage;
+    
+    @BeforeClass(alwaysRun = true)
+    public void beforeClass() {
+        driver = new ChromeDriver();
+        hwHomePage = PageFactory.initElements(driver, HWHomePage.class);
+    }
+
+    @BeforeMethod
+    public void beforeMethod() {
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+    }
+    
     @Test
     public void homePageTests() {
 
-        setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
-
         //1. Open test site by URL
-        WebDriver webDriver = new ChromeDriver();
-        webDriver.manage().window().maximize();
-        webDriver.navigate().to("https://epam.github.io/JDI/index.html");
+        driver.manage().window().maximize();
+        driver.navigate().to("https://epam.github.io/JDI/index.html");
 
         //2. Assert Browser title
-        Assert.assertEquals(webDriver.getTitle(), "Home Page");
+        hwHomePage.checkTitle(this.driver);
 
         //3. Perform login
-        webDriver.findElement(By.cssSelector(".profile-photo")).click();
-        webDriver.findElement(By.cssSelector("[id = 'Name']")).sendKeys("epam");
-        webDriver.findElement(By.cssSelector("[id = 'Password']")).sendKeys("1234");
-        webDriver.findElement(By.cssSelector(".login [ type = 'submit']")).click();
+        hwHomePage.login("epam", "1234");
 
         //4. Assert User Name
-        WebElement element = webDriver.findElement(By.cssSelector(".profile-photo [ui = 'label']"));
-        Assert.assertEquals(element.getText(), "PITER CHAILOVSKII");
+        hwHomePage.checkUserName("PITER CHAILOVSKII");
 
         //5. Asset Assert Browser title
-        Assert.assertEquals(webDriver.getTitle(), "Home Page");
+        hwHomePage.checkTitle(this.driver);
 
         //6. Assert that there are 4 items on the header section are displayed and they have proper texts
-        List<String> expectedMenuButtons = new ArrayList<String>();
-        expectedMenuButtons.add("CONTACT FORM");
-        expectedMenuButtons.add("HOME");
-        expectedMenuButtons.add("SERVICE");
-        expectedMenuButtons.add("METALS & COLORS");
 
-        WebElement mainMenu = webDriver.findElement(By.cssSelector("[class = 'uui-navigation nav navbar-nav m-l8']"));
-        List<WebElement> elements = mainMenu.findElements(By.xpath("//*[@class = 'uui-navigation nav navbar-nav m-l8']/li"));
-
-        for (WebElement elm : elements) {
-            Assert.assertTrue(expectedMenuButtons.contains(elm.getText()));
-        }
-
-        Assert.assertEquals(elements.size(), 4);
+        hwHomePage.checkHeaderSectionItems();
 
         //7. Assert that there are 4 icons(images) on the Index Page and they are displayed
-        List<WebElement> iconElemets = webDriver.findElements(By.xpath("//span[contains(@class, 'icons-benefit')]"));
+        List<WebElement> iconElemets = driver.findElements(By.xpath("//span[contains(@class, 'icons-benefit')]"));
         Assert.assertEquals(iconElemets.size(), 4);
         for (WebElement elm : iconElemets) {
             Assert.assertTrue(elm.isDisplayed());
         }
 
         //8. Assert that there are 4 texts on the Index Page under icons and they have proper text
-        List<WebElement> iconElemnts = webDriver.findElements(By.className("benefit-txt"));
+        List<WebElement> iconElemnts = driver.findElements(By.className("benefit-txt"));
         Assert.assertEquals(iconElemets.size(), 4);
         List<String> expectedText = new ArrayList<String>();
 
@@ -86,32 +90,32 @@ public class HardAssertTest {
 
 
         //9. Assert a text of the main header
-        Assert.assertEquals(webDriver.findElement(By.cssSelector("[name = 'main-title']")).getText(), "EPAM FRAMEWORK WISHES…");
+        Assert.assertEquals(driver.findElement(By.cssSelector("[name = 'main-title']")).getText(), "EPAM FRAMEWORK WISHES…");
 
         //10. The iframe exists
-        Assert.assertTrue(webDriver.findElement(By.tagName("iframe")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.tagName("iframe")).isDisplayed());
 
         //11. The logo exists
-        webDriver.switchTo().frame(webDriver.findElement(By.tagName("iframe")));
-        Assert.assertTrue(webDriver.findElement(By.cssSelector("[id = 'epam_logo']")).isDisplayed());
+        driver.switchTo().frame(driver.findElement(By.tagName("iframe")));
+        Assert.assertTrue(driver.findElement(By.cssSelector("[id = 'epam_logo']")).isDisplayed());
 
         //12. Driver has focus on the original window
-        webDriver.switchTo().defaultContent();
+        driver.switchTo().defaultContent();
 
         //13. Assert a text of the sub header
-        Assert.assertEquals(webDriver.findElement(By.cssSelector("[target = '_blank']")).getText(), "JDI GITHUB");
+        Assert.assertEquals(driver.findElement(By.cssSelector("[target = '_blank']")).getText(), "JDI GITHUB");
 
         //14. Assert that JDI GITHUB is a link and has a proper URL
-        Assert.assertEquals(webDriver.findElement(By.linkText("JDI GITHUB")).getAttribute("href"), "https://github.com/epam/JDI");
+        Assert.assertEquals(driver.findElement(By.linkText("JDI GITHUB")).getAttribute("href"), "https://github.com/epam/JDI");
 
         //15. Assert that there is Left Section
-        Assert.assertTrue(webDriver.findElement(By.cssSelector("[name = 'navigation-sidebar']")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("[name = 'navigation-sidebar']")).isDisplayed());
 
         //16. Assert that there is Footer
-        Assert.assertTrue(webDriver.findElement(By.cssSelector("[class = 'footer-content overflow']")).isDisplayed());
+        Assert.assertTrue(driver.findElement(By.cssSelector("[class = 'footer-content overflow']")).isDisplayed());
 
         //17. Close Browser
-        webDriver.close();
+        driver.close();
 
     }
 }

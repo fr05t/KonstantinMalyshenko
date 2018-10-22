@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import static java.lang.System.setProperty;
+
 public class DataProviderTest {
 
     @DataProvider(parallel = true)
@@ -28,11 +30,12 @@ public class DataProviderTest {
                         "some external projects),\n" +
                         "wish to get more…"}
         };
-
     }
 
     @Test(dataProvider = "simpleDataprovider")
     public void dataProviderTest(int elementNumber, String assertText) {
+
+        setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
 
         //1 Open BR
         WebDriver driver = new ChromeDriver();
@@ -41,12 +44,9 @@ public class DataProviderTest {
 
         //2 Navigate
         driver.navigate().to("https://epam.github.io/JDI/index.html");
+        List<WebElement> iconElements = driver.findElements(By.className("benefit-txt"));
 
-        List<WebElement> iconElemnts = driver.findElements(By.className("benefit-txt"));
-
-
-        System.out.println(elementNumber);
-        Assert.assertEquals(iconElemnts.get(elementNumber).getText(), assertText);
+        Assert.assertEquals(iconElements.get(elementNumber).getText(), assertText);
         driver.close();
     }
 }

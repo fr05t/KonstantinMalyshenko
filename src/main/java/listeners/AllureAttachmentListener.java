@@ -9,9 +9,6 @@ import org.testng.TestListenerAdapter;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
-/**
- * Created by Danila_Morokov on 5/29/2018.
- */
 public class AllureAttachmentListener extends TestListenerAdapter {
 
     @Attachment(value = "Attachment: {0}", type = "image/png")
