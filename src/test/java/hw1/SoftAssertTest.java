@@ -35,7 +35,7 @@ public class SoftAssertTest {
         webDriver.findElement(By.cssSelector("[id = 'Password']")).sendKeys("1234");
         webDriver.findElement(By.cssSelector(".login [ type = 'submit']")).click();
 
-        //4. Assert User Name
+        //4. Assert User name in the left-top side of screen that user is loggined
         WebElement element = webDriver.findElement(By.cssSelector(".profile-photo [ui = 'label']"));
         softAssert.assertEquals(element.getText(), "PITER CHAILOVSKII");
 
@@ -88,10 +88,10 @@ public class SoftAssertTest {
         //9. Assert a text of the main header
         softAssert.assertEquals(webDriver.findElement(By.cssSelector("[name = 'main-title']")).getText(), "EPAM FRAMEWORK WISHES…");
 
-        //10. The iframe exists
+        //10. Assertthat there is the iframe in the center of page
         softAssert.assertTrue(webDriver.findElement(By.tagName("iframe")).isDisplayed());
 
-        //11. The logo exists
+        //11. Switch to the iframe and check that there is Epam logo in the left top conner of iframe
         webDriver.switchTo().frame(webDriver.findElement(By.tagName("iframe")));
         softAssert.assertTrue(webDriver.findElement(By.cssSelector("[id = 'epam_logo']")).isDisplayed());
 
