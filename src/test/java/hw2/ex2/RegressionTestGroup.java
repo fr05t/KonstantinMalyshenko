@@ -18,8 +18,8 @@ import static java.lang.System.setProperty;
 
 public class RegressionTestGroup {
 
-    @BeforeSuite(alwaysRun = true)
-    public void beforeSuit() {
+    @BeforeMethod(alwaysRun = true)
+    public void beforeMethod() {
         setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
     }
 
