@@ -24,7 +24,7 @@ public class WebObjectTest extends HWTestBase {
 
     private WebDriver driver;
     private HWHomePage hwHomePage;
-    
+
     @BeforeClass(alwaysRun = true)
     public void beforeClass() {
         driver = new ChromeDriver();
@@ -36,14 +36,12 @@ public class WebObjectTest extends HWTestBase {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
     }
-    
+
     @Test
     public void homePageTests() {
 
         //1. Open test site by URL
-        driver.manage().window().maximize();
-        driver.navigate().to("https://epam.github.io/JDI/index.html");
-
+        hwHomePage.open(driver, "https://epam.github.io/JDI/index.html");
         //2. Assert Browser title
         hwHomePage.checkTitle(this.driver);
 
@@ -57,65 +55,40 @@ public class WebObjectTest extends HWTestBase {
         hwHomePage.checkTitle(this.driver);
 
         //6. Assert that there are 4 items on the header section are displayed and they have proper texts
-
         hwHomePage.checkHeaderSectionItems();
 
         //7. Assert that there are 4 icons(images) on the Index Page and they are displayed
-        List<WebElement> iconElemets = driver.findElements(By.xpath("//span[contains(@class, 'icons-benefit')]"));
-        Assert.assertEquals(iconElemets.size(), 4);
-        for (WebElement elm : iconElemets) {
-            Assert.assertTrue(elm.isDisplayed());
-        }
+        hwHomePage.checkIcons();
 
         //8. Assert that there are 4 texts on the Index Page under icons and they have proper text
-        List<WebElement> iconElemnts = driver.findElements(By.className("benefit-txt"));
-        Assert.assertEquals(iconElemets.size(), 4);
-        List<String> expectedText = new ArrayList<String>();
-
-        expectedText.add("To include good practices\n" +
-                "and ideas from successful\n" +
-                "EPAM project");
-        expectedText.add("To be flexible and\n" +
-                "customizable");
-        expectedText.add("To be multiplatform");
-        expectedText.add("Already have good base\n" +
-                "(about 20 internal and\n" +
-                "some external projects),\n" +
-                "wish to get more…");
-
-        for (WebElement elm : iconElemnts) {
-            Assert.assertTrue(elm.isDisplayed());
-            Assert.assertTrue(expectedText.contains(elm.getText()));
-        }
-
+        hwHomePage.checkIconsTexts();
 
         //9. Assert a text of the main header
-        Assert.assertEquals(driver.findElement(By.cssSelector("[name = 'main-title']")).getText(), "EPAM FRAMEWORK WISHES…");
+        hwHomePage.checkMainHeader("EPAM FRAMEWORK WISHES…");
 
         //10. The iframe exists
-        Assert.assertTrue(driver.findElement(By.tagName("iframe")).isDisplayed());
+        hwHomePage.checkIframe();
 
         //11. The logo exists
-        driver.switchTo().frame(driver.findElement(By.tagName("iframe")));
-        Assert.assertTrue(driver.findElement(By.cssSelector("[id = 'epam_logo']")).isDisplayed());
+        hwHomePage.checkLogo(driver);
 
         //12. Driver has focus on the original window
-        driver.switchTo().defaultContent();
+        hwHomePage.switchFrame(driver);
 
         //13. Assert a text of the sub header
-        Assert.assertEquals(driver.findElement(By.cssSelector("[target = '_blank']")).getText(), "JDI GITHUB");
+        hwHomePage.checkSubHeader("JDI GITHUB");
 
         //14. Assert that JDI GITHUB is a link and has a proper URL
-        Assert.assertEquals(driver.findElement(By.linkText("JDI GITHUB")).getAttribute("href"), "https://github.com/epam/JDI");
+        hwHomePage.checkSubHeaderLink();
 
         //15. Assert that there is Left Section
-        Assert.assertTrue(driver.findElement(By.cssSelector("[name = 'navigation-sidebar']")).isDisplayed());
+        hwHomePage.checkLeftSection();
 
         //16. Assert that there is Footer
-        Assert.assertTrue(driver.findElement(By.cssSelector("[class = 'footer-content overflow']")).isDisplayed());
+        hwHomePage.checkFooter();
 
         //17. Close Browser
-        driver.close();
+        hwHomePage.driverClose(driver);
 
     }
 }

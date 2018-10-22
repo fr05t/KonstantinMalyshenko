@@ -142,8 +142,5 @@ public class HardAssertTest {
         //16. Assert that there is Footer
         Assert.assertTrue(webDriver.findElement(By.cssSelector("[class = 'footer-content overflow']")).isDisplayed());
 
-        //17. Close Browser
-        webDriver.close();
-
     }
 }
