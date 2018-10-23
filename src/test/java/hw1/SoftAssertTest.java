@@ -21,9 +21,11 @@ public class SoftAssertTest {
 
         SoftAssert softAssert = new SoftAssert();
 
-        //1. Open test site by URL
+        //Create driver
         WebDriver webDriver = new ChromeDriver();
+        //Maximize window
         webDriver.manage().window().maximize();
+        //1. Open test site by URL
         webDriver.navigate().to("https://epam.github.io/JDI/index.html");
 
         //2. Assert Browser title
@@ -112,7 +114,5 @@ public class SoftAssertTest {
         softAssert.assertAll();
         //17. Close Browser
         webDriver.close();
-
-        softAssert.assertAll();
     }
 }

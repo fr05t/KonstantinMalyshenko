@@ -19,9 +19,11 @@ public class HardAssertTest {
 
         setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
 
-        //1. Open test site by URL
+        //Create driver
         WebDriver webDriver = new ChromeDriver();
+        //Maximize windows
         webDriver.manage().window().maximize();
+        //1. Open test site by URL
         webDriver.navigate().to("https://epam.github.io/JDI/index.html");
 
         //2. Assert Browser title
@@ -49,12 +51,11 @@ public class HardAssertTest {
 
         WebElement mainMenu = webDriver.findElement(By.cssSelector("[class = 'uui-navigation nav navbar-nav m-l8']"));
         List<WebElement> elements = mainMenu.findElements(By.xpath("//*[@class = 'uui-navigation nav navbar-nav m-l8']/li"));
+        Assert.assertEquals(elements.size(), 4);
 
         for (WebElement elm : elements) {
             Assert.assertTrue(expectedMenuButtons.contains(elm.getText()));
         }
-
-        Assert.assertEquals(elements.size(), 4);
 
         //7. Assert that there are 4 icons(images) on the Index Page and they are displayed
         List<WebElement> iconElemets = webDriver.findElements(By.xpath("//span[contains(@class, 'icons-benefit')]"));
