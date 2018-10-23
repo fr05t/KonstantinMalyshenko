@@ -164,6 +164,4 @@ public class HWHomePage {
     public void checkSubHeaderLink() {
         Assert.assertEquals(subHeaderLink.getAttribute("href"), "https://github.com/epam/JDI");
     }
-
-
 }
