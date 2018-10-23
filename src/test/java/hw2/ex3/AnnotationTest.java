@@ -12,7 +12,7 @@ import java.util.List;
 
 import static java.lang.System.setProperty;
 
-public class HardAssertTest {
+public class AnnotationTest {
 
     private WebDriver webDriver;
     private long time = System.currentTimeMillis();

@@ -15,16 +15,14 @@ import java.util.List;
 
 import static java.lang.System.setProperty;
 
-public class TestGroup {
-
+public class RegressionSmokeTestGroups {
 
     @BeforeMethod(alwaysRun = true)
     public void beforeMethod() {
         setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
     }
 
-
-    @Test(groups = "Regression")
+    @Test(groups = {"Smoke", "Regression"})
     public void Test1() {
 
         //Initialize chrome driver
@@ -126,12 +124,13 @@ public class TestGroup {
 
         //16. Assert that there is Footer
         Assert.assertTrue(webDriver.findElement(By.cssSelector("[class = 'footer-content overflow']")).isDisplayed());
+
         //17. Close Browser
         webDriver.close();
 
     }
 
-    @Test(groups = "Regression")
+    @Test(groups = {"Smoke", "Regression"})
     public void Test2() {
 
         //Initialize chrome driver
@@ -176,7 +175,6 @@ public class TestGroup {
         Assert.assertEquals(elements.size(), 4);
 
         //7. Assert that there are 4 icons(images) on the Index Page and they are displayed
-
         List<WebElement> iconElemets = webDriver.findElements(By.xpath(".//span[contains(@class, 'icons-benefit')]"));
         for (WebElement elm : iconElemets) {
             Assert.assertTrue(elm.isDisplayed());
@@ -238,7 +236,7 @@ public class TestGroup {
 
     }
 
-    @Test(groups = "Smoke")
+    @Test(groups = {"Smoke", "Regression"})
     public void Test3() {
 
         //Initialize chrome driver
@@ -342,5 +340,6 @@ public class TestGroup {
         Assert.assertTrue(webDriver.findElement(By.cssSelector("[class = 'footer-content overflow']")).isDisplayed());
         //17. Close Browser
         webDriver.close();
+
     }
 }

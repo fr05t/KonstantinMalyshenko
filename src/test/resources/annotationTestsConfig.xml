@@ -5,7 +5,7 @@
     <test name="homePageTests">
 
         <classes>
-            <class name="hw2.ex3.HardAssertTest"/>
+            <class name="hw2.ex3.AnnotationTest"/>
 
         </classes>
 

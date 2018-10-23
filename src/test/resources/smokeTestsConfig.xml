@@ -11,9 +11,9 @@
         </groups>
 
         <classes>
-            <class name="hw2.ex2.AllTestGroups"/>
+            <class name="hw2.ex2.RegressionSmokeTestGroups"/>
             <class name="hw2.ex2.SmokeTestGroup"/>
-            <class name="hw2.ex2.TestGroup"/>
+            <class name="hw2.ex2.MixedTestGroups"/>
         </classes>
     </test>
 </suite>
