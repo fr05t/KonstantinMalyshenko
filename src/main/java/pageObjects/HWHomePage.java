@@ -16,10 +16,10 @@ public class HWHomePage {
     @FindBy(css = ".profile-photo")
     private WebElement profileButton;
 
-    @FindBy(css = "[id = 'Name']")
+    @FindBy(css = "#Name")
     private WebElement login;
 
-    @FindBy(css = "[id = 'Password']")
+    @FindBy(css = "#Password")
     private WebElement password;
 
     @FindBy(css = ".login [ type = 'submit'")
@@ -43,7 +43,7 @@ public class HWHomePage {
     @FindBy(css = "iframe")
     private WebElement iframe;
 
-    @FindBy(css = "[id = 'epam_logo']")
+    @FindBy(css = "#epam_logo")
     private WebElement epamLogo;
 
     @FindBy(css = "[target = '_blank']")
@@ -52,7 +52,7 @@ public class HWHomePage {
     @FindBy(css = "[name = 'navigation-sidebar']")
     private WebElement leftSection;
 
-    @FindBy(css = "[class = 'footer-content overflow")
+    @FindBy(css = ".footer-content")
     private WebElement footer;
 
     @FindBy(xpath = "//h3[@class='text-center']/a")

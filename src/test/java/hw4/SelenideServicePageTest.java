@@ -34,7 +34,15 @@ public class SelenideServicePageTest extends SelenideTestBase {
         //3. Perform login
         selenideHomePage.login(PITER_CHALOVSKII.login, PITER_CHALOVSKII.password);
 
+        //4. Assert User name in the left-top side of screen that user is loggined
+        selenideHomePage.checkUserName();
 
+        //5. Click on "Service" subcategory in the header and check that drop down contains options
+        selenideHomePage.serviceDropDownListClick();
+        selenideHomePage.checkServiceDropdownMenuSubcategory();
+
+        //6. Click on Service subcategory in the left section and check that drop down contains options
+        selenideHomePage.setServiceLeftMenuClick();
 
     }
 }
