@@ -1,9 +1,9 @@
 package hw4;
 
 import base.SelenideTestBase;
-import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import pageObjects.SelenideDifferentElements;
 import pageObjects.SelenideHomePage;
 
 
@@ -16,10 +16,13 @@ import static org.testng.Assert.assertEquals;
 public class SelenideServicePageTest extends SelenideTestBase {
 
     private SelenideHomePage selenideHomePage;
+    private SelenideDifferentElements selenideDifferentElements;
 
     @BeforeClass(alwaysRun = true)
     public void beforeClass() {
         selenideHomePage = page(SelenideHomePage.class);
+        selenideDifferentElements = page(SelenideDifferentElements.class);
+
     }
 
     @Test
@@ -43,6 +46,17 @@ public class SelenideServicePageTest extends SelenideTestBase {
 
         //6. Click on Service subcategory in the left section and check that drop down contains options
         selenideHomePage.setServiceLeftMenuClick();
+        selenideHomePage.checkLeftServiceMenuItems();
+
+        //7. Open through the header menu Service -> Different Elements Page
+        selenideHomePage.serviceDropDownListClick();
+        selenideHomePage.openDifferenElementsPage();
+
+        //8. Check interface on Different elements page, it contains all needed elements
+        selenideDifferentElements.checkCheckBoxItems();
+        selenideDifferentElements.checkDropdownButton();
+        selenideDifferentElements.checkButtons();
+        selenideDifferentElements.checkRadioElements();
 
     }
 }

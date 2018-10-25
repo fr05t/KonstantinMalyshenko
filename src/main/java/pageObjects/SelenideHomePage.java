@@ -34,10 +34,17 @@ public class SelenideHomePage {
     private SelenideElement serviceDropdownMenu;
 
     @FindBy(css = ".dropdown-menu > li")
-    private ElementsCollection serviceDropdownMenuSubcategory;
+    private ElementsCollection serviceDropdownMenuItems;
 
     @FindBy(css = ".menu-title[index = '3']")
     private SelenideElement serviceLeftMenu;
+
+    @FindBy(css = ".menu-title[index = '3'] .sub > li")
+    private ElementsCollection leftServiceMenuItems;
+
+
+
+
 
     //================================methods===================================
 
@@ -55,6 +62,16 @@ public class SelenideHomePage {
 
     public void setServiceLeftMenuClick() {
         serviceLeftMenu.click();
+    }
+
+    //Open through the header menu Service -> Different Elements Page
+    public void openDifferenElementsPage() {
+        for (SelenideElement elm : serviceDropdownMenuItems) {
+            if(elm.getText().equals("DIFFERENT ELEMENTS")) {
+                elm.click();
+                break;
+            }
+        }
     }
 
     //==========================Asserts==========================================
@@ -75,10 +92,27 @@ public class SelenideHomePage {
         serviceDropdownMenuItems.add("DIFFERENT ELEMENTS");
         serviceDropdownMenuItems.add("PERFORMANCE");
 
-        for(SelenideElement elm : serviceDropdownMenuSubcategory) {
+        for(SelenideElement elm : this.serviceDropdownMenuItems) {
             Assert.assertTrue(serviceDropdownMenuItems.contains(elm.getText()));
         }
-
     }
+    //6. Click on Service subcategory in the left section and check that drop down contains options
+    public void checkLeftServiceMenuItems() {
+        List<String> serviceDropdownMenuItems = new ArrayList();
+        serviceDropdownMenuItems.add("Support");
+        serviceDropdownMenuItems.add("Dates");
+        serviceDropdownMenuItems.add("Complex Table");
+        serviceDropdownMenuItems.add("Simple Table");
+        serviceDropdownMenuItems.add("User Table");
+        serviceDropdownMenuItems.add("Table with pages");
+        serviceDropdownMenuItems.add("Different elements");
+        serviceDropdownMenuItems.add("Performance");
+
+        for(SelenideElement elm : leftServiceMenuItems) {
+            Assert.assertTrue(serviceDropdownMenuItems.contains(elm.getText()));
+        }
+    }
+
+
 
 }
