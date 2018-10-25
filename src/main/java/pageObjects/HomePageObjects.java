@@ -11,7 +11,7 @@ import java.nio.file.WatchEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HWHomePage {
+public class HomePageObjects {
 
     @FindBy(css = ".profile-photo")
     private WebElement profileButton;
@@ -60,10 +60,12 @@ public class HWHomePage {
 
     //================================methods===================================
 
+    //1. Open url
     public void open(WebDriver driver, String url) {
         driver.navigate().to(url);
     }
 
+    //3. Perform login
     public void login(String name, String password) {
         profileButton.click();
         login.sendKeys(name);
@@ -71,10 +73,12 @@ public class HWHomePage {
         submit.click();
     }
 
+    //12. Switch to original window back
     public void switchFrame(WebDriver driver) {
         driver.switchTo().defaultContent();
     }
 
+    //close browser
     public void driverClose(WebDriver driver) {
         driver.close();
     }
@@ -82,14 +86,17 @@ public class HWHomePage {
 
     //================================Asserts===================================
 
+    //2, 5 Assert Browser title
     public void checkTitle(WebDriver driver) {
         Assert.assertEquals(driver.getTitle(), "Home Page");
     }
 
+    //4. Assert Browser title
     public void checkUserName(String userName) {
         Assert.assertEquals(this.userName.getText(), userName);
     }
 
+    //6. Assert that there are 4 items on the header section are displayed and they have proper texts
     public void checkHeaderSectionItems() {
 
         List<String> expectedMenuButtons = new ArrayList<String>();
@@ -105,6 +112,7 @@ public class HWHomePage {
         Assert.assertEquals(navigationItems.size(), 4);
     }
 
+    //7. Assert that there are 4 images on the Index Page and they are displayed
     public void checkIcons() {
 
         Assert.assertEquals(icons.size(), 4);
@@ -114,6 +122,7 @@ public class HWHomePage {
         }
     }
 
+    //8. Assert that there are 4 texts on the Index Page under icons and they have proper text
     public void checkIconsTexts() {
 
         Assert.assertEquals(iconTexts.size(), 4);
@@ -130,38 +139,47 @@ public class HWHomePage {
                 "some external projects),\n" +
                 "wish to get more…");
 
-        for(WebElement iconText : iconTexts) {
+        for (WebElement iconText : iconTexts) {
             Assert.assertTrue(expectedTexts.contains(iconText.getText()));
         }
     }
 
+    //9. Assert a text of the main header
     public void checkMainHeader(String expectedHeaher) {
         Assert.assertEquals(mainHeader.getText(), expectedHeaher);
     }
 
+    //10. Assertthat there is the iframe in the center of page
     public void checkIframe() {
         Assert.assertTrue(iframe.isDisplayed());
     }
 
+    //11. Switch to the iframe and check that there is Epam logo in the left top conner of iframe
     public void checkLogo(WebDriver driver) {
         driver.switchTo().frame(iframe);
         Assert.assertTrue(epamLogo.isDisplayed());
 
     }
 
+    //13. Assert a text of the sub header
     public void checkSubHeader(String subHeaderText) {
         Assert.assertEquals(subHeader.getText(), subHeaderText);
     }
 
+    //14. Assert that JDI GITHUB is a link and has a proper URL
+    public void checkSubHeaderLink() {
+        Assert.assertEquals(subHeaderLink.getAttribute("href"), "https://github.com/epam/JDI");
+    }
+
+    //15. Assert that there is Left Section
     public void checkLeftSection() {
         Assert.assertTrue(leftSection.isDisplayed());
     }
 
+    //16. Assert that there is Footer
     public void checkFooter() {
         Assert.assertTrue(footer.isDisplayed());
     }
 
-    public void checkSubHeaderLink() {
-        Assert.assertEquals(subHeaderLink.getAttribute("href"), "https://github.com/epam/JDI");
-    }
+
 }

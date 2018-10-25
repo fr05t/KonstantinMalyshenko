@@ -7,7 +7,7 @@ import org.testng.annotations.BeforeSuite;
 import static java.lang.System.currentTimeMillis;
 import static java.lang.System.setProperty;
 
-public class HWTestBase {
+public class TestBaseWebObjects {
 
     @BeforeSuite(alwaysRun = true)
     public void beforeSuite() {
