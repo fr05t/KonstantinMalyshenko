@@ -58,5 +58,32 @@ public class SelenideServicePageTest extends SelenideTestBase {
         selenideDifferentElements.checkButtons();
         selenideDifferentElements.checkRadioElements();
 
+        //9. Assert that there is Right Section
+        selenideDifferentElements.checkRightSection();
+
+        //10. Assert that there is Left Section
+        selenideDifferentElements.checkLeftSection();
+
+        //11. Select checkboxes
+        selenideDifferentElements.selecCheckboxes();
+
+        //12. Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
+
+        //13. Select radio
+        selenideDifferentElements.seleRadioElement();
+
+        //14. Assert that for radiobutton there is a log row and value is corresponded to the status of radiobutton. 
+
+
+        //15. Select in dropdown
+        selenideDifferentElements.selectDropdownElement();
+
+        //16. Assert that for dropdown there is a log row and value is corresponded to the selected value. 
+
+        //17. Unselect and assert checkboxes
+        selenideDifferentElements.selecCheckboxes();
+
+        //18. Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
+
     }
 }

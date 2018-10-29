@@ -33,6 +33,9 @@ public class SelenideHomePage {
     @FindBy(xpath = "//a[@class = 'dropdown-toggle'][contains(.,'Service')]")
     private SelenideElement serviceDropdownMenu;
 
+    @FindBy(xpath = "//a[@class = 'dropdown-toggle'][contains(.,'Dates')]")
+    private SelenideElement datesDropdownMenu;
+
     @FindBy(css = ".dropdown-menu > li")
     private ElementsCollection serviceDropdownMenuItems;
 
@@ -41,6 +44,8 @@ public class SelenideHomePage {
 
     @FindBy(css = ".menu-title[index = '3'] .sub > li")
     private ElementsCollection leftServiceMenuItems;
+
+
 
 
 
@@ -74,15 +79,27 @@ public class SelenideHomePage {
         }
     }
 
+
+    public void openDatesPage() {
+        for (SelenideElement elm : serviceDropdownMenuItems) {
+            if(elm.getText().equals("DATES")) {
+                elm.click();
+                break;
+            }
+        }
+    }
+
     //==========================Asserts==========================================
 
-    //4. Assert User name in the left-top side of screen that user is loggined
+
     public void checkUserName() {
         $(userName.should(text("PITER CHAILOVSKI")));
     }
 
     public void checkServiceDropdownMenuSubcategory() {
         List<String> serviceDropdownMenuItems = new ArrayList();
+
+
         serviceDropdownMenuItems.add("SUPPORT");
         serviceDropdownMenuItems.add("DATES");
         serviceDropdownMenuItems.add("COMPLEX TABLE");
@@ -92,11 +109,13 @@ public class SelenideHomePage {
         serviceDropdownMenuItems.add("DIFFERENT ELEMENTS");
         serviceDropdownMenuItems.add("PERFORMANCE");
 
-        for(SelenideElement elm : this.serviceDropdownMenuItems) {
+        this.serviceDropdownMenuItems.texts().containsAll(serviceDropdownMenuItems);
+
+       /* for(SelenideElement elm : this.serviceDropdownMenuItems) {
             Assert.assertTrue(serviceDropdownMenuItems.contains(elm.getText()));
-        }
+        }*/
     }
-    //6. Click on Service subcategory in the left section and check that drop down contains options
+
     public void checkLeftServiceMenuItems() {
         List<String> serviceDropdownMenuItems = new ArrayList();
         serviceDropdownMenuItems.add("Support");
@@ -112,6 +131,8 @@ public class SelenideHomePage {
             Assert.assertTrue(serviceDropdownMenuItems.contains(elm.getText()));
         }
     }
+
+
 
 
 
