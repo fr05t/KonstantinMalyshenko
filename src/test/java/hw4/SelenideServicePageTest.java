@@ -87,6 +87,7 @@ public class SelenideServicePageTest extends SelenideTestBase {
 
         //18. Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
 
+        selenideDifferentElements.checkRadioButton();
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {

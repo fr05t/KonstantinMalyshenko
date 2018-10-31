@@ -3,12 +3,10 @@ package pageObjects;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import enums.DropDownMenuItems;
-import enums.RadioButtonItems;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +21,7 @@ public class SelenideDifferentElements {
     private ElementsCollection checkBoxItems;
 
     @FindBy(css = ".label-radio")
-    private ElementsCollection radioElemens;
+    private ElementsCollection radioElements;
 
     @FindBy(css = "select.uui-form-element")
     private SelenideElement dropDownButton;
@@ -55,10 +53,13 @@ public class SelenideDifferentElements {
 
 
     public void selectRadioElement() {
-        for(SelenideElement elm : radioElemens) {
+        System.out.println("=====sdsdsd=====" +
+                "" + radioElements.size());
+        for(SelenideElement elm : radioElements) {
             if(elm.getText().equals(Selen)) {
                 elm.click();
                 elm.is(Condition.checked);
+
             }
         }
     }
@@ -100,7 +101,7 @@ public class SelenideDifferentElements {
     }
 
     public void checkRadioElements() {
-        radioElemens.shouldHaveSize(4);
+        radioElements.shouldHaveSize(4);
     }
 
     public void checkDropdownButton() {
@@ -124,6 +125,12 @@ public class SelenideDifferentElements {
     }
 
     public void checkRadioButton() {
-        //Assert.assertEquals();
+        String element;
+        for(SelenideElement elm : radioElements) {
+            if(elm.is(Condition.checked)) {
+                element = elm.getText();
+                System.out.println(element);
+            }
+        }
     }
 }
