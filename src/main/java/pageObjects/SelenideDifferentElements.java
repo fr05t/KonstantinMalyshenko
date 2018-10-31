@@ -6,9 +6,15 @@ import com.codeborne.selenide.SelenideElement;
 import enums.DropDownMenuItems;
 import enums.RadioButtonItems;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.codeborne.selenide.Condition.*;
+import static enums.DropDownMenuItems.*;
+import static enums.RadioButtonItems.*;
 
 public class SelenideDifferentElements {
 
@@ -48,9 +54,9 @@ public class SelenideDifferentElements {
 
 
 
-    public void seleRadioElement() {
+    public void selectRadioElement() {
         for(SelenideElement elm : radioElemens) {
-            if(elm.getText().equals(RadioButtonItems.Selen)) {
+            if(elm.getText().equals(Selen)) {
                 elm.click();
                 elm.is(Condition.checked);
             }
@@ -60,10 +66,30 @@ public class SelenideDifferentElements {
     public void selectDropdownElement() {
         dropDownButton.click();
         for (SelenideElement elm : dropDownList) {
-            if(elm.getText().equals(DropDownMenuItems.Yellow)) {
+            if(elm.getText().equals(Yellow)) {
                 elm.click();
             }
         }
+    }
+
+    public List<String> getButtonLog() {
+        List<String> buttonLog = new ArrayList<>();
+        return buttonLog;
+    }
+
+    public List<String> getMetalLog() {
+        List<String> metalLog = new ArrayList<>();
+        return metalLog;
+    }
+
+    public List<String> getColorsLog() {
+        List<String> colorsLog = new ArrayList<>();
+        return colorsLog;
+    }
+
+    public List<String> getConditionLog() {
+        List<String> conditionLog = new ArrayList<>();
+        return conditionLog;
     }
 
 
@@ -97,4 +123,7 @@ public class SelenideDifferentElements {
 
     }
 
+    public void checkRadioButton() {
+        //Assert.assertEquals();
+    }
 }

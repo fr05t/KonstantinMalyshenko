@@ -69,10 +69,12 @@ public class SelenideServicePageTest extends SelenideTestBase {
 
         //12. Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
 
+
         //13. Select radio
-        selenideDifferentElements.seleRadioElement();
+        selenideDifferentElements.selectRadioElement();
 
         //14. Assert that for radiobutton there is a log row and value is corresponded to the status of radiobutton. 
+
 
 
         //15. Select in dropdown
@@ -85,5 +87,10 @@ public class SelenideServicePageTest extends SelenideTestBase {
 
         //18. Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
 
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
