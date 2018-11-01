@@ -7,13 +7,12 @@ import org.testng.annotations.Test;
 import pageObjects.SelenideDifferentElements;
 import pageObjects.SelenideHomePage;
 
-
-import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.page;
-import static enums.CheckboxItems.*;
-import static enums.RadioButtonItems.*;
+import static enums.CheckboxItems.Water;
+import static enums.CheckboxItems.Wind;
+import static enums.DropDownMenuItems.Yellow;
+import static enums.RadioButtonItems.Selen;
 import static enums.Users.PITER_CHALOVSKII;
-import static org.testng.Assert.assertEquals;
 
 public class SelenideServicePageTest extends SelenideTestBase {
 
@@ -83,18 +82,16 @@ public class SelenideServicePageTest extends SelenideTestBase {
         selenideDifferentElements.selectDropdownElement();
 
         //16. Assert that for dropdown there is a log row and value is corresponded to the selected value. 
-
-
+        selenideDifferentElements.checkColorLog(Yellow);
 
 
         //17. Unselect and assert checkboxes
-
         selenideDifferentElements.selectCheckboxes(Water, Wind);
 
 
         //18. Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
 
-   //     selenideDifferentElements.checkRadioButton();
+        //     selenideDifferentElements.checkRadioButton();
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {

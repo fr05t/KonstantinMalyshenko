@@ -2,23 +2,18 @@ package pageObjects;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import enums.URLs;
-import enums.Users;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import pageObjects.base.CommonBaseElements;
-import pageObjects.base.sections.LogSection;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
 
 public class SelenideHomePage extends CommonBaseElements {
-
 
 
     @FindBy(css = "span[ui = 'label']")
@@ -40,20 +35,14 @@ public class SelenideHomePage extends CommonBaseElements {
     private ElementsCollection leftServiceMenuItems;
 
 
-
-
-
-
-
     //================================methods===================================
-
-
 
 
     @Step("Click on Service dropdown Menu")
     public void serviceDropDownListClick() {
         serviceDropdownMenu.click();
     }
+
     @Step("Click ")
     public void setServiceLeftMenuClick() {
         serviceLeftMenu.click();
@@ -62,7 +51,7 @@ public class SelenideHomePage extends CommonBaseElements {
     //Open through the header menu Service -> Different Elements Page
     public void openDifferenElementsPage() {
         for (SelenideElement elm : serviceDropdownMenuItems) {
-            if(elm.getText().equals("DIFFERENT ELEMENTS")) {
+            if (elm.getText().equals("DIFFERENT ELEMENTS")) {
                 elm.click();
                 break;
             }
@@ -72,7 +61,7 @@ public class SelenideHomePage extends CommonBaseElements {
 
     public void openDatesPage() {
         for (SelenideElement elm : serviceDropdownMenuItems) {
-            if(elm.getText().equals("DATES")) {
+            if (elm.getText().equals("DATES")) {
                 elm.click();
                 break;
             }
@@ -117,13 +106,10 @@ public class SelenideHomePage extends CommonBaseElements {
         serviceDropdownMenuItems.add("Different elements");
         serviceDropdownMenuItems.add("Performance");
 
-        for(SelenideElement elm : leftServiceMenuItems) {
+        for (SelenideElement elm : leftServiceMenuItems) {
             Assert.assertTrue(serviceDropdownMenuItems.contains(elm.getText()));
         }
     }
-
-
-
 
 
 }

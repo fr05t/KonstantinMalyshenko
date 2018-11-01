@@ -1,7 +1,7 @@
 package lesson2;
 
-import dataProviders.DataProviders;
 import base.TestBase;
+import dataProviders.DataProviders;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

@@ -9,8 +9,8 @@ import static java.lang.System.setProperty;
 
 public class TestBase {
 
-    private long time;
     public static final String token = "@#$^&@#%$@#%^$!@#&^";
+    private long time;
 
     @BeforeSuite(alwaysRun = true)
     public void beforeSuite() {

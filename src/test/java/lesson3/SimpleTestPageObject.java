@@ -1,9 +1,7 @@
 package lesson3;
 
 import base.TestBase;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterMethod;
@@ -15,7 +13,6 @@ import pageObjects.HomePage;
 import java.util.concurrent.TimeUnit;
 
 import static enums.Users.PITER_CHALOVSKII;
-import static org.testng.Assert.assertEquals;
 
 public class SimpleTestPageObject extends TestBase {
 

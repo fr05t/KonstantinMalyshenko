@@ -15,8 +15,6 @@ public enum DatesInputValues {
     STEP12_LEFT_SLIDER_VALUE(30);
 
 
-
-
     private int value;
 
     DatesInputValues(int value) {

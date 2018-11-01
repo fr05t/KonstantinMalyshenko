@@ -1,13 +1,9 @@
 package pageObjects;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import cucumber.api.java.it.Ma;
-import enums.DatesInputValues;
-import org.openqa.selenium.WebDriver;
+import io.qameta.allure.Step;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.interactions.SourceType;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
@@ -16,8 +12,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.codeborne.selenide.Selenide.$;
-import static enums.DatesInputValues.*;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static enums.DatesInputValues.STEP6_LEFT_SLIDER_VALUE;
+import static enums.DatesInputValues.STEP6_RIGHT_SLIDER_VALUE;
 
 public class SelenideDates {
 
@@ -32,38 +29,55 @@ public class SelenideDates {
 
     //================================methods===================================
 
-    public void leftSilderSet(WebDriver driver, int leftPoint) throws InterruptedException {
+    @Step("Move Sliders")
+    public void moveSliders(int leftPosition, int rightPosition) {
+        int currenLeftPosition = Integer.parseInt(sliderEliments.get(0).getText());
+        int currentRightPosition = Integer.parseInt(sliderEliments.get(1).getText());
 
-        Actions actions = new Actions(driver);
-
-        double len = (double)slider.getSize().width/99;
-        int leftPos =  (int)Math.floor((leftPoint-Integer.parseInt(sliderEliments.get(0).getText()))*len);
-
-        actions.dragAndDropBy(sliderEliments.get(0),  leftPos, 0).release().build().perform();
-        System.out.println("right value " + Integer.parseInt(sliderEliments.get(0).getText())*len);
+        if (leftPosition > currentRightPosition) {
+            rightSliderSet(rightPosition);
+            leftSilderSet(leftPosition);
+        } else {
+            leftSilderSet(leftPosition);
+            rightSliderSet(rightPosition);
+        }
     }
 
-    public void rightSliderSet(WebDriver driver, int rightPoint) {
+    @Step("Move the left slider")
+    public void leftSilderSet(int leftPoint) {
 
-        Actions actions = new Actions(driver);
+        Actions actions = new Actions(getWebDriver());
 
-        double len = (double)slider.getSize().width/99;
-        int rightPos = (int)Math.floor((-rightPoint+Integer.parseInt(sliderEliments.get(1).getText()))*len);
+        double len = (double) slider.getSize().width / 99;
+        int leftPos = (int) Math.floor((leftPoint - Integer.parseInt(sliderEliments.get(0).getText())) * len);
 
-        actions.dragAndDropBy(sliderEliments.get(1),  -rightPos, 0).release().build().perform();
-        System.out.println("right value " + Integer.parseInt(sliderEliments.get(1).getText())*len);
+        actions.dragAndDropBy(sliderEliments.get(0), leftPos, 0).release().build().perform();
     }
 
+    @Step("Move the right slider")
+    public void rightSliderSet(int rightPoint) {
+
+        Actions actions = new Actions(getWebDriver());
+
+        double len = (double) slider.getSize().width / 99;
+        int rightPos = (int) Math.floor((-rightPoint + Integer.parseInt(sliderEliments.get(1).getText())) * len);
+
+        actions.dragAndDropBy(sliderEliments.get(1), -rightPos, 0).release().build().perform();
+    }
+
+    @Step("Get last events from log")
     public List<String> getLastLogEvents() {
+
         List<String> lastEvents = new ArrayList<>();
-        for(int i = logElements.size()-1; i >=0; i--) {
+        for (int i = 0; i < logElements.size(); i++) {
             if (logElements.get(i).getText().contains("From")) {
                 lastEvents.add(logElements.get(i).getText());
+                System.out.println(logElements.get(i).getText());
                 break;
             }
 
         }
-        for(int i = logElements.size()-1; i >=0; i--) {
+        for (int i = 0; i < logElements.size(); i++) {
             if (logElements.get(i).getText().contains("To")) {
                 lastEvents.add(logElements.get(i).getText());
                 break;
@@ -73,11 +87,10 @@ public class SelenideDates {
     }
 
 
-
     //==========================Asserts==========================================
 
     public void checkLeftSliderValue(String value) {
-        Assert.assertEquals(sliderEliments.get(0).getText(),value);
+        Assert.assertEquals(sliderEliments.get(0).getText(), value);
 //        $(sliderEliments.get(0).getText()).shouldBe(Condition.text(value));
     }
 
@@ -85,21 +98,20 @@ public class SelenideDates {
         Assert.assertEquals(sliderEliments.get(1).getText(), value);
     }
 
+    @Step("Check log value")
     public void checkSliderLogValues(List<String> lastEvents) {
-        String regExp= ".+(To|From).+:(\\d+).+";
+        String regExp = ".+(To|From).+:(\\d+).+";
         Pattern pattern = Pattern.compile(regExp);
-        Matcher matcher = pattern.matcher(lastEvents.get(0));
+        Matcher matcher = pattern.matcher(lastEvents.get(1));
         matcher.find();
         Assert.assertEquals(STEP6_LEFT_SLIDER_VALUE.getStringValue(), matcher.group(2));
 
         matcher.reset();
-        matcher = pattern.matcher(lastEvents.get(1));
+        matcher = pattern.matcher(lastEvents.get(0));
 
         matcher.find();
         Assert.assertEquals(STEP6_RIGHT_SLIDER_VALUE.getStringValue(), matcher.group(2));
     }
-
-
 
 
 }

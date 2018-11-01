@@ -9,7 +9,6 @@ import org.openqa.selenium.support.FindBy;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static enums.PageTitles.*;
 import static org.testng.Assert.assertEquals;
 
 public abstract class CommonBaseElements {

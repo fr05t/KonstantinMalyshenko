@@ -7,7 +7,7 @@ public class DataProviders {
 
     @DataProvider
     public Object[][] simpleDataProvider() {
-        return new Object[][] {
+        return new Object[][]{
                 {"String1", 1},
                 {"String2", 2},
                 {"String3", 3}

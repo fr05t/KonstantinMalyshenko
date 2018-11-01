@@ -4,20 +4,20 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import enums.CheckboxItems;
+import enums.DropDownMenuItems;
 import enums.RadioButtonItems;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.codeborne.selenide.Condition.*;
-import static enums.DropDownMenuItems.*;
-import static org.testng.Assert.*;
+import static com.codeborne.selenide.Condition.checked;
+import static com.codeborne.selenide.Condition.visible;
+import static enums.DropDownMenuItems.Yellow;
+import static org.testng.Assert.assertEquals;
 
 public class SelenideDifferentElements {
 
@@ -47,24 +47,24 @@ public class SelenideDifferentElements {
     private ElementsCollection logElements;
 
 
-
     //=================================methods===========================================
 
+
+    @Step("Select checkboxes")
     public void selectCheckboxes(CheckboxItems... checkBoxItems) {
 
-        for(CheckboxItems elm : checkBoxItems) {
-            if(this.checkBoxItems.texts().contains(elm.getCheckboxItemName())) {
+        for (CheckboxItems elm : checkBoxItems) {
+            if (this.checkBoxItems.texts().contains(elm.getCheckboxItemName())) {
                 this.checkBoxItems.find(Condition.text(elm.getCheckboxItemName())).click();
             }
-
         }
     }
 
 
-    @Step("")
+    @Step("Select radio element")
     public void selectRadioElement(RadioButtonItems radioButtonItems) {
-        for(SelenideElement elm : radioElements) {
-            if(elm.getText().equals(radioButtonItems.toString())) {
+        for (SelenideElement elm : radioElements) {
+            if (elm.getText().equals(radioButtonItems.toString())) {
                 elm.click();
             }
         }
@@ -74,19 +74,20 @@ public class SelenideDifferentElements {
     public void selectDropdownElement() {
         dropDownButton.click();
         for (SelenideElement elm : dropDownList) {
-            if(elm.getText().equals(Yellow.toString())) {
+            if (elm.getText().equals(Yellow.toString())) {
                 elm.click();
             }
         }
     }
+
     @Step("Get last event for metal")
     public String getButtonLog() {
 
         Pattern pattern = Pattern.compile(".+(metal).+(to )(.+)");
         Matcher matcher;
 
-        for(int i = logElements.size()-1; i >=0 ; i--) {
-            if(logElements.get(i).getText().contains("metal")) {
+        for (int i = logElements.size() - 1; i >= 0; i--) {
+            if (logElements.get(i).getText().contains("metal")) {
                 matcher = pattern.matcher(logElements.get(i).getText());
                 matcher.find();
                 return matcher.group(3);
@@ -101,15 +102,37 @@ public class SelenideDifferentElements {
         return metalLog;
     }
 
-    public List<String> getColorsLog() {
-        List<String> colorsLog = new ArrayList<>();
-        return colorsLog;
+    public String getColorsLog() {
+        String color = "";
+        Pattern pattern = Pattern.compile("((\\d+:?)+)\\s(Colors).+to\\s(\\w+)");
+        Matcher matcher;
+
+
+        for (int i = 0; i < logElements.size(); i++) {
+            if (logElements.get(i).getText().contains("Colors")) {
+                matcher = pattern.matcher(logElements.get(i).getText());
+                matcher.find();
+                color = matcher.group(4);
+                return color;
+            }
+        }
+        return color;
     }
 
-    public List<String> getConditionLog() {
+/*    public List<String> getConditionLog() {
         List<String> conditionLog = new ArrayList<>();
+
+
+
+        Pattern pattern = Pattern.compile(" d");
+
+        for(int i = logElements.size()-1; i >=0; i--) {
+            if(logElements.)
+        }
+
+
         return conditionLog;
-    }
+    }*/
 
 
     //=================================Asserts==========================================
@@ -144,6 +167,19 @@ public class SelenideDifferentElements {
 
     public void checkRadioButton(RadioButtonItems radioButtonItems) {
         assertEquals(radioButtonItems.toString(), getButtonLog());
+    }
+
+    public void checkCheckboxesState(CheckboxItems... checkboxItems) {
+        System.out.println(checkboxItems);
+        for (CheckboxItems elm : checkboxItems) {
+            if (this.checkBoxItems.texts().contains(elm.getCheckboxItemName())) {
+                this.checkBoxItems.find(Condition.text(elm.getCheckboxItemName())).shouldBe(checked);
+            }
+        }
+    }
+
+    public void checkColorLog(DropDownMenuItems dropDownMenuItems) {
+        assertEquals(dropDownMenuItems.getColor(), getColorsLog());
     }
 
 
