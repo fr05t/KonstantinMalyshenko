@@ -39,7 +39,7 @@ public class SelenideDatesPageTest extends SelenideTestBase {
         assertEquals(getWebDriver().getTitle(), "Home Page");
 
         //3. Perform login
-        selenideHomePage.login(PITER_CHALOVSKII.login, PITER_CHALOVSKII.password);
+        selenideHomePage.login(PITER_CHALOVSKII);
 
         //4. Assert User name in the left-top side of screen that user is loggined
         selenideHomePage.checkUserName();

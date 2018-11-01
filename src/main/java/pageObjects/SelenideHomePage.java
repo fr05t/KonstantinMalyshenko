@@ -2,9 +2,13 @@ package pageObjects;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import enums.URLs;
+import enums.Users;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
+import pageObjects.base.CommonBaseElements;
+import pageObjects.base.sections.LogSection;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,19 +17,9 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
-public class SelenideHomePage {
+public class SelenideHomePage extends CommonBaseElements {
 
-    @FindBy(css = ".profile-photo")
-    private SelenideElement profileButton;
 
-    @FindBy(css = "[id = 'Name']")
-    private SelenideElement login;
-
-    @FindBy(css = "[id = 'Password']")
-    private SelenideElement password;
-
-    @FindBy(css = "[type = 'submit']")
-    private SelenideElement submit;
 
     @FindBy(css = "span[ui = 'label']")
     private SelenideElement userName;
@@ -53,18 +47,14 @@ public class SelenideHomePage {
 
     //================================methods===================================
 
-    @Step("Login perform")
-    public void login(String name, String passwd) {
-        profileButton.click();
-        login.sendKeys(name);
-        password.sendKeys(passwd);
-        submit.click();
-    }
 
+
+
+    @Step("Click on Service dropdown Menu")
     public void serviceDropDownListClick() {
         serviceDropdownMenu.click();
     }
-
+    @Step("Click ")
     public void setServiceLeftMenuClick() {
         serviceLeftMenu.click();
     }

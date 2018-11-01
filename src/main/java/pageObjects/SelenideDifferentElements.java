@@ -3,16 +3,21 @@ package pageObjects;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import enums.CheckboxItems;
+import enums.RadioButtonItems;
+import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static com.codeborne.selenide.Condition.*;
 import static enums.DropDownMenuItems.*;
-import static enums.RadioButtonItems.*;
+import static org.testng.Assert.*;
 
 public class SelenideDifferentElements {
 
@@ -38,48 +43,61 @@ public class SelenideDifferentElements {
     @FindBy(css = ".uui-side-bar.right-fix-panel.mCustomScrollbar._mCS_2.mCS_no_scrollbar")
     private SelenideElement rightSection;
 
+    @FindBy(css = ".panel-body-list.logs > li")
+    private ElementsCollection logElements;
+
 
 
     //=================================methods===========================================
 
-    public void selecCheckboxes() {
-        for(SelenideElement elm : checkBoxItems) {
-            if(elm.getText().equals("Water") || elm.getText().equals("Wind")) {
-                elm.click();
+    public void selectCheckboxes(CheckboxItems... checkBoxItems) {
+
+        for(CheckboxItems elm : checkBoxItems) {
+            if(this.checkBoxItems.texts().contains(elm.getCheckboxItemName())) {
+                this.checkBoxItems.find(Condition.text(elm.getCheckboxItemName())).click();
             }
+
         }
     }
 
 
-
-    public void selectRadioElement() {
-        System.out.println("=====sdsdsd=====" +
-                "" + radioElements.size());
+    @Step("")
+    public void selectRadioElement(RadioButtonItems radioButtonItems) {
         for(SelenideElement elm : radioElements) {
-            if(elm.getText().equals(Selen)) {
+            if(elm.getText().equals(radioButtonItems.toString())) {
                 elm.click();
-                elm.is(Condition.checked);
-
             }
         }
     }
 
+    @Step("Select dropdown element from list")
     public void selectDropdownElement() {
         dropDownButton.click();
         for (SelenideElement elm : dropDownList) {
-            if(elm.getText().equals(Yellow)) {
+            if(elm.getText().equals(Yellow.toString())) {
                 elm.click();
             }
         }
     }
+    @Step("Get last event for metal")
+    public String getButtonLog() {
 
-    public List<String> getButtonLog() {
-        List<String> buttonLog = new ArrayList<>();
-        return buttonLog;
+        Pattern pattern = Pattern.compile(".+(metal).+(to )(.+)");
+        Matcher matcher;
+
+        for(int i = logElements.size()-1; i >=0 ; i--) {
+            if(logElements.get(i).getText().contains("metal")) {
+                matcher = pattern.matcher(logElements.get(i).getText());
+                matcher.find();
+                return matcher.group(3);
+            }
+        }
+        return "";
     }
 
     public List<String> getMetalLog() {
         List<String> metalLog = new ArrayList<>();
+
         return metalLog;
     }
 
@@ -124,13 +142,9 @@ public class SelenideDifferentElements {
 
     }
 
-    public void checkRadioButton() {
-        String element;
-        for(SelenideElement elm : radioElements) {
-            if(elm.is(Condition.checked)) {
-                element = elm.getText();
-                System.out.println(element);
-            }
-        }
+    public void checkRadioButton(RadioButtonItems radioButtonItems) {
+        assertEquals(radioButtonItems.toString(), getButtonLog());
     }
+
+
 }
