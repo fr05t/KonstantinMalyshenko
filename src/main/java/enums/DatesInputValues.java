@@ -2,32 +2,18 @@ package enums;
 
 public enum DatesInputValues {
 
-    STEP6_LEFT_SLIDER_VALUE(0),
-    STEP6_RIGHT_SLIDER_VALUE(100),
+    STEP6_SET(new int[]{0, 100}),
+    STEP8_SET(new int[]{0, 0}),
+    STEP10_SET(new int[]{100, 100}),
+    STEP12_SET(new int[]{30, 70});
 
-    STEP8_RIGHT_SLIDER_VALUE(0),
-    STEP8_LEFT_SLIDER_VALUE(0),
+    private int[] value;
 
-    STEP10_RIGHT_SLIDER_VALUE(100),
-    STEP10_LEFT_SLIDER_VALUE(100),
-
-    STEP12_RIGHT_SLIDER_VALUE(70),
-    STEP12_LEFT_SLIDER_VALUE(30);
-
-
-    private int value;
-
-    DatesInputValues(int value) {
+    DatesInputValues(int[] value) {
         this.value = value;
     }
 
-
-    public int getValue() {
+    public int[] getValue() {
         return value;
     }
-
-    public String getStringValue() {
-        return "" + value;
-    }
-
 }

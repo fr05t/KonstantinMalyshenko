@@ -69,7 +69,7 @@ public class SelenideServicePageTest extends SelenideTestBase {
         selenideDifferentElements.selectCheckboxes(Water, Wind);
 
         //12. Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
-
+        selenideDifferentElements.checkCheckboxesLogTrue(Water, Wind);
 
         //13. Select radio
         selenideDifferentElements.selectRadioElement(Selen);
@@ -77,25 +77,17 @@ public class SelenideServicePageTest extends SelenideTestBase {
         //14. Assert that for radiobutton there is a log row and value is corresponded to the status of radiobutton. 
         selenideDifferentElements.checkRadioButton(Selen);
 
-
         //15. Select in dropdown
         selenideDifferentElements.selectDropdownElement();
 
         //16. Assert that for dropdown there is a log row and value is corresponded to the selected value. 
         selenideDifferentElements.checkColorLog(Yellow);
 
-
         //17. Unselect and assert checkboxes
         selenideDifferentElements.selectCheckboxes(Water, Wind);
 
-
         //18. Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
+        selenideDifferentElements.checkCheckboxesLogFalse(Water, Wind);
 
-        //     selenideDifferentElements.checkRadioButton();
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 }

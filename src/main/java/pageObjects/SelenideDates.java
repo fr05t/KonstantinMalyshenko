@@ -2,6 +2,7 @@ package pageObjects;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import enums.DatesInputValues;
 import io.qameta.allure.Step;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -13,11 +14,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static enums.DatesInputValues.STEP6_LEFT_SLIDER_VALUE;
-import static enums.DatesInputValues.STEP6_RIGHT_SLIDER_VALUE;
 
 public class SelenideDates {
 
+    //Page Objects Elements
     @FindBy(css = ".uui-slider")
     private SelenideElement slider;
 
@@ -34,7 +34,7 @@ public class SelenideDates {
         int currenLeftPosition = Integer.parseInt(sliderEliments.get(0).getText());
         int currentRightPosition = Integer.parseInt(sliderEliments.get(1).getText());
 
-        if (leftPosition > currentRightPosition) {
+        if (leftPosition >= currentRightPosition) {
             rightSliderSet(rightPosition);
             leftSilderSet(leftPosition);
         } else {
@@ -72,10 +72,8 @@ public class SelenideDates {
         for (int i = 0; i < logElements.size(); i++) {
             if (logElements.get(i).getText().contains("From")) {
                 lastEvents.add(logElements.get(i).getText());
-                System.out.println(logElements.get(i).getText());
                 break;
             }
-
         }
         for (int i = 0; i < logElements.size(); i++) {
             if (logElements.get(i).getText().contains("To")) {
@@ -86,32 +84,23 @@ public class SelenideDates {
         return lastEvents;
     }
 
-
     //==========================Asserts==========================================
 
-    public void checkLeftSliderValue(String value) {
-        Assert.assertEquals(sliderEliments.get(0).getText(), value);
-//        $(sliderEliments.get(0).getText()).shouldBe(Condition.text(value));
-    }
-
-    public void checkRightSliderValue(String value) {
-        Assert.assertEquals(sliderEliments.get(1).getText(), value);
-    }
-
     @Step("Check log value")
-    public void checkSliderLogValues(List<String> lastEvents) {
+    public void checkSliderLogValues(DatesInputValues values) {
+
+        List<String> lastEvents = getLastLogEvents();
+
         String regExp = ".+(To|From).+:(\\d+).+";
         Pattern pattern = Pattern.compile(regExp);
-        Matcher matcher = pattern.matcher(lastEvents.get(1));
+        Matcher matcher = pattern.matcher(lastEvents.get(0));
         matcher.find();
-        Assert.assertEquals(STEP6_LEFT_SLIDER_VALUE.getStringValue(), matcher.group(2));
+        Assert.assertEquals(matcher.group(2), values.getValue()[0] + "");
 
         matcher.reset();
-        matcher = pattern.matcher(lastEvents.get(0));
+        matcher = pattern.matcher(lastEvents.get(1));
 
         matcher.find();
-        Assert.assertEquals(STEP6_RIGHT_SLIDER_VALUE.getStringValue(), matcher.group(2));
+        Assert.assertEquals(matcher.group(2), values.getValue()[1] + "");
     }
-
-
 }

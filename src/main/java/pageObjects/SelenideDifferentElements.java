@@ -14,10 +14,10 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.codeborne.selenide.Condition.checked;
 import static com.codeborne.selenide.Condition.visible;
 import static enums.DropDownMenuItems.Yellow;
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class SelenideDifferentElements {
 
@@ -60,7 +60,6 @@ public class SelenideDifferentElements {
         }
     }
 
-
     @Step("Select radio element")
     public void selectRadioElement(RadioButtonItems radioButtonItems) {
         for (SelenideElement elm : radioElements) {
@@ -102,11 +101,11 @@ public class SelenideDifferentElements {
         return metalLog;
     }
 
+    @Step("Get color log")
     public String getColorsLog() {
         String color = "";
         Pattern pattern = Pattern.compile("((\\d+:?)+)\\s(Colors).+to\\s(\\w+)");
         Matcher matcher;
-
 
         for (int i = 0; i < logElements.size(); i++) {
             if (logElements.get(i).getText().contains("Colors")) {
@@ -119,68 +118,85 @@ public class SelenideDifferentElements {
         return color;
     }
 
-/*    public List<String> getConditionLog() {
-        List<String> conditionLog = new ArrayList<>();
-
-
-
-        Pattern pattern = Pattern.compile(" d");
-
-        for(int i = logElements.size()-1; i >=0; i--) {
-            if(logElements.)
+    @Step("Get checkbox log")
+    public List<String> getCheckboxLog(CheckboxItems... checkboxItems) {
+        List checkboxLog = new ArrayList();
+        for (int i = 0; i < checkboxItems.length; i++) {
+            checkboxLog.add(logElements.get(i).getText());
         }
-
-
-        return conditionLog;
-    }*/
-
+        return checkboxLog;
+    }
 
     //=================================Asserts==========================================
-
+    @Step("Check checkbox item")
     public void checkCheckBoxItems() {
         checkBoxItems.shouldHaveSize(4);
     }
 
+    @Step("Check radio elements")
     public void checkRadioElements() {
         radioElements.shouldHaveSize(4);
     }
 
+    @Step("Check dropdown button")
     public void checkDropdownButton() {
         dropDownButton.shouldBe(visible);
     }
 
+    @Step("Check button quantity")
     public void checkButtons() {
         buttons.shouldHaveSize(2);
     }
 
+    @Step("Check right section")
     public void checkRightSection() {
         rightSection.shouldBe(visible);
     }
 
+    @Step("Check left section")
     public void checkLeftSection() {
         leftSection.shouldBe(visible);
     }
 
-    public void checkLogRows() {
-
-    }
-
+    @Step("Check radiobutton")
     public void checkRadioButton(RadioButtonItems radioButtonItems) {
         assertEquals(radioButtonItems.toString(), getButtonLog());
     }
 
-    public void checkCheckboxesState(CheckboxItems... checkboxItems) {
-        System.out.println(checkboxItems);
+    @Step("Assert checked elemnts in log")
+    public void checkCheckboxesLogTrue(CheckboxItems... checkboxItems) {
+
+        boolean state = false;
         for (CheckboxItems elm : checkboxItems) {
-            if (this.checkBoxItems.texts().contains(elm.getCheckboxItemName())) {
-                this.checkBoxItems.find(Condition.text(elm.getCheckboxItemName())).shouldBe(checked);
+            for (String elm2 : getCheckboxLog(checkboxItems)) {
+                if (elm2.contains(elm.getCheckboxItemName()) || elm2.contains("true")) {
+                    state = true;
+                } else {
+                    state = false;
+                }
             }
         }
+        assertTrue(state);
     }
 
+    @Step("Assert checked elemnts in log")
+    public void checkCheckboxesLogFalse(CheckboxItems... checkboxItems) {
+
+        boolean state = false;
+        for (CheckboxItems elm : checkboxItems) {
+            for (String elm2 : getCheckboxLog(checkboxItems)) {
+                if (elm2.contains(elm.getCheckboxItemName()) || elm2.contains("false")) {
+                    state = true;
+                } else {
+                    state = false;
+                }
+            }
+        }
+        assertTrue(state);
+    }
+
+    @Step("Check color log")
     public void checkColorLog(DropDownMenuItems dropDownMenuItems) {
         assertEquals(dropDownMenuItems.getColor(), getColorsLog());
     }
-
-
 }
