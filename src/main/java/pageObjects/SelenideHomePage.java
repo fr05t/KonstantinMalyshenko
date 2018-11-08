@@ -1,7 +1,9 @@
 package pageObjects;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import enums.PageTitles;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
@@ -12,6 +14,7 @@ import java.util.List;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
+import static enums.PageTitles.*;
 
 public class SelenideHomePage extends CommonBaseElements {
 
@@ -50,22 +53,11 @@ public class SelenideHomePage extends CommonBaseElements {
 
     //Open through the header menu Service -> Different Elements Page
     public void openDifferenElementsPage() {
-        for (SelenideElement elm : serviceDropdownMenuItems) {
-            if (elm.getText().equals("DIFFERENT ELEMENTS")) {
-                elm.click();
-                break;
-            }
-        }
+        serviceDropdownMenuItems.find(Condition.text(DIFFERENT_ELEMENTS.getTitle())).click();
     }
 
-
     public void openDatesPage() {
-        for (SelenideElement elm : serviceDropdownMenuItems) {
-            if (elm.getText().equals("DATES")) {
-                elm.click();
-                break;
-            }
-        }
+            serviceDropdownMenuItems.find(Condition.text(DATES.getTitle())).click();
     }
 
     //==========================Asserts==========================================
@@ -89,10 +81,6 @@ public class SelenideHomePage extends CommonBaseElements {
         serviceDropdownMenuItems.add("PERFORMANCE");
 
         this.serviceDropdownMenuItems.texts().containsAll(serviceDropdownMenuItems);
-
-       /* for(SelenideElement elm : this.serviceDropdownMenuItems) {
-            Assert.assertTrue(serviceDropdownMenuItems.contains(elm.getText()));
-        }*/
     }
 
     public void checkLeftServiceMenuItems() {
@@ -110,6 +98,5 @@ public class SelenideHomePage extends CommonBaseElements {
             Assert.assertTrue(serviceDropdownMenuItems.contains(elm.getText()));
         }
     }
-
 
 }

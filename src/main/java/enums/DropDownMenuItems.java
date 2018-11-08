@@ -1,7 +1,7 @@
 package enums;
 
 public enum DropDownMenuItems {
-    Red("Red"), Yellow("Yellow"), Grenn("Green"), Blue("Blue");
+    RED("Red"), YELLOW("Yellow"), GREEN("Green"), BLUE("Blue");
 
     private String colorName;
 

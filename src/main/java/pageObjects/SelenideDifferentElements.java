@@ -5,6 +5,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import enums.CheckboxItems;
 import enums.DropDownMenuItems;
+import enums.PageTitles;
 import enums.RadioButtonItems;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
@@ -15,7 +16,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static com.codeborne.selenide.Condition.visible;
-import static enums.DropDownMenuItems.Yellow;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static enums.DropDownMenuItems.YELLOW;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -63,7 +65,7 @@ public class SelenideDifferentElements {
     @Step("Select radio element")
     public void selectRadioElement(RadioButtonItems radioButtonItems) {
         for (SelenideElement elm : radioElements) {
-            if (elm.getText().equals(radioButtonItems.toString())) {
+            if (elm.getText().equals(radioButtonItems.getElement())) {
                 elm.click();
             }
         }
@@ -73,7 +75,7 @@ public class SelenideDifferentElements {
     public void selectDropdownElement() {
         dropDownButton.click();
         for (SelenideElement elm : dropDownList) {
-            if (elm.getText().equals(Yellow.toString())) {
+            if (elm.getText().equals(YELLOW.getColor())) {
                 elm.click();
             }
         }
@@ -160,7 +162,7 @@ public class SelenideDifferentElements {
 
     @Step("Check radiobutton")
     public void checkRadioButton(RadioButtonItems radioButtonItems) {
-        assertEquals(radioButtonItems.toString(), getButtonLog());
+        assertEquals(radioButtonItems.getElement(), getButtonLog());
     }
 
     @Step("Assert checked elemnts in log")
@@ -199,4 +201,10 @@ public class SelenideDifferentElements {
     public void checkColorLog(DropDownMenuItems dropDownMenuItems) {
         assertEquals(dropDownMenuItems.getColor(), getColorsLog());
     }
+
+    @Step("Check page is open")
+    public void checkTitle(PageTitles pageTitle) {
+        assertEquals(getWebDriver().getTitle(), pageTitle.getTitle());
+    }
+
 }

@@ -2,7 +2,6 @@ package pageObjects;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import enums.DatesInputValues;
 import io.qameta.allure.Step;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
@@ -87,7 +86,7 @@ public class SelenideDates {
     //==========================Asserts==========================================
 
     @Step("Check log value")
-    public void checkSliderLogValues(DatesInputValues values) {
+    public void checkSliderLogValues(int expectedLeftValue, int expectedRightValue) {
 
         List<String> lastEvents = getLastLogEvents();
 
@@ -95,12 +94,12 @@ public class SelenideDates {
         Pattern pattern = Pattern.compile(regExp);
         Matcher matcher = pattern.matcher(lastEvents.get(0));
         matcher.find();
-        Assert.assertEquals(matcher.group(2), values.getValue()[0] + "");
+        Assert.assertEquals(matcher.group(2), expectedLeftValue + "");
 
         matcher.reset();
         matcher = pattern.matcher(lastEvents.get(1));
 
         matcher.find();
-        Assert.assertEquals(matcher.group(2), values.getValue()[1] + "");
+        Assert.assertEquals(matcher.group(2), expectedRightValue + "");
     }
 }

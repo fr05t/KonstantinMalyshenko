@@ -1,7 +1,7 @@
 package enums;
 
 public enum CheckboxItems {
-    Water("Water"), Earth("Earth"), Wind("Wind"), Fire("Fire"), True("true"), False("false");
+    WATER("Water"), EARTH("Earth"), WIND("Wind"), FIRE("Fire"), TRUE("true"), FALSE("false");
 
     private String checkboxItemName;
 

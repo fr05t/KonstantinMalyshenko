@@ -7,7 +7,6 @@ import pageObjects.SelenideDates;
 import pageObjects.SelenideHomePage;
 
 import static com.codeborne.selenide.Selenide.page;
-import static enums.DatesInputValues.*;
 import static enums.PageTitles.HOME_PAGE;
 import static enums.Users.PITER_CHALOVSKII;
 
@@ -45,24 +44,24 @@ public class SelenideDatesPageTest extends SelenideTestBase {
         selenideDates.moveSliders(0, 100);
 
         //7. Assert that for "From" and "To" sliders there are logs rows with corresponding values
-        selenideDates.checkSliderLogValues(STEP6_SET);
+        selenideDates.checkSliderLogValues(0, 100);
 
         //8. Using drag-and-drop set Range sliders. left sliders - the most left position, right slider - the most left position.
         selenideDates.moveSliders(0, 0);
 
         //9. Assert that for "From" and "To" sliders there are logs rows with corresponding values
-        selenideDates.checkSliderLogValues(STEP8_SET);
+        selenideDates.checkSliderLogValues(0, 0);
 
         //10. Using drag-and-drop set Range sliders. left sliders - the most rigth position, right slider - the most rigth position.
         selenideDates.moveSliders(100, 100);
 
         //11. Assert that for "From" and "To" sliders there are logs rows with corresponding values
-        selenideDates.checkSliderLogValues(STEP10_SET);
+        selenideDates.checkSliderLogValues(100, 100);
 
         //12. Using drag-and-drop set Range sliders.
         selenideDates.moveSliders(30, 70);
 
         //13. Assert that for "From" and "To" sliders there are logs rows with corresponding values
-        selenideDates.checkSliderLogValues(STEP12_SET);
+        selenideDates.checkSliderLogValues(30, 70);
     }
 }
