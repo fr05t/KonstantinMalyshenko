@@ -4,4 +4,7 @@
 KonstantinMalyshenko.iml
 /target/
 /build/
+/.logs/
+/allure-results/
 
+/JDI/jditest/target
