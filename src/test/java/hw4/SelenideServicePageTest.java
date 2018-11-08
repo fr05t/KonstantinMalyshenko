@@ -1,7 +1,6 @@
 package hw4;
 
 import base.SelenideTestBase;
-import enums.PageTitles;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pageObjects.SelenideDifferentElements;
@@ -11,8 +10,8 @@ import static com.codeborne.selenide.Selenide.page;
 import static enums.CheckboxItems.WATER;
 import static enums.CheckboxItems.WIND;
 import static enums.DropDownMenuItems.YELLOW;
-import static enums.PageTitles.*;
 import static enums.PageTitles.DIFFERENT_ELEMENTS;
+import static enums.PageTitles.HOME_PAGE;
 import static enums.RadioButtonItems.SELEN;
 import static enums.Users.PITER_CHALOVSKII;
 
