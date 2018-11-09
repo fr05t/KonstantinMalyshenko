@@ -1,10 +1,14 @@
 package io.github.epam.jdi;
 
+import enums.Users;
 import io.github.epam.jdi.dataproviders.DataProviders;
+import io.github.epam.jdi.entities.User;
 import io.github.epam.jdi.jsonobjects.JsonSet;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
+
+import static io.github.epam.jdi.enums.Users.PITER_CHAILOVSKII;
 import static io.github.epam.jdi.JDIExampleSite.*;
 
 public class MetalsColorsTests extends MetalsColorsTestsInit {
@@ -25,7 +29,7 @@ public class MetalsColorsTests extends MetalsColorsTestsInit {
         //1. Login on JDI site as User
         login();
         // Check Login
-        checkUsername();
+        checkUsername(PITER_CHAILOVSKII);
 
         //2. Open Metals & Colors page by Header menu
         headerMenu.openMetalColors();

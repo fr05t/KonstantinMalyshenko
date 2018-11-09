@@ -3,18 +3,16 @@ package pageObjects;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import enums.PageTitles;
+import enums.SubMenuItems;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 import pageObjects.base.CommonBaseElements;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static enums.PageTitles.*;
+import static enums.PageTitles.DATES;
+import static enums.PageTitles.DIFFERENT_ELEMENTS;
+import static enums.Users.PITER_CHALOVSKII;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class SelenideHomePage extends CommonBaseElements {
 
@@ -57,46 +55,22 @@ public class SelenideHomePage extends CommonBaseElements {
     }
 
     public void openDatesPage() {
-            serviceDropdownMenuItems.find(Condition.text(DATES.getTitle())).click();
+        serviceDropdownMenuItems.find(Condition.text(DATES.getTitle())).click();
     }
 
     //==========================Asserts==========================================
 
 
     public void checkUserName() {
-        $(userName.should(text("PITER CHAILOVSKI")));
+        assertEquals(userName.getText(), PITER_CHALOVSKII.getUsername());
     }
 
     public void checkServiceDropdownMenuSubcategory() {
-        List<String> serviceDropdownMenuItems = new ArrayList();
-
-
-        serviceDropdownMenuItems.add("SUPPORT");
-        serviceDropdownMenuItems.add("DATES");
-        serviceDropdownMenuItems.add("COMPLEX TABLE");
-        serviceDropdownMenuItems.add("SIMPLE TABLE");
-        serviceDropdownMenuItems.add("USER TABLE");
-        serviceDropdownMenuItems.add("TABLE WITH PAGES");
-        serviceDropdownMenuItems.add("DIFFERENT ELEMENTS");
-        serviceDropdownMenuItems.add("PERFORMANCE");
-
-        this.serviceDropdownMenuItems.texts().containsAll(serviceDropdownMenuItems);
+        assertTrue(this.serviceDropdownMenuItems.texts().containsAll(SubMenuItems.getUpperCaseMenuItems()));
     }
 
     public void checkLeftServiceMenuItems() {
-        List<String> serviceDropdownMenuItems = new ArrayList();
-        serviceDropdownMenuItems.add("Support");
-        serviceDropdownMenuItems.add("Dates");
-        serviceDropdownMenuItems.add("Complex Table");
-        serviceDropdownMenuItems.add("Simple Table");
-        serviceDropdownMenuItems.add("User Table");
-        serviceDropdownMenuItems.add("Table with pages");
-        serviceDropdownMenuItems.add("Different elements");
-        serviceDropdownMenuItems.add("Performance");
-
-        for (SelenideElement elm : leftServiceMenuItems) {
-            Assert.assertTrue(serviceDropdownMenuItems.contains(elm.getText()));
-        }
+        assertTrue(leftServiceMenuItems.texts().containsAll(SubMenuItems.getLowerCaseMenuItems()));
     }
 
 }

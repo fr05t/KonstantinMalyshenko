@@ -13,6 +13,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static enums.LogItems.FROM;
+import static enums.LogItems.TO;
 
 public class SelenideDates {
 
@@ -69,13 +71,13 @@ public class SelenideDates {
 
         List<String> lastEvents = new ArrayList<>();
         for (int i = 0; i < logElements.size(); i++) {
-            if (logElements.get(i).getText().contains("From")) {
+            if (logElements.get(i).getText().contains(FROM.getValue())) {
                 lastEvents.add(logElements.get(i).getText());
                 break;
             }
         }
         for (int i = 0; i < logElements.size(); i++) {
-            if (logElements.get(i).getText().contains("To")) {
+            if (logElements.get(i).getText().contains(TO.getValue())) {
                 lastEvents.add(logElements.get(i).getText());
                 break;
             }

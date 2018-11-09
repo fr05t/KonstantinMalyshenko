@@ -18,6 +18,7 @@ import java.util.regex.Pattern;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static enums.DropDownMenuItems.YELLOW;
+import static enums.LogItems.*;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -88,7 +89,7 @@ public class SelenideDifferentElements {
         Matcher matcher;
 
         for (int i = logElements.size() - 1; i >= 0; i--) {
-            if (logElements.get(i).getText().contains("metal")) {
+            if (logElements.get(i).getText().contains(METAL.getValue())) {
                 matcher = pattern.matcher(logElements.get(i).getText());
                 matcher.find();
                 return matcher.group(3);
@@ -110,7 +111,7 @@ public class SelenideDifferentElements {
         Matcher matcher;
 
         for (int i = 0; i < logElements.size(); i++) {
-            if (logElements.get(i).getText().contains("Colors")) {
+            if (logElements.get(i).getText().contains(COLORS.getValue())) {
                 matcher = pattern.matcher(logElements.get(i).getText());
                 matcher.find();
                 color = matcher.group(4);
@@ -171,7 +172,7 @@ public class SelenideDifferentElements {
         boolean state = false;
         for (CheckboxItems elm : checkboxItems) {
             for (String elm2 : getCheckboxLog(checkboxItems)) {
-                if (elm2.contains(elm.getCheckboxItemName()) || elm2.contains("true")) {
+                if (elm2.contains(elm.getCheckboxItemName()) || elm2.contains(TRUE.getValue())) {
                     state = true;
                 } else {
                     state = false;
@@ -187,7 +188,7 @@ public class SelenideDifferentElements {
         boolean state = false;
         for (CheckboxItems elm : checkboxItems) {
             for (String elm2 : getCheckboxLog(checkboxItems)) {
-                if (elm2.contains(elm.getCheckboxItemName()) || elm2.contains("false")) {
+                if (elm2.contains(elm.getCheckboxItemName()) || elm2.contains(FALSE.getValue())) {
                     state = true;
                 } else {
                     state = false;

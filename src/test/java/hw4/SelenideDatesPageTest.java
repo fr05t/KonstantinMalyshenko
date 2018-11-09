@@ -7,6 +7,7 @@ import pageObjects.SelenideDates;
 import pageObjects.SelenideHomePage;
 
 import static com.codeborne.selenide.Selenide.page;
+import static enums.PageTitles.DATES;
 import static enums.PageTitles.HOME_PAGE;
 import static enums.Users.PITER_CHALOVSKII;
 
@@ -39,6 +40,7 @@ public class SelenideDatesPageTest extends SelenideTestBase {
         //5. Open through the header menu Service -> Dates Page
         selenideHomePage.serviceDropDownListClick();
         selenideHomePage.openDatesPage();
+        selenideHomePage.checkPageTitle(DATES);
 
         //6. Using drag-and-drop set Range sliders. left sliders - the most left position, right slider - the most rigth position
         selenideDates.moveSliders(0, 100);
