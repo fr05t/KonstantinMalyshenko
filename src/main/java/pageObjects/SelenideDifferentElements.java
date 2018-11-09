@@ -73,10 +73,10 @@ public class SelenideDifferentElements {
     }
 
     @Step("Select dropdown element from list")
-    public void selectDropdownElement() {
+    public void selectDropdownElement(DropDownMenuItems color) {
         dropDownButton.click();
         for (SelenideElement elm : dropDownList) {
-            if (elm.getText().equals(YELLOW.getColor())) {
+            if (elm.getText().equals(color.getColor())) {
                 elm.click();
             }
         }

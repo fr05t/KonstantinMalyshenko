@@ -82,7 +82,7 @@ public class SelenideServicePageTest extends SelenideTestBase {
         selenideDifferentElements.checkRadioButton(SELEN);
 
         //15. Select in dropdown
-        selenideDifferentElements.selectDropdownElement();
+        selenideDifferentElements.selectDropdownElement(YELLOW);
 
         //16. Assert that for dropdown there is a log row and value is corresponded to the selected value. 
         selenideDifferentElements.checkColorLog(YELLOW);
