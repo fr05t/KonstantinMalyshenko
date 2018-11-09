@@ -2,13 +2,13 @@ package pageObjects.base;
 
 import com.codeborne.selenide.SelenideElement;
 import enums.PageTitles;
-import enums.URLs;
 import enums.Users;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static enums.URLs.HOME_PAGE_URL;
 import static org.testng.Assert.assertEquals;
 
 public abstract class CommonBaseElements {
@@ -29,7 +29,7 @@ public abstract class CommonBaseElements {
     //Methods
     @Step
     public void openPage() {
-        open(URLs.HOME_PAGE_URL.getUrl());
+        open(HOME_PAGE_URL.getUrl());
     }
 
     @Step
