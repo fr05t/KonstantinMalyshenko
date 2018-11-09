@@ -1,3 +1,4 @@
+// TODO Quite weird package name, but nevermind...
 package io.github.epam.jdi;
 
 import io.github.epam.jdi.dataproviders.DataProviders;
@@ -22,10 +23,12 @@ public class MetalsColorsTests extends MetalsColorsTestsInit {
         homePage.open();
         homePage.checkOpened();
 
+        // TODO Both of this methods should be parametrised by exactly the same instance...
         //1. Login on JDI site as User
         login();
         // Check Login
         checkUsername();
+        // !TODO
 
         //2. Open Metals & Colors page by Header menu
         headerMenu.openMetalColors();

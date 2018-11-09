@@ -2,6 +2,7 @@ package io.github.epam.jdi.jsonobjects;
 
 import java.util.ArrayList;
 
+// TODO The name of the class should refer the main purpose of it
 public class JsonSet {
     ArrayList<String> summary;
     ArrayList<String> elements;

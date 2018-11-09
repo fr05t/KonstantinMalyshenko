@@ -2,6 +2,8 @@ package io.github.epam.jdi.jsonobjects;
 
 public class DataSets {
 
+    // TODO Oh my...
+    // TODO What are you going to do in case if we add one more data in the file ?
     public JsonSet data_1;
     public JsonSet data_2;
     public JsonSet data_3;
