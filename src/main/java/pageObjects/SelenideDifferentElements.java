@@ -17,7 +17,6 @@ import java.util.regex.Pattern;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static enums.DropDownMenuItems.YELLOW;
 import static enums.LogItems.*;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
@@ -96,12 +95,6 @@ public class SelenideDifferentElements {
             }
         }
         return "";
-    }
-
-    public List<String> getMetalLog() {
-        List<String> metalLog = new ArrayList<>();
-
-        return metalLog;
     }
 
     @Step("Get color log")

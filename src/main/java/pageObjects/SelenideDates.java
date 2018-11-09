@@ -5,7 +5,6 @@ import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +14,7 @@ import java.util.regex.Pattern;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static enums.LogItems.FROM;
 import static enums.LogItems.TO;
+import static org.testng.Assert.assertEquals;
 
 public class SelenideDates {
 
@@ -96,12 +96,12 @@ public class SelenideDates {
         Pattern pattern = Pattern.compile(regExp);
         Matcher matcher = pattern.matcher(lastEvents.get(0));
         matcher.find();
-        Assert.assertEquals(matcher.group(2), expectedLeftValue + "");
+        assertEquals(matcher.group(2), expectedLeftValue + "");
 
         matcher.reset();
         matcher = pattern.matcher(lastEvents.get(1));
 
         matcher.find();
-        Assert.assertEquals(matcher.group(2), expectedRightValue + "");
+        assertEquals(matcher.group(2), expectedRightValue + "");
     }
 }
