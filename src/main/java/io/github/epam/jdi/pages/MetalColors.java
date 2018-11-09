@@ -124,6 +124,7 @@ public class MetalColors extends WebPage {
     }
 
     @Step
+    // TODO Great, you have fillForm method, but where is the form ?
     public void fillForm(JsonSet jsonSet) {
 
         metalColors.selectColor(jsonSet.getColor());
