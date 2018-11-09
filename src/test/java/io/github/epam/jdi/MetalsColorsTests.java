@@ -1,9 +1,7 @@
 package io.github.epam.jdi;
 
-import enums.Users;
 import io.github.epam.jdi.dataproviders.DataProviders;
-import io.github.epam.jdi.entities.User;
-import io.github.epam.jdi.jsonobjects.JsonSet;
+import io.github.epam.jdi.jsonobjects.PageParameters;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
@@ -20,7 +18,7 @@ public class MetalsColorsTests extends MetalsColorsTestsInit {
     }
 
     @Test(dataProvider = "jsonParser", dataProviderClass = DataProviders.class)
-    public void loginTest(Object i, JsonSet jsonSets) {
+    public void loginTest(Object i, PageParameters jsonSets) {
 
         //0. Open Home Page
         homePage.open();

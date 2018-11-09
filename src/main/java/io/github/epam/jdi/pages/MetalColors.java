@@ -17,7 +17,7 @@ import io.github.epam.jdi.enums.Colors;
 import io.github.epam.jdi.enums.Elements;
 import io.github.epam.jdi.enums.Metals;
 import io.github.epam.jdi.enums.Vegetables;
-import io.github.epam.jdi.jsonobjects.JsonSet;
+import io.github.epam.jdi.jsonobjects.PageParameters;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.allure.annotations.Step;
 
@@ -124,18 +124,18 @@ public class MetalColors extends WebPage {
     }
 
     @Step
-    public void fillForm(JsonSet jsonSet) {
+    public void fillForm(PageParameters pageParameters) {
 
-        metalColors.selectColor(jsonSet.getColor());
-        metalColors.selectVegetables(jsonSet.getVegetables());
+        metalColors.selectColor(pageParameters.getColor());
+        metalColors.selectVegetables(pageParameters.getVegetables());
 
-        metalColors.selectOddsElement(jsonSet.getSummary().get(0));
-        metalColors.selectEvenElement(jsonSet.getSummary().get(1));
+        metalColors.selectOddsElement(pageParameters.getSummary().get(0));
+        metalColors.selectEvenElement(pageParameters.getSummary().get(1));
 
 
         metalColors.clickCalculateButton();
-        metalColors.selectMetal(jsonSet.getMetals());
-        metalColors.selectElementCheckbox(jsonSet.getElements());
+        metalColors.selectMetal(pageParameters.getMetals());
+        metalColors.selectElementCheckbox(pageParameters.getElements());
 
     }
 

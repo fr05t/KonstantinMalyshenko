@@ -1,7 +1,8 @@
 package io.github.epam.jdi.sections;
 
 import com.epam.jdi.uitests.web.selenium.elements.complex.TextList;
-import io.github.epam.jdi.jsonobjects.JsonSet;
+import io.github.epam.jdi.enums.ResultElements;
+import io.github.epam.jdi.jsonobjects.PageParameters;
 import io.github.epam.jdi.pages.MetalColors;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
@@ -12,6 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static io.github.epam.jdi.JDIExampleSite.result;
+import static io.github.epam.jdi.enums.ResultElements.*;
 
 public class Result extends MetalColors {
 
@@ -27,19 +29,19 @@ public class Result extends MetalColors {
     public void getResult() {
 
         for (Object elm : resultText.getLabels()) {
-            if (elm.toString().contains("Summary")) {
+            if (elm.toString().contains(SUMMARY.getValue())) {
                 summary = elm.toString().split(": ")[1];
             }
-            if (elm.toString().contains("Elements")) {
+            if (elm.toString().contains(ELEMNTS.getValue())) {
                 elements = Arrays.asList(elm.toString().substring("Elements: ".length()).split(", "));
             }
-            if (elm.toString().contains("Color")) {
+            if (elm.toString().contains(COLOR.getValue())) {
                 color = elm.toString().split(": ")[1];
             }
-            if (elm.toString().contains("Metal")) {
+            if (elm.toString().contains(METAL.getValue())) {
                 metal = elm.toString().split(": ")[1];
             }
-            if (elm.toString().contains("Vegetables")) {
+            if (elm.toString().contains(VEGETABLES.getValue())) {
                 salad = Arrays.asList(elm.toString().substring("Vegetables: ".length()).split(", "));
             }
         }
@@ -52,16 +54,13 @@ public class Result extends MetalColors {
     //=====================Asserts=============================
 
     @Step
-    public void checkResult(JsonSet jsonSet) {
+    public void checkResult(PageParameters pageParameters) {
         result.getResult();
 
-        System.out.println(jsonSet.getSummary());
-        System.out.println();
-
-        Assert.assertEquals(elements, jsonSet.getElements());
-        Assert.assertEquals(salad, jsonSet.getVegetables());
-        Assert.assertEquals(color, jsonSet.getColor());
-        Assert.assertEquals(metal, jsonSet.getMetals());
+        Assert.assertEquals(elements, pageParameters.getElements());
+        Assert.assertEquals(salad, pageParameters.getVegetables());
+        Assert.assertEquals(color, pageParameters.getColor());
+        Assert.assertEquals(metal, pageParameters.getMetals());
 
     }
 
