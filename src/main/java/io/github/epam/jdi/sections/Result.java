@@ -1,8 +1,7 @@
 package io.github.epam.jdi.sections;
 
 import com.epam.jdi.uitests.web.selenium.elements.complex.TextList;
-import io.github.epam.jdi.enums.ResultElements;
-import io.github.epam.jdi.jsonobjects.PageParameters;
+import io.github.epam.jdi.jsonobjects.MetalsColorsDataSet;
 import io.github.epam.jdi.pages.MetalColors;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
@@ -54,13 +53,13 @@ public class Result extends MetalColors {
     //=====================Asserts=============================
 
     @Step
-    public void checkResult(PageParameters pageParameters) {
+    public void checkResult(MetalsColorsDataSet metalsColorsDataSet) {
         result.getResult();
 
-        Assert.assertEquals(elements, pageParameters.getElements());
-        Assert.assertEquals(salad, pageParameters.getVegetables());
-        Assert.assertEquals(color, pageParameters.getColor());
-        Assert.assertEquals(metal, pageParameters.getMetals());
+        Assert.assertEquals(elements, metalsColorsDataSet.getElements());
+        Assert.assertEquals(salad, metalsColorsDataSet.getVegetables());
+        Assert.assertEquals(color, metalsColorsDataSet.getColor());
+        Assert.assertEquals(metal, metalsColorsDataSet.getMetals());
 
     }
 

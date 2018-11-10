@@ -1,13 +1,12 @@
 package io.github.epam.jdi;
 
 import io.github.epam.jdi.dataproviders.DataProviders;
-import io.github.epam.jdi.jsonobjects.PageParameters;
+import io.github.epam.jdi.jsonobjects.MetalsColorsDataSet;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
-
-import static io.github.epam.jdi.enums.Users.PITER_CHAILOVSKII;
 import static io.github.epam.jdi.JDIExampleSite.*;
+import static io.github.epam.jdi.enums.Users.PITER_CHAILOVSKII;
 
 public class MetalsColorsTests extends MetalsColorsTestsInit {
 
@@ -18,14 +17,14 @@ public class MetalsColorsTests extends MetalsColorsTestsInit {
     }
 
     @Test(dataProvider = "jsonParser", dataProviderClass = DataProviders.class)
-    public void loginTest(Object i, PageParameters jsonSets) {
+    public void loginTest(String i, MetalsColorsDataSet jsonSets) {
 
         //0. Open Home Page
         homePage.open();
         homePage.checkOpened();
 
         //1. Login on JDI site as User
-        login();
+        login(PITER_CHAILOVSKII);
         // Check Login
         checkUsername(PITER_CHAILOVSKII);
 
@@ -36,7 +35,7 @@ public class MetalsColorsTests extends MetalsColorsTestsInit {
         metalColors.fillForm(jsonSets);
 
         //4. Submit form Metals & Colors
-        metalColors.clickSubmitButton();
+        mainContentForm.clickSubmitButton();
 
         //5. Assert result section
         result.checkResult(jsonSets);

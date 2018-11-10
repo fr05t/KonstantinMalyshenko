@@ -2,7 +2,7 @@ package io.github.epam.jdi.jsonobjects;
 
 import java.util.ArrayList;
 
-public class PageParameters {
+public class MetalsColorsDataSet {
     ArrayList<String> summary;
     ArrayList<String> elements;
     String color;

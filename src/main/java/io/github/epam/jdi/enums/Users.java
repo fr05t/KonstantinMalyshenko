@@ -1,5 +1,7 @@
 package io.github.epam.jdi.enums;
 
+import io.github.epam.jdi.entities.User;
+
 public enum Users {
     PITER_CHAILOVSKII("PITER CHAILOVSKII");
 
@@ -11,5 +13,9 @@ public enum Users {
 
     public String getUsername() {
         return username;
+    }
+
+    public User getLoginPassword() {
+        return new User();
     }
 }
