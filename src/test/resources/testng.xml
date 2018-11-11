@@ -4,7 +4,8 @@
     <test name="Simple Test">
 
         <classes>
-            <class name="lesson5.SimpleTestSelenidePageObject"/>
+            <class name="hw4.SelenideServicePageTest"/>
+            <class name="hw4.SelenideDatesPageTest"/>
         </classes>
 
     </test>
