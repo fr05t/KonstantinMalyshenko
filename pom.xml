@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>KonstantinMalyshenko</groupId>
-    <artifactId>epamtest</artifactId>
+    <groupId>epam</groupId>
+    <artifactId>KonstantinMalyshenko</artifactId>
     <version>1.0</version>
     <name>Konstantin Malyshenko Home Work</name>
 
@@ -14,7 +14,7 @@
         <aspectj.version>1.8.5</aspectj.version>
         <driver>chrome</driver>
         <suiteXmlFile>testng.xml</suiteXmlFile>
-        <allure.version>2.6.0</allure.version>
+        <allure.version>2.7.0</allure.version>
         <aspectj.version>1.8.12</aspectj.version>
     </properties>
 
@@ -47,6 +47,12 @@
         </dependency>
 
         <dependency>
+            <groupId>ru.yandex.qatools.allure</groupId>
+            <artifactId>allure-bundle</artifactId>
+            <version>1.5.4</version>
+        </dependency>
+
+        <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-testng</artifactId>
             <version>${allure.version}</version>
@@ -65,7 +71,7 @@
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-java-commons</artifactId>
-            <version>LATEST</version>
+            <version>${allure.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.slf4j</groupId>
@@ -140,7 +146,7 @@
             <plugin>
                 <groupId>ru.yandex.qatools.allure</groupId>
                 <artifactId>allure-maven-plugin</artifactId>
-                <version>2.5</version>
+                <version>2.6</version>
                 <executions>
                     <execution>
                         <goals>
@@ -150,11 +156,17 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>ru.yandex.qatools.allure</groupId>
+                <artifactId>allure-bundle</artifactId>
+                <version>1.5.4</version>
+            </plugin>
+
             <!-- Java version 8 -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.2</version>
+                <version>3.3</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -175,9 +187,9 @@
         <excludeDefaults>true</excludeDefaults>
         <plugins>
             <plugin>
-                <groupId>ru.yandex.qatools.allure</groupId>
-                <artifactId>allure-maven-plugin</artifactId>
-                <version>LATEST</version>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.9</version>
             </plugin>
         </plugins>
     </reporting>
