@@ -1,4 +1,5 @@
-##Mobie Test Automation HW 1
+### Mobie Test Automation HW 1
+
 **1.	Setup project that has been discussed in the class. Make sure you can run both tests (native and web) successfully.**
 
   - All test properly run through mobile_hw1.xml
