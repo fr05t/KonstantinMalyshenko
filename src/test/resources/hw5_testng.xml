@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Test Suite" verbose="1">
-    <test name="Simple Test">
+<suite name="Test Suite" parallel="methods" thread-count="3">
+    <test name="HW5 Test">
 
         <classes>
             <class name="hw5.SelenideServicePageTest"/>
