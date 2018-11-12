@@ -20,6 +20,8 @@
 
     <dependencies>
 
+        <!--===================Mobile dependencies=================== -->
+
         <dependency>
             <groupId>io.appium</groupId>
             <artifactId>java-client</artifactId>

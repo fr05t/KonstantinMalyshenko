@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Test Suite" verbose="1">
+    <test name="Simple Test">
+
+        <classes>
+            <class name="mobile.hw1.MobileNativeTest"/>
+            <class name="mobile.hw1.MobileWebTest"/>
+        </classes>
+
+    </test>
+</suite>
