@@ -19,6 +19,14 @@
     </properties>
 
     <dependencies>
+
+        <!--===================Mobile dependencies=================== -->
+        <dependency>
+            <groupId>io.appium</groupId>
+            <artifactId>java-client</artifactId>
+            <version>LATEST</version>
+        </dependency>
+
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
