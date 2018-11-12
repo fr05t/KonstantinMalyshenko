@@ -16,6 +16,7 @@ import static io.github.epam.jdi.enums.ResultElements.*;
 
 public class Result extends MetalColors {
 
+    // TODO you should not mix up PO and data classes together...
     private String summary;
     private List<String> elements;
     private String color;
@@ -25,6 +26,7 @@ public class Result extends MetalColors {
     @FindBy(css = ".results > li")
     private TextList resultText;
 
+    // TODO '*get' method should return smth...
     public void getResult() {
 
         for (Object elm : resultText.getLabels()) {

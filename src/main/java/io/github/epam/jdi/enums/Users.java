@@ -16,6 +16,7 @@ public enum Users {
     }
 
     public User getLoginPassword() {
+        // TODO The greatest example of enum usage. Could you pleas explain the idea if this ????
         return new User();
     }
 }

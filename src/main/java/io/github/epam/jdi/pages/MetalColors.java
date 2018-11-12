@@ -13,6 +13,8 @@ public class MetalColors extends WebPage {
 
     //==================================Methods==============================================
     @Step
+    // TODO Where is the FORM ? It should be HERE, In this class !!
+    // TODO Site consist of the pages, pages consist of the elements and FORMS, FORMS consist of elements ...
     public void fillForm(MetalsColorsDataSet metalsColorsDataSet) {
 
         mainContentForm.selectColor(metalsColorsDataSet.getColor());

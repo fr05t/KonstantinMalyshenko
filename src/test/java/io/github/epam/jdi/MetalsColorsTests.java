@@ -31,6 +31,8 @@ public class MetalsColorsTests extends MetalsColorsTestsInit {
         //2. Open Metals & Colors page by Header menu
         headerMenu.openMetalColors();
 
+        // TODO Instance name of MetalsColorsDataSet has to be change
+        // TODO The name of the class should refer to the main purpose of it (X2)
         //3. Fill form Metals & Colors by data below:
         metalColors.fillForm(jsonSets);
 

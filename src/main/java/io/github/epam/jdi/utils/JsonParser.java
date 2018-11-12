@@ -30,10 +30,13 @@ public class JsonParser {
         }.getType();
         Map<String, MetalsColorsDataSet> dataSetMap = new Gson().fromJson(jsonReader, listType);
 
+        // TODO Actually, you can return single dimension array
         Object[][] data = new Object[dataSetMap.size()][2];
         int i = 0;
         for (Map.Entry<String, MetalsColorsDataSet> elm : dataSetMap.entrySet()) {
             data[i][0] = elm.getKey();
+            // TODO Basically, you should not use System.out.println in your tests, use Logging library like log4j and so on
+            // TODO JDI has it...
             System.out.println("" + elm.getValue());
 
             data[i][1] = elm.getValue();

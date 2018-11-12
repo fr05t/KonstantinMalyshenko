@@ -53,6 +53,7 @@ public class HomePageSelenide {
     @Step
     public void checkMainText() {
         mainTitle.shouldBe(visible);
-        mainTitle.shouldHave(text("EPA FRAMEWORK WISHES…"));
+        // TODO I cant compile your code because of this symbol.
+        mainTitle.shouldHave(text("EPA FRAMEWORK WISHESï¿½"));
     }
 }
