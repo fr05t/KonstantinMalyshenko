@@ -2,7 +2,7 @@ package io.github.epam.jdi.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import io.github.epam.jdi.jsonobjects.MetalsColorsDataSet;
+import io.github.epam.jdi.jsonobjects.TestDataSet;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -15,7 +15,7 @@ import static io.github.epam.jdi.enums.Path.JSON_PATH;
 
 public class JsonParser {
 
-    public Object[][] returnSet() {
+    public Object[] returnSet() {
 
         FileInputStream fileInputStream = null;
         try {
@@ -26,21 +26,19 @@ public class JsonParser {
 
         BufferedReader jsonReader = new BufferedReader(new InputStreamReader(fileInputStream));
 
-        Type listType = new TypeToken<Map<String, MetalsColorsDataSet>>() {
+        Type listType = new TypeToken<Map<String, TestDataSet>>() {
         }.getType();
-        Map<String, MetalsColorsDataSet> dataSetMap = new Gson().fromJson(jsonReader, listType);
+        Map<String, TestDataSet> dataSetMap = new Gson().fromJson(jsonReader, listType);
 
         // TODO Actually, you can return single dimension array
-        Object[][] data = new Object[dataSetMap.size()][2];
+        //Object[][] data = new Object[dataSetMap.size()][2];
+        Object[] data = new Object[dataSetMap.size()];
         int i = 0;
-        for (Map.Entry<String, MetalsColorsDataSet> elm : dataSetMap.entrySet()) {
-            data[i][0] = elm.getKey();
+        for (Map.Entry<String, TestDataSet> elm : dataSetMap.entrySet()) {
+            //data[i][0] = elm.getKey();
             // TODO Basically, you should not use System.out.println in your tests, use Logging library like log4j and so on
             // TODO JDI has it...
-            System.out.println("" + elm.getValue());
-
-            data[i][1] = elm.getValue();
-            System.out.println("value" + elm.getValue());
+            data[i] = elm.getValue();
             i++;
         }
         return data;

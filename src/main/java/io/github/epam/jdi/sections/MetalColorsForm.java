@@ -8,6 +8,7 @@ import com.epam.jdi.uitests.web.selenium.elements.common.Button;
 import com.epam.jdi.uitests.web.selenium.elements.common.CheckBox;
 import com.epam.jdi.uitests.web.selenium.elements.complex.CheckList;
 import com.epam.jdi.uitests.web.selenium.elements.complex.RadioButtons;
+import com.epam.jdi.uitests.web.selenium.elements.composite.Form;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JFindBy;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.objects.JDropList;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.objects.JDropdown;
@@ -15,14 +16,15 @@ import io.github.epam.jdi.enums.Colors;
 import io.github.epam.jdi.enums.Elements;
 import io.github.epam.jdi.enums.Metals;
 import io.github.epam.jdi.enums.Vegetables;
-import io.github.epam.jdi.pages.MetalColors;
+import io.github.epam.jdi.jsonobjects.TestDataSet;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainContentForm extends MetalColors {
+
+public class MetalColorsForm extends Form<TestDataSet> {
 
     //=============================Elemnts========================================
     @FindBy(css = "#calculate-button")
@@ -42,7 +44,7 @@ public class MainContentForm extends MetalColors {
             jroot = @JFindBy(xpath = ".salad"),
             jlist = @JFindBy(tagName = "li")
     )
-    public IDropList vegetablesList;
+    public IDropList<Vegetables> vegetablesList;
 
     @JFindBy(id = "salad-dropdown")
     public IButton button;
@@ -52,7 +54,7 @@ public class MainContentForm extends MetalColors {
             jlist = @JFindBy(tagName = "li"),
             jvalue = @JFindBy(css = ".filter-option")
     )
-    public IDropDown<Colors> colors;
+    public IDropDown<Colors> color;
 
     @JDropdown(
             jroot = @JFindBy(css = ".salad.dropdown"),
@@ -65,7 +67,7 @@ public class MainContentForm extends MetalColors {
             jroot = @JFindBy(css = ".open .dropdown-menu.open .dropdown-menu.inner.selectpicker"),
             jlist = @JFindBy(css = "li"),
             jvalue = @JFindBy(css = ".filter-option.pull-left"))
-    private IDropDown<Metals> metalsList;
+    private IDropDown<Metals> metals;
 
     @JFindBy(css = ".form-group.metals .btn .caret")
     private IButton metalListButton;
@@ -77,13 +79,30 @@ public class MainContentForm extends MetalColors {
     private RadioButtons evenRadioButtob;
 
     @JFindBy(css = ".info-panel-section .checkbox")
-    private ICheckList<Elements> elementCheckbox;
+    private ICheckList<Elements> elements;
+
+    //==================================Methods==============================================
+    @Step
+    // TODO Where is the FORM ? It should be HERE, In this class !!
+    // TODO Site consist of the pages, pages consist of the elements and FORMS, FORMS consist of elements ...
+    public void fillForm(TestDataSet testData) {
+
+        selectColor(testData.getColor());
+        selectVegetables(testData.getVegetables());
+
+        selectOddsElement(testData.getSummary().get(0));
+        selectEvenElement(testData.getSummary().get(1));
 
 
-    //===================================Methods==========================================
+        clickCalculateButton();
+        selectMetal(testData.getMetals());
+        selectElementCheckbox(testData.getElements());
+
+    }
+
 
     public void selectColor(String color) {
-        colors.select(color);
+        this.color.select(color);
     }
 
     public void clickCalculateButton() {
@@ -106,7 +125,7 @@ public class MainContentForm extends MetalColors {
 
     public void selectElementCheckbox(ArrayList<String> elements) {
         for (String elm : elements) {
-            elementCheckbox.check(elm);
+            this.elements.check(elm);
         }
 
     }
@@ -115,7 +134,7 @@ public class MainContentForm extends MetalColors {
     public void selectMetal(String metal) {
 
         metalListButton.click();
-        metalsList.select(metal);
+        metals.select(metal);
     }
 
 
@@ -129,5 +148,4 @@ public class MainContentForm extends MetalColors {
             vegetables.select(elm);
         }
     }
-
 }

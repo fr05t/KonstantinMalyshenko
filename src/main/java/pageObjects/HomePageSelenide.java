@@ -54,6 +54,6 @@ public class HomePageSelenide {
     public void checkMainText() {
         mainTitle.shouldBe(visible);
         // TODO I cant compile your code because of this symbol.
-        mainTitle.shouldHave(text("EPA FRAMEWORK WISHES�"));
+        mainTitle.shouldHave(text("EPAM FRAMEWORK WISHES"));
     }
 }

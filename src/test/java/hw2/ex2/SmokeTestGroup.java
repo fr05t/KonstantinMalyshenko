@@ -41,7 +41,7 @@ public class SmokeTestGroup {
         webDriver.findElement(By.cssSelector("[id = 'Password']")).sendKeys("1234");
         webDriver.findElement(By.cssSelector(".login [ type = 'submit']")).click();
 
-        //4. Assert User Name
+        //4. Assert UserCredentials Name
         WebElement element = webDriver.findElement(By.cssSelector(".profile-photo [ui = 'label']"));
         Assert.assertEquals(element.getText(), "PITER CHAILOVSKII");
 
@@ -149,7 +149,7 @@ public class SmokeTestGroup {
         webDriver.findElement(By.cssSelector("[id = 'Password']")).sendKeys("1234");
         webDriver.findElement(By.cssSelector(".login [ type = 'submit']")).click();
 
-        //4. Assert User Name
+        //4. Assert UserCredentials Name
         WebElement element = webDriver.findElement(By.cssSelector(".profile-photo [ui = 'label']"));
         Assert.assertEquals(element.getText(), "PITER CHAILOVSKII");
 
@@ -256,7 +256,7 @@ public class SmokeTestGroup {
         webDriver.findElement(By.cssSelector("[id = 'Password']")).sendKeys("1234");
         webDriver.findElement(By.cssSelector(".login [ type = 'submit']")).click();
 
-        //4. Assert User Name
+        //4. Assert UserCredentials Name
         WebElement element = webDriver.findElement(By.cssSelector(".profile-photo [ui = 'label']"));
         Assert.assertEquals(element.getText(), "PITER CHAILOVSKII");
 

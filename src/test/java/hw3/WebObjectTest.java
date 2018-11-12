@@ -39,7 +39,7 @@ public class WebObjectTest extends TestBaseWebObjects {
         //3. Perform login
         homePageObjects.login("epam", "1234");
 
-        //4. Assert User Name
+        //4. Assert UserCredentials Name
         homePageObjects.checkUserName("PITER CHAILOVSKII");
 
         //5. Asset Assert Browser title

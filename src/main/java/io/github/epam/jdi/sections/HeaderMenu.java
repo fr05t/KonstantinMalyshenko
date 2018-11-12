@@ -18,7 +18,7 @@ public class HeaderMenu extends HomePage {
     @Css(".profile-photo [ui='label']")
     public Text username;
 
-    @FindBy(css = ".uui-navigation a[href = 'metals-colors.html']")
+    @FindBy(css = ".uui-navigation a[href = 'metals-color.html']")
     private Link metalsColors;
 
     @Step

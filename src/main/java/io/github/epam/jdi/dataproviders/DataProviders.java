@@ -6,7 +6,7 @@ import org.testng.annotations.DataProvider;
 public class DataProviders {
 
     @DataProvider(name = "jsonParser", parallel = false)
-    public Object[][] parseJsonFile() {
+    public Object[] parseJsonFile() {
         return (new JsonParser()).returnSet();
     }
 }
