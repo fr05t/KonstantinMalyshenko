@@ -23,7 +23,7 @@ import static enums.Users.PITER_CHALOVSKII;
 @Feature("Smoke tests")
 @Story("Service Page Testing")
 @Listeners(AllureAttachmentListener.class)
-public class SelenideServicePageTest2 extends SelenideTestBase {
+public class ServicePageTest extends SelenideTestBase {
 
     private SelenideHomePage selenideHomePage;
     private SelenideDifferentElements selenideDifferentElements;

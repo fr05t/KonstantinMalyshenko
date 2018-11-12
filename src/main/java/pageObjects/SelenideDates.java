@@ -95,12 +95,12 @@ public class SelenideDates {
 
         String regExp = ".+(To|From).+:(\\d+).+";
         Pattern pattern = Pattern.compile(regExp);
-        Matcher matcher = pattern.matcher(lastEvents.get(0));
+        Matcher matcher = pattern.matcher(lastEvents.get(1));
         matcher.find();
         assertEquals(matcher.group(2), expectedLeftValue + "");
 
         matcher.reset();
-        matcher = pattern.matcher(lastEvents.get(1));
+        matcher = pattern.matcher(lastEvents.get(0));
 
         matcher.find();
         assertEquals(matcher.group(2), expectedRightValue + "");

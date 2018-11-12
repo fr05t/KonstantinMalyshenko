@@ -4,9 +4,9 @@
     <test name="HW5 Test">
 
         <classes>
-            <class name="hw5.SelenideServicePageTest"/>
-            <class name="hw5.SelenideServicePageTest2"/>
-            <class name="hw5.SelenideDatesPageTest"/>
+            <class name="hw5.DatesPageTest"/>
+            <class name="hw5.ServicePageTest"/>
+            <class name="hw5.ServicePageTest2"/>
         </classes>
 
     </test>

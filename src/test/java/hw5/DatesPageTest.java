@@ -18,7 +18,7 @@ import static enums.Users.PITER_CHALOVSKII;
 @Feature("Smoke tests")
 @Story("Dates Page testing")
 @Listeners(AllureAttachmentListener.class)
-public class SelenideDatesPageTest extends SelenideTestBase {
+public class DatesPageTest extends SelenideTestBase {
 
     private SelenideHomePage selenideHomePage;
     private SelenideDates selenideDates;

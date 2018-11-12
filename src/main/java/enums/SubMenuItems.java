@@ -6,7 +6,7 @@ import java.util.List;
 
 public enum SubMenuItems {
 
-    SUPPORT("SUPPORT", "Support"), DATES("DATES", "Dates"), COMPLEX_TABLE("COMPLEX TABLE", "Complex Table"), SIMPLE_TABLE("SIMPLE TABLE", "Simple Table"), USER_TABLE("USER TABLE", "UserCredentials Table"),
+    SUPPORT("SUPPORT", "Support"), DATES("DATES", "Dates"), COMPLEX_TABLE("COMPLEX TABLE", "Complex Table"), SIMPLE_TABLE("SIMPLE TABLE", "Simple Table"), USER_TABLE("USER TABLE", "User Table"),
     TABLE_WITH_PAGES("TABLE WITH PAGES", "Table with pages"), DIFFERENT_ELEMENTS("DIFFERENT ELEMENTS", "Different elements"), PERFORMANCE("PERFORMANCE", "Performance");
 
     private String upperCaseValue;
