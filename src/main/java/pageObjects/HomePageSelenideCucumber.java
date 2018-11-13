@@ -54,7 +54,7 @@ public class HomePageSelenideCucumber {
     //================================checks===================================
 
     @Step
-    @Then("The browser title is Home Page$")
+    @Then("The browser title is Home Page")
     public void checkTitle() {
         assertEquals(getWebDriver().getTitle(), "Home Page");
     }
