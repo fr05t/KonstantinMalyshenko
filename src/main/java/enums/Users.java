@@ -17,4 +17,8 @@ public enum Users {
     public String getUsername() {
         return username;
     }
+
+    public String toString() {
+        return username;
+    }
 }

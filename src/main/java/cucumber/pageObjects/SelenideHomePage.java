@@ -18,7 +18,6 @@ import static com.codeborne.selenide.Selenide.page;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static enums.PageTitles.DATES;
 import static enums.PageTitles.DIFFERENT_ELEMENTS;
-import static enums.Users.PITER_CHALOVSKII;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -49,17 +48,17 @@ public class SelenideHomePage {
 
 
     @Step
-    @Then("The browser title is (\\w+)")
-    public void checkPageTitle(PageTitles pageTitles) {
-        assertEquals(getWebDriver().getTitle(), pageTitles.getTitle());
+    @Then("^The browser title is '(.*)'$")
+    public void checkPageTitle(String pageTitles) {
+        assertEquals(getWebDriver().getTitle(), PageTitles.HOME_PAGE.getTitle());
     }
 
     @Step
-    @When("I login as user (.+) with password (.+) ")
-    public void login(Users user) {
+    @When("I login as user (.+) with password (.+)")
+    public void login(String user, String passwd) {
         profileButton.click();
-        login.sendKeys(user.login);
-        password.sendKeys(user.password);
+        login.sendKeys(user);
+        password.sendKeys(passwd);
         submit.click();
     }
 
@@ -81,7 +80,6 @@ public class SelenideHomePage {
 
     @FindBy(css = ".menu-title[index = '3'] .sub > li")
     private ElementsCollection leftServiceMenuItems;
-
 
 
     //================================methods===================================
@@ -110,9 +108,9 @@ public class SelenideHomePage {
     //==========================Asserts==========================================
 
     @Step("Check username")
-    @Then("The user name is displayed on the header")
-    public void checkUserName() {
-        assertEquals(userName.getText(), PITER_CHALOVSKII.getUsername());
+    @Then("The '(.*)' is displayed on the header")
+    public void checkUserName(String user) {
+        assertEquals(userName.getText(), user);
     }
 
     @Step("Check category from service dropdown menu")

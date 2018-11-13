@@ -3,15 +3,19 @@ package cucumber.pageObjects;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import cucumber.api.java.en.And;
+import cucumber.api.java.it.Ma;
 import enums.CheckboxItems;
 import enums.DropDownMenuItems;
 import enums.PageTitles;
 import enums.RadioButtonItems;
+import gherkin.ast.DataTable;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,7 +34,7 @@ public class SelenideDifferentElements {
 
 
     @FindBy(css = ".label-checkbox")
-    private ElementsCollection checkBoxItems;
+    private  ElementsCollection checkBoxItems;
 
     @FindBy(css = ".label-radio")
     private ElementsCollection radioElements;
@@ -131,8 +135,11 @@ public class SelenideDifferentElements {
     }
 
     //=================================Asserts==========================================
+
+    @And("Page contains all elements:")
     @Step("Check checkbox item")
-    public void checkCheckBoxItems() {
+    public void checkCheckBoxItems(Map<String, Integer> dataTable) {
+       /// System.out.println(dataTable.get("pictures"));
         checkBoxItems.shouldHaveSize(4);
     }
 

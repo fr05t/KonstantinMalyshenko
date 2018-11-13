@@ -16,4 +16,8 @@ public enum PageTitles {
         return this.title;
     }
 
+    public String toString() {
+        return title;
+    }
+
 }
