@@ -24,17 +24,17 @@ public class SelenideDates {
     private SelenideElement slider;
 
     @FindBy(css = ".ui-slider-handle.ui-state-default.ui-corner-all span")
-    private ElementsCollection sliderEliments;
+    private static ElementsCollection selenideElements;
 
     @FindBy(css = ".panel-body-list.logs > li")
-    private ElementsCollection logElements;
+    private static ElementsCollection logElements;
 
     //================================methods===================================
 
     @Step("Move Sliders")
     public void moveSliders(int leftPosition, int rightPosition) {
-        int currenLeftPosition = Integer.parseInt(sliderEliments.get(0).getText());
-        int currentRightPosition = Integer.parseInt(sliderEliments.get(1).getText());
+        int currenLeftPosition = Integer.parseInt(selenideElements.get(0).getText());
+        int currentRightPosition = Integer.parseInt(selenideElements.get(1).getText());
 
         if (leftPosition >= currentRightPosition) {
             rightSliderSet(rightPosition);
@@ -51,9 +51,9 @@ public class SelenideDates {
         Actions actions = new Actions(getWebDriver());
 
         double len = (double) slider.getSize().width / 99;
-        int leftPos = (int) Math.floor((leftPoint - Integer.parseInt(sliderEliments.get(0).getText())) * len);
+        int leftPos = (int) Math.floor((leftPoint - Integer.parseInt(selenideElements.get(0).getText())) * len);
 
-        actions.dragAndDropBy(sliderEliments.get(0), leftPos, 0).release().build().perform();
+        actions.dragAndDropBy(selenideElements.get(0), leftPos, 0).release().build().perform();
     }
 
     @Step("Move the right slider")
@@ -62,9 +62,9 @@ public class SelenideDates {
         Actions actions = new Actions(getWebDriver());
 
         double len = (double) slider.getSize().width / 99;
-        int rightPos = (int) Math.floor((-rightPoint + Integer.parseInt(sliderEliments.get(1).getText())) * len);
+        int rightPos = (int) Math.floor((-rightPoint + Integer.parseInt(selenideElements.get(1).getText())) * len);
 
-        actions.dragAndDropBy(sliderEliments.get(1), -rightPos, 0).release().build().perform();
+        actions.dragAndDropBy(selenideElements.get(1), -rightPos, 0).release().build().perform();
     }
 
     @Step("Get last events from log")
@@ -95,12 +95,12 @@ public class SelenideDates {
 
         String regExp = ".+(To|From).+:(\\d+).+";
         Pattern pattern = Pattern.compile(regExp);
-        Matcher matcher = pattern.matcher(lastEvents.get(1));
+        Matcher matcher = pattern.matcher(lastEvents.get(0));
         matcher.find();
         assertEquals(matcher.group(2), expectedLeftValue + "");
 
         matcher.reset();
-        matcher = pattern.matcher(lastEvents.get(0));
+        matcher = pattern.matcher(lastEvents.get(1));
 
         matcher.find();
         assertEquals(matcher.group(2), expectedRightValue + "");
