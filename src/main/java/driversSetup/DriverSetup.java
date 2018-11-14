@@ -17,7 +17,7 @@ public class DriverSetup {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         //mandatory capabilities
         //capabilities.setCapability("device","Android"); // mandatory???????
-        capabilities.setCapability("deviceName","emulator-5554");
+        capabilities.setCapability("deviceName","621HECQD25GJS");
         capabilities.setCapability("platformName","Android");
 
         // path to app
@@ -37,7 +37,7 @@ public class DriverSetup {
         setProperty("webdriver.chrome.driver", "src\\main\\resources\\mobdrv\\mchromedriver.exe");
         DesiredCapabilities capabilities = new DesiredCapabilities();
         //mandatory Android capabilities
-        capabilities.setCapability("deviceName","emulator-5554");
+        capabilities.setCapability("deviceName","621HECQD25GJS");
         capabilities.setCapability("platformName","Android");
 
         // specific web capabilities

@@ -7,11 +7,12 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import enums.PageTitles;
-import enums.SubMenuItems;
 import enums.URLs;
-import enums.Users;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
+import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.page;
@@ -39,7 +40,39 @@ public class SelenideHomePage {
     @FindBy(css = "[type = 'submit']")
     private SelenideElement submit;
 
-    //Methods
+    @FindBy(css = "span[ui = 'label']")
+    private SelenideElement userName;
+
+    @FindBy(xpath = "//a[@class = 'dropdown-toggle'][contains(.,'Service')]")
+    private SelenideElement serviceDropdownMenu;
+
+    @FindBy(xpath = "//a[@class = 'dropdown-toggle'][contains(.,'Dates')]")
+    private SelenideElement datesDropdownMenu;
+
+    @FindBy(css = ".dropdown-menu > li")
+    private ElementsCollection serviceDropdownMenuItems;
+
+    @FindBy(css = ".menu-title[index = '3']")
+    private SelenideElement serviceLeftMenu;
+
+    @FindBy(css = ".menu-title[index = '3'] .sub > li")
+    private ElementsCollection leftServiceMenuItems;
+
+    @FindBy(css = ".main-title")
+    private SelenideElement headLine;
+
+    @FindBy(css = ".main-txt.text-center")
+    private SelenideElement descriprion;
+
+    @FindBy(css = ".icons-benefit")
+    private ElementsCollection pictures;
+
+    @FindBy(css = ".benefit-txt")
+    private ElementsCollection picturTexts;
+
+
+    //================================methods===================================
+
     @Step
     @When("I'm on the Home Page!")
     public void openPage() {
@@ -62,42 +95,22 @@ public class SelenideHomePage {
         submit.click();
     }
 
-
-    @FindBy(css = "span[ui = 'label']")
-    private SelenideElement userName;
-
-    @FindBy(xpath = "//a[@class = 'dropdown-toggle'][contains(.,'Service')]")
-    private SelenideElement serviceDropdownMenu;
-
-    @FindBy(xpath = "//a[@class = 'dropdown-toggle'][contains(.,'Dates')]")
-    private SelenideElement datesDropdownMenu;
-
-    @FindBy(css = ".dropdown-menu > li")
-    private ElementsCollection serviceDropdownMenuItems;
-
-    @FindBy(css = ".menu-title[index = '3']")
-    private SelenideElement serviceLeftMenu;
-
-    @FindBy(css = ".menu-title[index = '3'] .sub > li")
-    private ElementsCollection leftServiceMenuItems;
-
-
-    //================================methods===================================
-
-
+    @Then("I click on the Service in the header")
     @Step("Click on Service dropdown Menu")
     public void serviceDropDownListClick() {
         serviceDropdownMenu.click();
     }
 
+    @Then("I click on the Service in the leftMenu")
     @Step("Click ")
     public void setServiceLeftMenuClick() {
         serviceLeftMenu.click();
     }
 
+    @And("I open menu '(.*)'")
     @Step("Open through the header menu Service -> Different Elements Page")
-    public void openDifferenElementsPage() {
-        serviceDropdownMenuItems.find(Condition.text(DIFFERENT_ELEMENTS.getTitle())).click();
+    public void openDifferenElementsPage(String differentElements) {
+        serviceDropdownMenuItems.find(Condition.text(differentElements)).click();
     }
 
     @Step("Open data page")
@@ -113,15 +126,31 @@ public class SelenideHomePage {
         assertEquals(userName.getText(), user);
     }
 
+    @When("Menu contains elements:")
     @Step("Check category from service dropdown menu")
-    public void checkServiceDropdownMenuSubcategory() {
-        assertTrue(this.serviceDropdownMenuItems.texts().containsAll(SubMenuItems.getUpperCaseMenuItems()));
+    public void checkServiceDropdownMenuSubcategory(List<String> subMenuItems) {
+        assertTrue(this.serviceDropdownMenuItems.texts().containsAll(subMenuItems));
     }
 
+    @Then("Menu left menu contains elements:")
     @Step("Check left Service menu Items")
-    @And("Elements are displayed")
-    public void checkLeftServiceMenuItems() {
-        assertTrue(leftServiceMenuItems.texts().containsAll(SubMenuItems.getLowerCaseMenuItems()));
+    public void checkLeftServiceMenuItems(List<String> leftMenuItems) {
+        assertTrue(leftServiceMenuItems.texts().containsAll(leftMenuItems));
+    }
+
+    @And("Page contains all elements:")
+    public void checkElements(Map<String, Integer> dataTable) {
+        headLine.shouldBe(Condition.visible);
+        descriprion.shouldBe(Condition.visible);
+
+        pictures.shouldHaveSize(dataTable.get("pictures"));
+        picturTexts.shouldHaveSize(dataTable.get("picturesTexts"));
+    }
+
+    @Then("'(.*)' is opened")
+    @Step("Open page Different elements")
+    public void chechDifferentElementPage(String title) {
+        assertEquals(getWebDriver().getTitle(), title);
     }
 
 }

@@ -4,6 +4,9 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import cucumber.api.java.en.And;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+import cucumber.api.java.en_scouse.An;
 import cucumber.api.java.it.Ma;
 import enums.CheckboxItems;
 import enums.DropDownMenuItems;
@@ -62,15 +65,20 @@ public class SelenideDifferentElements {
 
     //=================================methods===========================================
 
-
+    @Then("I select conditions:")
     @Step("Select checkboxes")
-    public void selectCheckboxes(CheckboxItems... checkBoxItems) {
+    public void selectCheckboxes(List<String> checkBoxItems) {
 
-        for (CheckboxItems elm : checkBoxItems) {
+        for(String elm : checkBoxItems) {
+            if (this.checkBoxItems.texts().contains(elm)) {
+                this.checkBoxItems.find(Condition.text(elm)).click();
+            }
+        }
+        /*for (CheckboxItems elm : checkBoxItems) {
             if (this.checkBoxItems.texts().contains(elm.getCheckboxItemName())) {
                 this.checkBoxItems.find(Condition.text(elm.getCheckboxItemName())).click();
             }
-        }
+        }*/
     }
 
     @Step("Select radio element")
@@ -136,11 +144,14 @@ public class SelenideDifferentElements {
 
     //=================================Asserts==========================================
 
-    @And("Page contains all elements:")
+    @Then("Page contain this elements:")
     @Step("Check checkbox item")
     public void checkCheckBoxItems(Map<String, Integer> dataTable) {
-       /// System.out.println(dataTable.get("pictures"));
-        checkBoxItems.shouldHaveSize(4);
+
+        checkBoxItems.shouldHaveSize(dataTable.get("checkbox"));
+        radioElements.shouldHaveSize(dataTable.get("radiobutton"));
+        dropDownButton.shouldBe(visible);
+        buttons.shouldHaveSize(dataTable.get("button"));
     }
 
     @Step("Check radio elements")
@@ -158,11 +169,13 @@ public class SelenideDifferentElements {
         buttons.shouldHaveSize(2);
     }
 
+    @And("Right section is displayed")
     @Step("Check right section")
     public void checkRightSection() {
         rightSection.shouldBe(visible);
     }
 
+    @And("Left section is displayed")
     @Step("Check left section")
     public void checkLeftSection() {
         leftSection.shouldBe(visible);
@@ -173,6 +186,7 @@ public class SelenideDifferentElements {
         assertEquals(radioButtonItems.getElement(), getButtonLog());
     }
 
+    @When("Checked elements are displayed")
     @Step("Assert checked elemnts in log")
     public void checkCheckboxesLogTrue(CheckboxItems... checkboxItems) {
 
