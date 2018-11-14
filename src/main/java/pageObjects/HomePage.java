@@ -4,6 +4,7 @@ package pageObjects;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import ru.yandex.qatools.allure.annotations.Step;
 
 import static org.testng.Assert.assertEquals;
 
@@ -30,6 +31,7 @@ public class HomePage {
         driver.get("");
     }
 
+    @Step("Login")
     public void login(String name, String passwd) {
         profileButton.click();
         login.sendKeys(name);

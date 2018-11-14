@@ -13,6 +13,7 @@ import pageObjects.SelenideHomePage;
 import static com.codeborne.selenide.Selenide.page;
 import static enums.CheckboxItems.WATER;
 import static enums.CheckboxItems.WIND;
+import static enums.DropDownMenuItems.GREEN;
 import static enums.DropDownMenuItems.YELLOW;
 import static enums.PageTitles.DIFFERENT_ELEMENTS;
 import static enums.PageTitles.HOME_PAGE;
@@ -21,7 +22,7 @@ import static enums.Users.PITER_CHALOVSKII;
 
 
 @Feature("Smoke tests")
-@Story("Service Page Testing")
+@Story("Service Page Testing - fail")
 @Listeners(AllureAttachmentListener.class)
 public class ServicePageTest2 extends SelenideTestBase {
 
@@ -93,7 +94,7 @@ public class ServicePageTest2 extends SelenideTestBase {
         selenideDifferentElements.selectDropdownElement(YELLOW);
 
         //16. Assert that for dropdown there is a log row and value is corresponded to the selected value. 
-        selenideDifferentElements.checkColorLog(YELLOW);
+        selenideDifferentElements.checkColorLog(GREEN);
 
         //17. Unselect and assert checkboxes
         selenideDifferentElements.selectCheckboxes(WATER, WIND);

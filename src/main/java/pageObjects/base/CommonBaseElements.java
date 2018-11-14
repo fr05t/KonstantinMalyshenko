@@ -27,17 +27,17 @@ public abstract class CommonBaseElements {
 
 
     //Methods
-    @Step
+    @Step("Open page")
     public void openPage() {
         open(HOME_PAGE_URL.getUrl());
     }
 
-    @Step
+    @Step("Check page title")
     public void checkPageTitle(PageTitles pageTitles) {
         assertEquals(getWebDriver().getTitle(), pageTitles.getTitle());
     }
 
-    @Step
+    @Step("Login")
     public void login(Users user) {
         profileButton.click();
         login.sendKeys(user.login);

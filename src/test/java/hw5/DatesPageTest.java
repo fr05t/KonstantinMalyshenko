@@ -15,7 +15,7 @@ import static enums.PageTitles.DATES;
 import static enums.PageTitles.HOME_PAGE;
 import static enums.Users.PITER_CHALOVSKII;
 
-@Feature("Smoke tests")
+@Feature("Smoke Tests")
 @Story("Dates Page testing")
 @Listeners(AllureAttachmentListener.class)
 public class DatesPageTest extends SelenideTestBase {
