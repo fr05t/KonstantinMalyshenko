@@ -11,21 +11,21 @@ Feature: UserTablePageBDD
     And 6 Description images are displayed on Users Table on User Table Page
     And 6 Description texts under images are displayed on Users Table on User Table Page
     And 6 checkboxes are displayed on Users Table on User Table Page
-    And User table contains following values:
-      | Number          | User                           |     Description                                   |
-      | 1               | Roman                          |  Lorem ipsum                                      |
-      | 2               | SergeyIvan                     |  Lorem ipsum                                      |
-      | 3               | Vladzimir                      |  Lorem ipsum                                      |
-      | 4               | Helen Benett                   |  Lorem ipsum some description                     |
-      | 5               | Yoshi Tannamuri                |  Lorem ipsum some description                     |
-      | 6               | Giovanni Rovelli               |  Lorem ipsum some description                     |
+    And User table contains following values:
+      | Number | User             | Description                  |
+      | 1      | Roman            | Lorem ipsum                  |
+      | 2      | SergeyIvan       | Lorem ipsum                  |
+      | 3      | Vladzimir        | Lorem ipsum                  |
+      | 4      | Helen Benett     | Lorem ipsum some description |
+      | 5      | Yoshi Tannamuri  | Lorem ipsum some description |
+      | 6      | Giovanni Rovelli | Lorem ipsum some description |
 
-#When I select 'vip' checkbox for "Sergey Ivan"
-#Then 1 log row has "Vip: condition changed to true" text in log section
+    When I select 'vip' checkbox for "Sergey Ivan"
+    Then 1 log row has "Vip: condition changed to true" text in log section
 
-#When I click on dropdown in column Type for user Roman
-#Then droplist contains values
-#| Dropdown Values |
-#| Admin                       |
-#| User                          |
-#| Manager                  |
+    When I click on dropdown in column Type for user Roman
+    Then droplist contains values:
+      | Dropdown Values |
+      | Admin           |
+      | User            |
+      | Manager         |

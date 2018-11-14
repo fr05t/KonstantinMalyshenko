@@ -20,7 +20,6 @@ import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.page;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static enums.PageTitles.DATES;
-import static enums.PageTitles.DIFFERENT_ELEMENTS;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -47,9 +46,6 @@ public class SelenideHomePage {
 
     @FindBy(xpath = "//a[@class = 'dropdown-toggle'][contains(.,'Service')]")
     private SelenideElement serviceDropdownMenu;
-
-    @FindBy(xpath = "//a[@class = 'dropdown-toggle'][contains(.,'Dates')]")
-    private SelenideElement datesDropdownMenu;
 
     @FindBy(css = ".dropdown-menu > li")
     private ElementsCollection serviceDropdownMenuItems;
@@ -100,7 +96,6 @@ public class SelenideHomePage {
     @And("I login as user \"(.+)\"")
     public void login(String username) {
         profileButton.click();
-
 
 
         login.sendKeys(Users.findUser(username).login);
@@ -162,7 +157,7 @@ public class SelenideHomePage {
 
     @Then("\"(.*)\" page is opened")
     @Step("Open page Different elements")
-    public void chechDifferentElementPage(String title) {
+    public void checkDifferentElementPage(String title) {
         assertEquals(getWebDriver().getTitle(), title);
     }
 

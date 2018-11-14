@@ -11,8 +11,8 @@ Feature: ServicePageBDD
       | headline      | 1 |
       | description   | 1 |
 
-    Then I click on "Service" button in Header
-    When Menu contains elements:
+    When I click on "Service" button in Header
+    Then Menu contains elements:
       | DATES              |
       | COMPLEX TABLE      |
       | SIMPLE TABLE       |
@@ -22,8 +22,8 @@ Feature: ServicePageBDD
       | PERFORMANCE        |
       | SUPPORT            |
 
-    Then I click on the Service in the leftMenu
-    When Menu left menu contains elements:
+    When I click on the Service in the leftMenu
+    Then Menu left menu contains elements:
       | Dates              |
       | Complex Table      |
       | Simple Table       |
@@ -33,7 +33,7 @@ Feature: ServicePageBDD
       | Performance        |
       | Support            |
 
-    Then I click on "Service" button in Header
+    When I click on "Service" button in Header
     And I click on "DIFFERENT ELEMENTS" button in Service dropdown
     Then "Different Elements" page is opened
     When Page contain this elements:
