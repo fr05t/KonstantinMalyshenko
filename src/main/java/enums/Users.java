@@ -21,4 +21,13 @@ public enum Users {
     public String toString() {
         return username;
     }
+
+    public static Users findUser(String username) {
+        for(Users user : Users.values()) {
+            if(user.username.equals(username.toUpperCase())) {
+                return user;
+            }
+        }
+        return null;
+    }
 }

@@ -1,8 +1,7 @@
-@smoke
 Feature: ServicePageBDD
 
   Scenario: Service Page Interface test
-    Given I'm on the Home Page!
+    Given I am on "Home Page"
     Then The browser title is 'Home Page'
     When I login as user epam with password 1234
     Then The 'PITER CHAILOVSKII' is displayed on the header
@@ -12,7 +11,7 @@ Feature: ServicePageBDD
       | headline      | 1 |
       | description   | 1 |
 
-    Then I click on the Service in the header
+    Then I click on "Service" button in Header
     When Menu contains elements:
       | DATES              |
       | COMPLEX TABLE      |
@@ -34,9 +33,9 @@ Feature: ServicePageBDD
       | Performance        |
       | Support            |
 
-    Then I click on the Service in the header
-    And I open menu 'DIFFERENT ELEMENTS'
-    Then 'Different Elements' is opened
+    Then I click on "Service" button in Header
+    And I click on "DIFFERENT ELEMENTS" button in Service dropdown
+    Then "Different Elements" page is opened
     When Page contain this elements:
       | checkbox    | 4 |
       | radiobutton | 4 |
@@ -46,17 +45,24 @@ Feature: ServicePageBDD
     And Right section is displayed
     And Left section is displayed
 
-    Then I select conditions:
+    When I check conditions:
       | Water |
       | Wind  |
-    When Checked elements are displayed
+    Then Checked conditions are displayed:
+      | Water |
+      | Wind  |
+    When I Select 'Selen'
+    Then Selected metal is 'Selen'
 
+    When I Select from dropdown 'Yellow'
+    Then Selected color is 'Yellow'
 
-
-
-
-
-
+    When I check conditions:
+      | Water |
+      | Wind  |
+    Then Unchecked conditions are displayed:
+      | Water |
+      | Wind  |
 
 
 

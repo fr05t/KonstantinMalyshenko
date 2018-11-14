@@ -6,13 +6,7 @@ import com.codeborne.selenide.SelenideElement;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import cucumber.api.java.en_scouse.An;
-import cucumber.api.java.it.Ma;
-import enums.CheckboxItems;
-import enums.DropDownMenuItems;
 import enums.PageTitles;
-import enums.RadioButtonItems;
-import gherkin.ast.DataTable;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 
@@ -37,7 +31,7 @@ public class SelenideDifferentElements {
 
 
     @FindBy(css = ".label-checkbox")
-    private  ElementsCollection checkBoxItems;
+    private ElementsCollection checkBoxItems;
 
     @FindBy(css = ".label-radio")
     private ElementsCollection radioElements;
@@ -61,40 +55,35 @@ public class SelenideDifferentElements {
     private ElementsCollection logElements;
 
 
-
-
     //=================================methods===========================================
 
-    @Then("I select conditions:")
+    @When("I check conditions:")
     @Step("Select checkboxes")
     public void selectCheckboxes(List<String> checkBoxItems) {
 
-        for(String elm : checkBoxItems) {
+        for (String elm : checkBoxItems) {
             if (this.checkBoxItems.texts().contains(elm)) {
                 this.checkBoxItems.find(Condition.text(elm)).click();
             }
         }
-        /*for (CheckboxItems elm : checkBoxItems) {
-            if (this.checkBoxItems.texts().contains(elm.getCheckboxItemName())) {
-                this.checkBoxItems.find(Condition.text(elm.getCheckboxItemName())).click();
-            }
-        }*/
     }
 
+    @When("I Select '(.*)'")
     @Step("Select radio element")
-    public void selectRadioElement(RadioButtonItems radioButtonItems) {
+    public void selectRadioElement(String element) {
         for (SelenideElement elm : radioElements) {
-            if (elm.getText().equals(radioButtonItems.getElement())) {
+            if (elm.getText().equals(element)) {
                 elm.click();
             }
         }
     }
 
+    @When("I Select from dropdown '(.*)'")
     @Step("Select dropdown element from list")
-    public void selectDropdownElement(DropDownMenuItems color) {
+    public void selectDropdownElement(String color) {
         dropDownButton.click();
         for (SelenideElement elm : dropDownList) {
-            if (elm.getText().equals(color.getColor())) {
+            if (elm.getText().equals(color)) {
                 elm.click();
             }
         }
@@ -134,9 +123,9 @@ public class SelenideDifferentElements {
     }
 
     @Step("Get checkbox log")
-    public List<String> getCheckboxLog(CheckboxItems... checkboxItems) {
+    public List<String> getCheckboxLog(List<String> checkboxItems) {
         List checkboxLog = new ArrayList();
-        for (int i = 0; i < checkboxItems.length; i++) {
+        for (int i = 0; i < checkboxItems.size(); i++) {
             checkboxLog.add(logElements.get(i).getText());
         }
         return checkboxLog;
@@ -181,19 +170,21 @@ public class SelenideDifferentElements {
         leftSection.shouldBe(visible);
     }
 
+    @Then("Selected metal is '(.*)'")
     @Step("Check radiobutton")
-    public void checkRadioButton(RadioButtonItems radioButtonItems) {
-        assertEquals(radioButtonItems.getElement(), getButtonLog());
+    public void checkRadioButton(String radioButtonItems) {
+        assertEquals(radioButtonItems, getButtonLog());
     }
 
-    @When("Checked elements are displayed")
+    @Then("Checked conditions are displayed:")
     @Step("Assert checked elemnts in log")
-    public void checkCheckboxesLogTrue(CheckboxItems... checkboxItems) {
+    public void checkCheckboxesLogTrue(List<String> checkboxItems) {
 
         boolean state = false;
-        for (CheckboxItems elm : checkboxItems) {
+
+        for (String elm : checkboxItems) {
             for (String elm2 : getCheckboxLog(checkboxItems)) {
-                if (elm2.contains(elm.getCheckboxItemName()) || elm2.contains(TRUE.getValue())) {
+                if (elm2.contains(elm) || elm2.contains(TRUE.getValue())) {
                     state = true;
                 } else {
                     state = false;
@@ -203,13 +194,15 @@ public class SelenideDifferentElements {
         assertTrue(state);
     }
 
+    @When("Unchecked conditions are displayed:")
     @Step("Assert checked elemnts in log")
-    public void checkCheckboxesLogFalse(CheckboxItems... checkboxItems) {
+    public void checkCheckboxesLogFalse(List<String> checkboxItems) {
 
         boolean state = false;
-        for (CheckboxItems elm : checkboxItems) {
+
+        for (String elm : checkboxItems) {
             for (String elm2 : getCheckboxLog(checkboxItems)) {
-                if (elm2.contains(elm.getCheckboxItemName()) || elm2.contains(FALSE.getValue())) {
+                if (elm2.contains(elm) || elm2.contains(FALSE.getValue())) {
                     state = true;
                 } else {
                     state = false;
@@ -219,9 +212,10 @@ public class SelenideDifferentElements {
         assertTrue(state);
     }
 
+    @Then("Selected color is '(.*)'")
     @Step("Check color log")
-    public void checkColorLog(DropDownMenuItems dropDownMenuItems) {
-        assertEquals(dropDownMenuItems.getColor(), getColorsLog());
+    public void checkColorLog(String dropDownMenuItems) {
+        assertEquals(dropDownMenuItems, getColorsLog());
     }
 
     @Step("Check page is open")

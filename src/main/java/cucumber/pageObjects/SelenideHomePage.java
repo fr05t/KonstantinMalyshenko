@@ -4,10 +4,12 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import enums.PageTitles;
 import enums.URLs;
+import enums.Users;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 
@@ -74,7 +76,7 @@ public class SelenideHomePage {
     //================================methods===================================
 
     @Step
-    @When("I'm on the Home Page!")
+    @Given("I am on \"Home Page\"")
     public void openPage() {
         open(URLs.HOME_PAGE_URL.getUrl());
     }
@@ -95,7 +97,18 @@ public class SelenideHomePage {
         submit.click();
     }
 
-    @Then("I click on the Service in the header")
+    @And("I login as user \"(.+)\"")
+    public void login(String username) {
+        profileButton.click();
+
+
+
+        login.sendKeys(Users.findUser(username).login);
+        password.sendKeys(Users.findUser(username).password);
+        submit.click();
+    }
+
+    @When("I click on \"Service\" button in Header")
     @Step("Click on Service dropdown Menu")
     public void serviceDropDownListClick() {
         serviceDropdownMenu.click();
@@ -107,7 +120,7 @@ public class SelenideHomePage {
         serviceLeftMenu.click();
     }
 
-    @And("I open menu '(.*)'")
+    @And("I click on \"(.*)\" button in Service dropdown")
     @Step("Open through the header menu Service -> Different Elements Page")
     public void openDifferenElementsPage(String differentElements) {
         serviceDropdownMenuItems.find(Condition.text(differentElements)).click();
@@ -147,7 +160,7 @@ public class SelenideHomePage {
         picturTexts.shouldHaveSize(dataTable.get("picturesTexts"));
     }
 
-    @Then("'(.*)' is opened")
+    @Then("\"(.*)\" page is opened")
     @Step("Open page Different elements")
     public void chechDifferentElementPage(String title) {
         assertEquals(getWebDriver().getTitle(), title);

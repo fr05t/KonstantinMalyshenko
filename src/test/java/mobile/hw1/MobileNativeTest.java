@@ -20,8 +20,8 @@ public class MobileNativeTest extends DriverSetup {
     /**
      * This simple test just click on button 'Add contact'
      */
-    public void SimplestTest(){
-       // String app_package_name = "com.example.android.contactmanager:id/";
+    public void SimplestTest() {
+        // String app_package_name = "com.example.android.contactmanager:id/";
         String app_package_name = "/hierarchy/android.widget.FrameLayout\n";
         By add_btn = By.xpath("//android.widget.Button");
         //By add_btn = By.id(app_package_name + "addContactButton");
