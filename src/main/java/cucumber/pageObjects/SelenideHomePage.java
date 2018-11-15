@@ -81,15 +81,15 @@ public class SelenideHomePage {
     @Step
     @Then("^The browser title is '(.*)'$")
     public void checkPageTitle(String pageTitles) {
-        assertEquals(getWebDriver().getTitle(), PageTitles.HOME_PAGE.getTitle());
+        assertEquals(getWebDriver().getTitle(), pageTitles);
     }
 
     @Step
     @When("I login as user (.+) with password (.+)")
-    public void login(String user, String passwd) {
+    public void login(String user, String password) {
         profileButton.click();
         login.sendKeys(user);
-        password.sendKeys(passwd);
+        this.password.sendKeys(password);
         submit.click();
     }
 
@@ -110,14 +110,14 @@ public class SelenideHomePage {
     }
 
     @Then("I click on the Service in the leftMenu")
-    @Step("Click ")
+    @Step("Click")
     public void setServiceLeftMenuClick() {
         serviceLeftMenu.click();
     }
 
     @And("I click on \"(.*)\" button in Service dropdown")
     @Step("Open through the header menu Service -> Different Elements Page")
-    public void openDifferenElementsPage(String differentElements) {
+    public void openDifferentElementsPage(String differentElements) {
         serviceDropdownMenuItems.find(Condition.text(differentElements)).click();
     }
 

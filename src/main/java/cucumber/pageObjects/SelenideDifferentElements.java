@@ -143,21 +143,6 @@ public class SelenideDifferentElements {
         buttons.shouldHaveSize(dataTable.get("button"));
     }
 
-    @Step("Check radio elements")
-    public void checkRadioElements() {
-        radioElements.shouldHaveSize(4);
-    }
-
-    @Step("Check dropdown button")
-    public void checkDropdownButton() {
-        dropDownButton.shouldBe(visible);
-    }
-
-    @Step("Check button quantity")
-    public void checkButtons() {
-        buttons.shouldHaveSize(2);
-    }
-
     @And("Right section is displayed")
     @Step("Check right section")
     public void checkRightSection() {
@@ -177,7 +162,7 @@ public class SelenideDifferentElements {
     }
 
     @Then("Checked conditions are displayed:")
-    @Step("Assert checked elemnts in log")
+    @Step("Assert checked elements in log")
     public void checkCheckboxesLogTrue(List<String> checkboxItems) {
 
         boolean state = false;
@@ -195,7 +180,7 @@ public class SelenideDifferentElements {
     }
 
     @When("Unchecked conditions are displayed:")
-    @Step("Assert checked elemnts in log")
+    @Step("Assert checked elements in log")
     public void checkCheckboxesLogFalse(List<String> checkboxItems) {
 
         boolean state = false;
