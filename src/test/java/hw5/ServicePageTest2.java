@@ -21,7 +21,7 @@ import static enums.RadioButtonItems.SELEN;
 import static enums.Users.PITER_CHALOVSKII;
 
 
-@Feature("Smoke tests")
+@Feature("Smoke Tests")
 @Story("Service Page Testing - fail")
 @Listeners(AllureAttachmentListener.class)
 public class ServicePageTest2 extends SelenideTestBase {
@@ -37,7 +37,7 @@ public class ServicePageTest2 extends SelenideTestBase {
     }
 
     @Test
-    public void Test() {
+    public void differenElementsTests() {
 
         //1. Open URL
         selenideHomePage.openPage();
