@@ -30,7 +30,7 @@ public class DatesPageTest extends SelenideTestBase {
     }
 
     @Test
-    public void datesSlederTests() {
+    public void datesSliderTests() {
 
         //1. Open URL
         selenideHomePage.openPage();
