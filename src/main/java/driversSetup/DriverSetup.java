@@ -13,11 +13,12 @@ public class DriverSetup {
     protected AndroidDriver driver;
 
     public void prepareAndroidNative() throws MalformedURLException { // exception required by java.net.URL
-        setProperty("webdriver.chrome.driver", "src\\main\\resources\\mobdrv\\mchromedriver.exe");
+        setProperty("webdriver.chrome.driverSingle", "src\\main\\resources\\mobdrv\\mchromedriver.exe");
         DesiredCapabilities capabilities = new DesiredCapabilities();
         //mandatory capabilities
         //capabilities.setCapability("device","Android"); // mandatory???????
-        capabilities.setCapability("deviceName","621HECQD25GJS");
+        //capabilities.setCapability("deviceName","621HECQD25GJS");
+        capabilities.setCapability("deviceName","emulator-5554");
         capabilities.setCapability("platformName","Android");
 
         // path to app
@@ -29,22 +30,22 @@ public class DriverSetup {
         //other caps
         capabilities.setCapability("app", app.getAbsolutePath());
 
-// Init driver for local Appium server with capabilities have been set
+// Init driverSingle for local Appium server with capabilities have been set
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
     }
 
     protected void prepareAndroidWeb() throws MalformedURLException {
-        setProperty("webdriver.chrome.driver", "src\\main\\resources\\mobdrv\\mchromedriver.exe");
+        setProperty("webdriver.chrome.driverSingle", "src\\main\\resources\\mobdrv\\mchromedriver.exe");
         DesiredCapabilities capabilities = new DesiredCapabilities();
         //mandatory Android capabilities
         capabilities.setCapability("deviceName","621HECQD25GJS");
         capabilities.setCapability("platformName","Android");
 
-        // specific web capabilities
+        // specific webTests capabilities
         capabilities.setCapability("browserName", "Chrome");
         //capabilities.setCapability("browserName", "Browser");
 
-        // Init driver for local Appium server with capabilities have been set
+        // Init driverSingle for local Appium server with capabilities have been set
         driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),
                 capabilities);
 

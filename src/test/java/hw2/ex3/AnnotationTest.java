@@ -19,7 +19,7 @@ public class AnnotationTest {
 
     @BeforeSuite(alwaysRun = true)
     public void beforeSuit() {
-        setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
+        setProperty("webdriver.chrome.driverSingle", "src\\main\\resources\\chromedriver.exe");
     }
 
     @AfterSuite(alwaysRun = true)

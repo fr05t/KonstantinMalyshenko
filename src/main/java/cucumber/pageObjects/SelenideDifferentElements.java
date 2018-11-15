@@ -29,7 +29,6 @@ public class SelenideDifferentElements {
         page(this);
     }
 
-
     @FindBy(css = ".label-checkbox")
     private ElementsCollection checkBoxItems;
 

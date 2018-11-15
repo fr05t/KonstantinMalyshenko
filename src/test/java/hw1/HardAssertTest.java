@@ -17,9 +17,9 @@ public class HardAssertTest {
     @Test
     public void homePageTests() {
 
-        setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
+        setProperty("webdriver.chrome.driverSingle", "src\\main\\resources\\chromedriver.exe");
 
-        //Create driver
+        //Create driverSingle
         WebDriver webDriver = new ChromeDriver();
         //Maximize windows
         webDriver.manage().window().maximize();

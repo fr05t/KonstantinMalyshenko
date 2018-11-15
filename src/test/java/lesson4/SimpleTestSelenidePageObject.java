@@ -29,7 +29,7 @@ public class SimpleTestSelenidePageObject extends SelenideTestBase {
     @Flaky
     @Test
     public void simpleTest() {
-        setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
+        setProperty("webdriver.chrome.driverSingle", "src\\main\\resources\\chromedriver.exe");
 
         //2 Navigate
         homePageSelenide.openPage();

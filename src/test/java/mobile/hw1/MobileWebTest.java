@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 public class MobileWebTest extends DriverSetup {
     @BeforeClass
     /**
-     * Prepare driver to run test(s)
+     * Prepare driverSingle to run test(s)
      */
     public void setUp() throws Exception {
         prepareAndroidWeb();
@@ -24,7 +24,7 @@ public class MobileWebTest extends DriverSetup {
 
     @AfterClass
     /**
-     * Close driver on all tests completion
+     * Close driverSingle on all tests completion
      */
     public void tearDown() throws Exception {
         driver.quit();

@@ -34,7 +34,7 @@ public class DataProviderTest {
     @Test(dataProvider = "simpleDataprovider")
     public void dataProviderTest(int elementNumber, String assertText) {
 
-        setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
+        setProperty("webdriver.chrome.driverSingle", "src\\main\\resources\\chromedriver.exe");
 
         //1 Open BR
         WebDriver driver = new ChromeDriver();

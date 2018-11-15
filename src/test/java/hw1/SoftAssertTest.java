@@ -17,11 +17,11 @@ public class SoftAssertTest {
     @Test
     public void homePageTests() {
 
-        setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
+        setProperty("webdriver.chrome.driverSingle", "src\\main\\resources\\chromedriver.exe");
 
         SoftAssert softAssert = new SoftAssert();
 
-        //Create driver
+        //Create driverSingle
         WebDriver webDriver = new ChromeDriver();
         //Maximize window
         webDriver.manage().window().maximize();

@@ -1,41 +1,46 @@
-package mobile.hw1;
+package mobile.hw2;
 
 
-import driversSetup.DriverSetup;
 import org.openqa.selenium.By;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
+import setup.Driver;
 
-public class MobileNativeTest extends DriverSetup {
+import java.io.IOException;
+
+import static java.lang.System.setProperty;
+
+public class MobileTest extends Driver {
+    protected MobileTest() throws IOException {
+    }
+
+    @BeforeSuite
+    public void beforeSuite() {
+        setProperty("webdriver.chrome.driverSingle", "src\\main\\resources\\mobdrv\\mchromedriver.exe");
+    }
+
     @BeforeClass
-    /**
-     * Prepare driverSingle to run test(s)
-     */
     public void setUp() throws Exception {
         prepareAndroidNative();
     }
 
+
+
     @Test
-    /**
-     * This simple test just click on button 'Add contact'
-     */
     public void SimplestTest() {
-        // String app_package_name = "com.example.android.contactmanager:id/";
         String app_package_name = "/hierarchy/android.widget.FrameLayout\n";
         By add_btn = By.xpath("//android.widget.Button");
         //By add_btn = By.id(app_package_name + "addContactButton");
-        driver.findElement(add_btn).click();
+        driverSingle.findElement(add_btn).click();
         System.out.println("Simplest Appium test done");
 
     }
 
     @AfterClass
-    /**
-     * Close driverSingle on all tests completion
-     */
     public void tearDown() throws Exception {
-        driver.quit();
+        driverSingle.quit();
     }
 
 

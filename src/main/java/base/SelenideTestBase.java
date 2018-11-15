@@ -12,7 +12,7 @@ public class SelenideTestBase {
     @BeforeSuite
     public void beforeSuite() {
 
-        setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
+        setProperty("webdriver.chrome.driverSingle", "src/main/resources/chromedriver.exe");
         browser = "chrome";
         startMaximized = true;
     }

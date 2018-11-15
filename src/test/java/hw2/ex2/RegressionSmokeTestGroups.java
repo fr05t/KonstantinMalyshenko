@@ -17,13 +17,13 @@ public class RegressionSmokeTestGroups {
 
     @BeforeMethod(alwaysRun = true)
     public void beforeMethod() {
-        setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
+        setProperty("webdriver.chrome.driverSingle", "src\\main\\resources\\chromedriver.exe");
     }
 
     @Test(groups = {"Smoke", "Regression"})
     public void Test1() {
 
-        //Initialize chrome driver
+        //Initialize chrome driverSingle
         WebDriver webDriver = new ChromeDriver();
 
         //Maximize windows
@@ -131,7 +131,7 @@ public class RegressionSmokeTestGroups {
     @Test(groups = {"Smoke", "Regression"})
     public void Test2() {
 
-        //Initialize chrome driver
+        //Initialize chrome driverSingle
         WebDriver webDriver = new ChromeDriver();
 
         //Maximize windows
@@ -237,7 +237,7 @@ public class RegressionSmokeTestGroups {
     @Test(groups = {"Smoke", "Regression"})
     public void Test3() {
 
-        //Initialize chrome driver
+        //Initialize chrome driverSingle
         WebDriver webDriver = new ChromeDriver();
 
         //Maximize windows
