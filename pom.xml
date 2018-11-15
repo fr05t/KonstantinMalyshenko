@@ -10,9 +10,9 @@
     <name>Konstantin Malyshenko Home Work</name>
 
     <properties>
-    <suiteXmlFile>hw5_testng.xml</suiteXmlFile>
-    <allure.version>2.6.0</allure.version>
-    <aspectj.version>1.8.12</aspectj.version>
+        <suiteXmlFile>hw5_testng.xml</suiteXmlFile>
+        <allure.version>2.6.0</allure.version>
+        <aspectj.version>1.8.12</aspectj.version>
         <driver>chrome</driver>
     </properties>
 
@@ -125,6 +125,7 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                    <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
 
