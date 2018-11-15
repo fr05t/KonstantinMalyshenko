@@ -36,7 +36,7 @@ public class ServicePageTest extends SelenideTestBase {
     }
 
     @Test
-    public void Test() {
+    public void differenElementsTests() {
 
         //1. Open URL
         selenideHomePage.openPage();
