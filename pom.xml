@@ -13,7 +13,8 @@
     <suiteXmlFile>hw5_testng.xml</suiteXmlFile>
     <allure.version>2.6.0</allure.version>
     <aspectj.version>1.8.12</aspectj.version>
-</properties>
+        <driver>chrome</driver>
+    </properties>
 
     <dependencies>
         <dependency>
