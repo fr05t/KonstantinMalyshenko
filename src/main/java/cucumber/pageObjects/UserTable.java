@@ -6,11 +6,13 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.page;
+import static org.testng.Assert.*;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -74,7 +76,7 @@ public class UserTable {
         String tableValue;
         for (int i = 0; i < userNames.size(); i++) {
             tableValue = userNames.get(i).getText() + " " + descriptionTexts.get(i).getText().replace("\n", " ");
-            //        Assert.assertTrue(users.get(i).toString().equals(tableValue));
+                    assertTrue(users.get(i).toString().equals(tableValue));
         }
     }
 

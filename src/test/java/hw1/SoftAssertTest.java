@@ -67,7 +67,7 @@ public class SoftAssertTest {
         }
 
         //8. Assert that there are 4 texts on the Index Page under icons and they have proper text
-        List<WebElement> iconElemnts = webDriver.findElements(By.className("benefit-txt"));
+        List<WebElement> iconElements = webDriver.findElements(By.className("benefit-txt"));
         List<String> expectedText = new ArrayList<String>();
         softAssert.assertEquals(iconElemets.size(), 4);
 
@@ -82,7 +82,7 @@ public class SoftAssertTest {
                 "some external projects),\n" +
                 "wish to get more…");
 
-        for (WebElement elm : iconElemnts) {
+        for (WebElement elm : iconElements) {
             softAssert.assertTrue(elm.isDisplayed());
             softAssert.assertTrue(expectedText.contains(elm.getText()));
         }
@@ -90,7 +90,7 @@ public class SoftAssertTest {
         //9. Assert a text of the main header
         softAssert.assertEquals(webDriver.findElement(By.cssSelector("[name = 'main-title']")).getText(), "EPAM FRAMEWORK WISHES…");
 
-        //10. Assertthat there is the iframe in the center of page
+        //10. Assert that there is the iframe in the center of page
         softAssert.assertTrue(webDriver.findElement(By.tagName("iframe")).isDisplayed());
 
         //11. Switch to the iframe and check that there is Epam logo in the left top conner of iframe

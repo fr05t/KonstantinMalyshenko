@@ -14,9 +14,9 @@ Feature: UserTablePageBDD
     And User table contains following values:
       | Number | User             | Description                  |
       | 1      | Roman            | Lorem ipsum                  |
-      | 2      | SergeyIvan       | Lorem ipsum                  |
+      | 2      | Sergey Ivan      | Lorem ipsum                  |
       | 3      | Vladzimir        | Lorem ipsum                  |
-      | 4      | Helen Benett     | Lorem ipsum some description |
+      | 4      | Helen Bennett    | Lorem ipsum some description |
       | 5      | Yoshi Tannamuri  | Lorem ipsum some description |
       | 6      | Giovanni Rovelli | Lorem ipsum some description |
 

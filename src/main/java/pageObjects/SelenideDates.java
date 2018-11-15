@@ -33,20 +33,19 @@ public class SelenideDates {
 
     @Step("Move Sliders")
     public void moveSliders(int leftPosition, int rightPosition) {
-        int currenLeftPosition = Integer.parseInt(selenideElements.get(0).getText());
         int currentRightPosition = Integer.parseInt(selenideElements.get(1).getText());
 
         if (leftPosition >= currentRightPosition) {
             rightSliderSet(rightPosition);
-            leftSilderSet(leftPosition);
+            leftSliderSet(leftPosition);
         } else {
-            leftSilderSet(leftPosition);
+            leftSliderSet(leftPosition);
             rightSliderSet(rightPosition);
         }
     }
 
     @Step("Move the left slider")
-    public void leftSilderSet(int leftPoint) {
+    public void leftSliderSet(int leftPoint) {
 
         Actions actions = new Actions(getWebDriver());
 

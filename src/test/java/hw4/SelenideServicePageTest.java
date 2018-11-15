@@ -61,7 +61,7 @@ public class SelenideServicePageTest extends SelenideTestBase {
 
         //7. Open through the header menu Service -> Different Elements Page
         selenideHomePage.serviceDropDownListClick();
-        selenideHomePage.openDifferenElementsPage();
+        selenideHomePage.openDifferentElementsPage();
         selenideDifferentElements.checkTitle(DIFFERENT_ELEMENTS);
 
 

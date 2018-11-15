@@ -159,7 +159,7 @@ public class SelenideDifferentElements {
         assertEquals(radioButtonItems.getElement(), getButtonLog());
     }
 
-    @Step("Assert checked elemnts in log")
+    @Step("Assert checked elements in log")
     public void checkCheckboxesLogTrue(CheckboxItems... checkboxItems) {
 
         boolean state = false;
@@ -175,7 +175,7 @@ public class SelenideDifferentElements {
         assertTrue(state);
     }
 
-    @Step("Assert checked elemnts in log")
+    @Step("Assert checked elements in log")
     public void checkCheckboxesLogFalse(CheckboxItems... checkboxItems) {
 
         boolean state = false;

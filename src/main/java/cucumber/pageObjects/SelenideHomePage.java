@@ -7,7 +7,6 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import enums.PageTitles;
 import enums.URLs;
 import enums.Users;
 import io.qameta.allure.Step;
@@ -19,7 +18,6 @@ import java.util.Map;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.page;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static enums.PageTitles.DATES;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -77,7 +75,6 @@ public class SelenideHomePage {
         open(URLs.HOME_PAGE_URL.getUrl());
     }
 
-
     @Step
     @Then("^The browser title is '(.*)'$")
     public void checkPageTitle(String pageTitles) {
@@ -93,11 +90,10 @@ public class SelenideHomePage {
         submit.click();
     }
 
+    @Step("Login")
     @And("I login as user \"(.+)\"")
     public void login(String username) {
         profileButton.click();
-
-
         login.sendKeys(Users.findUser(username).login);
         password.sendKeys(Users.findUser(username).password);
         submit.click();
@@ -119,11 +115,6 @@ public class SelenideHomePage {
     @Step("Open through the header menu Service -> Different Elements Page")
     public void openDifferentElementsPage(String differentElements) {
         serviceDropdownMenuItems.find(Condition.text(differentElements)).click();
-    }
-
-    @Step("Open data page")
-    public void openDatesPage() {
-        serviceDropdownMenuItems.find(Condition.text(DATES.getTitle())).click();
     }
 
     //==========================Asserts==========================================

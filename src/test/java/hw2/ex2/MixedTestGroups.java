@@ -75,7 +75,7 @@ public class MixedTestGroups {
         Assert.assertEquals(iconElemets.size(), 4);
 
         //8. Assert that there are 4 texts on the Index Page under icons and they have proper text
-        List<WebElement> iconElemnts = webDriver.findElements(By.className("benefit-txt"));
+        List<WebElement> iconElements = webDriver.findElements(By.className("benefit-txt"));
         List<String> expectedText = new ArrayList<String>();
 
         expectedText.add("To include good practices\n" +
@@ -89,7 +89,7 @@ public class MixedTestGroups {
                 "some external projects),\n" +
                 "wish to get more…");
 
-        for (WebElement elm : iconElemnts) {
+        for (WebElement elm : iconElements) {
             Assert.assertTrue(elm.isDisplayed());
             Assert.assertTrue(expectedText.contains(elm.getText()));
         }

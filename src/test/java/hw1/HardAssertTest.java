@@ -58,15 +58,15 @@ public class HardAssertTest {
         }
 
         //7. Assert that there are 4 icons(images) on the Index Page and they are displayed
-        List<WebElement> iconElemets = webDriver.findElements(By.xpath("//span[contains(@class, 'icons-benefit')]"));
-        Assert.assertEquals(iconElemets.size(), 4);
-        for (WebElement elm : iconElemets) {
+        List<WebElement> iconElements = webDriver.findElements(By.xpath("//span[contains(@class, 'icons-benefit')]"));
+        Assert.assertEquals(iconElements.size(), 4);
+        for (WebElement elm : iconElements) {
             Assert.assertTrue(elm.isDisplayed());
         }
 
         //8. Assert that there are 4 texts on the Index Page under icons and they have proper text
         List<WebElement> iconElemnts = webDriver.findElements(By.className("benefit-txt"));
-        Assert.assertEquals(iconElemets.size(), 4);
+        Assert.assertEquals(iconElements.size(), 4);
         List<String> expectedText = new ArrayList<String>();
 
         expectedText.add("To include good practices\n" +
@@ -88,7 +88,7 @@ public class HardAssertTest {
         //9. Assert a text of the main header
         Assert.assertEquals(webDriver.findElement(By.cssSelector("[name = 'main-title']")).getText(), "EPAM FRAMEWORK WISHES…");
 
-        //10. Assertthat there is the iframe in the center of page
+        //10. Assert that there is the iframe in the center of page
         Assert.assertTrue(webDriver.findElement(By.tagName("iframe")).isDisplayed());
 
         //11. Switch to the iframe and check that there is Epam logo in the left top conner of iframe

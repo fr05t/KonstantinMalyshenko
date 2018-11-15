@@ -37,7 +37,7 @@ public class ServicePageTest2 extends SelenideTestBase {
     }
 
     @Test
-    public void differenElementsTests() {
+    public void differentElementsTests() {
 
         //1. Open URL
         selenideHomePage.openPage();
@@ -48,7 +48,7 @@ public class ServicePageTest2 extends SelenideTestBase {
         //3. Perform login
         selenideHomePage.login(PITER_CHALOVSKII);
 
-        //4. Assert UserCredentials name in the left-top side of screen that user is loggined
+        //4. Assert UserCredentials name in the left-top side of screen that user is logged in
         selenideHomePage.checkUserName();
 
         //5. Click on "Service" subcategory in the header and check that drop down contains options
@@ -62,7 +62,7 @@ public class ServicePageTest2 extends SelenideTestBase {
 
         //7. Open through the header menu Service -> Different Elements Page
         selenideHomePage.serviceDropDownListClick();
-        selenideHomePage.openDifferenElementsPage();
+        selenideHomePage.openDifferentElementsPage();
         selenideDifferentElements.checkTitle(DIFFERENT_ELEMENTS);
 
 
@@ -96,7 +96,7 @@ public class ServicePageTest2 extends SelenideTestBase {
         //16. Assert that for dropdown there is a log row and value is corresponded to the selected value. 
         selenideDifferentElements.checkColorLog(GREEN);
 
-        //17. Unselect and assert checkboxes
+        //17. Uncheck and assert checkboxes
         selenideDifferentElements.selectCheckboxes(WATER, WIND);
 
         //18. Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 

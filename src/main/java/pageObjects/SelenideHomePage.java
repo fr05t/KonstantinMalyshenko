@@ -44,13 +44,13 @@ public class SelenideHomePage extends CommonBaseElements {
         serviceDropdownMenu.click();
     }
 
-    @Step("Click ")
+    @Step("Click on left menu")
     public void setServiceLeftMenuClick() {
         serviceLeftMenu.click();
     }
 
     @Step("Open through the header menu Service -> Different Elements Page")
-    public void openDifferenElementsPage() {
+    public void openDifferentElementsPage() {
         serviceDropdownMenuItems.find(Condition.text(DIFFERENT_ELEMENTS.getTitle())).click();
     }
 
@@ -66,7 +66,7 @@ public class SelenideHomePage extends CommonBaseElements {
         assertEquals(userName.getText(), PITER_CHALOVSKII.getUsername());
     }
 
-    @Step("Check catery from service dropdown menu")
+    @Step("Check category from service dropdown menu")
     public void checkServiceDropdownMenuSubcategory() {
         assertTrue(this.serviceDropdownMenuItems.texts().containsAll(SubMenuItems.getUpperCaseMenuItems()));
     }
