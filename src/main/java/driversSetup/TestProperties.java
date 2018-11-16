@@ -8,13 +8,19 @@ public class TestProperties {
 
     Properties property = new Properties();
 
+    public TestProperties() {
+        getCurrentProperties();
+    }
+
     public Properties getCurrentProperties() {
 
         FileInputStream fis;
 
         try {
-            fis = new FileInputStream("src\\test\\resources\\mobile\\hw2.properties");
+            //fis = new FileInputStream("src\\test\\resources\\mobile\\hw2.properties");
+            fis = new FileInputStream("src\\test\\resources\\mobile\\web\\web.properties");
             property.load(fis);
+            fis.close();
 
         } catch (IOException e) {
             System.err.println(e.getMessage());
