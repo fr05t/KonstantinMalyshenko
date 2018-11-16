@@ -17,8 +17,8 @@ public class TestProperties {
         FileInputStream fis;
 
         try {
-            //fis = new FileInputStream("src\\test\\resources\\mobile\\hw2.properties");
-            fis = new FileInputStream("src\\test\\resources\\mobile\\web\\web.properties");
+            fis = new FileInputStream("src\\test\\resources\\mobile\\hw2.properties");
+            //fis = new FileInputStream("src\\test\\resources\\mobile\\web\\web.properties");
             property.load(fis);
             fis.close();
 

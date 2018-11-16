@@ -55,17 +55,22 @@ public class Driver extends TestProperties {
         if (AUT != null && SUT == null) {
             File app = new File(AUT);
             capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
+
         } else if (SUT != null && AUT == null) {           // Web
             capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, browserName);
+
         } else {
             throw new Exception("Unclear type of mobile app");
         }
+
         if (driverSingle == null) {
             driverSingle = new AppiumDriver(new URL(DRIVER), capabilities);
         }
+
         if (waitSingle == null) {
             waitSingle = new WebDriverWait(driverSingle, 10);
         }
+
 
     }
 
@@ -75,7 +80,7 @@ public class Driver extends TestProperties {
     }
 
     protected WebDriverWait driverWait() {
-        return waitSingle;
+         return waitSingle;
     }
 }
 
