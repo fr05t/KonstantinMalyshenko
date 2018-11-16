@@ -34,4 +34,32 @@
   - Use annotations to build the logical test structure.
 
 
+### Mobie Test Automation HW 2
+
+**1.	Rewrite (complete) Driver using “singleton” pattern. Are there any advantages?**
+	
+	Now we have only one instance of AppiumDriver.  
+	
+**2.	Suggest improvements for .properties reading. What are the purposes?**
+
+	The main purpose of improvements for properties is a clear code and it is way to make code support easier. 
+	
+**3.	Add checks of other fields and their titles (Contact Name, Contact phone) in “native” test**
+	
+	Added.
+	
+**4.	Optional: Add keyboard presence check  in “native” test.**
+
+	Added.
+	
+**5.	Which checks would you place in the “web” test?**
+
+	1. Check pageTitle
+	2. Check http code maybe
+	3. Check elements on the main pageTitle
+	
+**6.	Implement checks for “web” test in code and try to use.**
+
+	Added
+
 
