@@ -11,11 +11,10 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import setup.Driver;
 
+import static enums.mobile.FieldTitles.IANA_HOMEPAGE_TITLE;
 import static java.lang.System.setProperty;
 
 public class MobileWebTest extends Driver {
-
-    private AddContactPage addContactPage;
 
     protected MobileWebTest() throws Exception {
         super();
@@ -23,8 +22,8 @@ public class MobileWebTest extends Driver {
 
     @BeforeSuite(description = "Set property")
     public void beforeSuite() {
-        //setProperty("webdriver.chrome.driverSingle", "src\\main\\resources\\mobdrv\\mchromedriver.exe");
-        setProperty("webdriver.chrome.driverSingle", "src\\main\\resources\\mobdrv\\chromedriver.exe");
+        setProperty("webdriver.chrome.driverSingle", "src\\main\\resources\\mobdrv\\mchromedriver.exe");
+        //setProperty("webdriver.chrome.driverSingle", "src\\main\\resources\\mobdrv\\chromedriver.exe");
     }
 
     @BeforeClass

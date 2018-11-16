@@ -1,7 +1,6 @@
 package mobile.hw2.nativeTests;
 
 
-import mobile.appObjects.AddContactPage;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -15,8 +14,6 @@ import static enums.mobile.FieldTitles.CONTACT_PHONE;
 import static java.lang.System.setProperty;
 
 public class MobileTest extends Driver {
-
-    private AddContactPage addContactPage;
 
     protected MobileTest() throws Exception {
         super();
@@ -45,10 +42,11 @@ public class MobileTest extends Driver {
 
         //=============================Elements========================
         By add_btn = By.id(app_package_name + "addContactButton");
-        By contactNameTitle = By.xpath("//android.widget.TextView[@content-desc=\"Contact Name\"]\n");
+
+        By contactNameTitle = By.id("Contact Name");
         By contactName = By.xpath("//android.widget.TextView[@content-desc=\"Contact Name\"]\n");
 
-        By contactPhoneTitle = By.xpath("//android.widget.TextView[@content-desc=\"Contact Phone\"]\n");
+        By contactPhoneTitle = By.id("Contact Phone");
         By contactPhone = By.xpath("//android.widget.TextView[@content-desc=\"Contact Phone\"]\n");
 
         //============================Methods==========================
@@ -57,10 +55,11 @@ public class MobileTest extends Driver {
 
         //========================Asserts===============================
         Assert.assertTrue(driverSingle.findElement(contactName).isDisplayed());
-        Assert.assertEquals(driverSingle.findElement(contactNameTitle).getText(),CONTACT_NAME.getTitle());
+        Assert.assertEquals(driverSingle.findElement(contactNameTitle).getText(), CONTACT_NAME.getTitle());
         Assert.assertTrue(driverSingle.findElement(contactPhone).isDisplayed());
         Assert.assertEquals(driverSingle.findElement(contactPhoneTitle).getText(), CONTACT_PHONE.getTitle());
 
+        // Check keyboard is displayed
         try {
             driverSingle.hideKeyboard();
         } catch (Exception e) {
