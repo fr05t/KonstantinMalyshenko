@@ -44,7 +44,8 @@ public class Driver extends TestProperties {
         switch (TEST_PLATFORM) {
             case "Android":
                 capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, EMULATOR_5554.getDevice());
-                capabilities.setCapability("chromedriverExecutable", "c:\\src\\chromedriver.exe");
+                capabilities.setCapability("chromedriverExecutable", "\\src\\chromedriver.exe");
+                //capabilities.setCapability("chromedriverExecutable", "c:\\src\\chromedriver.exe");
                 browserName = "Chrome";
                 break;
             case "IOS":

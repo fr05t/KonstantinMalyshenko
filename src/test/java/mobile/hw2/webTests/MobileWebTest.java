@@ -1,7 +1,6 @@
 package mobile.hw2.webTests;
 
 
-import mobile.appObjects.AddContactPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
@@ -22,8 +21,7 @@ public class MobileWebTest extends Driver {
 
     @BeforeSuite(description = "Set property")
     public void beforeSuite() {
-        setProperty("webdriver.chrome.driverSingle", "src\\main\\resources\\mobdrv\\mchromedriver.exe");
-        //setProperty("webdriver.chrome.driverSingle", "src\\main\\resources\\mobdrv\\chromedriver.exe");
+        setProperty("webdriver.chrome.driver", "src\\main\\resources\\mobdrv\\mchromedriver.exe");
     }
 
     @BeforeClass
@@ -36,11 +34,21 @@ public class MobileWebTest extends Driver {
         driverSingle.quit();
     }
 
-    @Test(description = "Simple native tests", groups = "native")
+    @Test(description = "Simple web tests", groups = "web")
     public void SimplestTest() {
 
+        //=================MobileWebElements=================
+        By introText = By.id("intro");
+
+
+
+        //=================Methods===========================
         driverSingle.get(SUT);
-        waitSingle.until(ExpectedConditions.urlToBe(SUT+"/"));
+        waitSingle.until(ExpectedConditions.urlToBe(SUT + "/"));
+
+        //=================Asserts============================
+        Assert.assertEquals(IANA_HOMEPAGE_TITLE.getTitle(), driverSingle.getTitle()); // Assert page Title
+        Assert.assertTrue(driverSingle.findElement(introText).isDisplayed());  // Assert intro text is displayed
 
     }
 }

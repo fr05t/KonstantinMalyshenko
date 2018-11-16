@@ -1,7 +1,7 @@
 package enums.mobile;
 
 public enum FieldTitles {
-    CONTACT_PHONE("Contact Phone"), CONTACT_NAME("Contact Name"), IANA_HOMEPAGE_TITLE("IANA — Domain Name Services");
+    CONTACT_PHONE("Contact Phone"), CONTACT_NAME("Contact Name"), IANA_HOMEPAGE_TITLE("Internet Assigned Numbers Authority");
 
     private String name;
 
