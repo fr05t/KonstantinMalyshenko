@@ -43,9 +43,10 @@ public class Driver extends TestProperties {
         //Select platform Android or IOS, and drivers
         switch (TEST_PLATFORM) {
             case "Android":
+                File mdr = new File("src\\main\\resources\\mobdrv\\chromedriver.exe");
                 capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, EMULATOR_5554.getDevice());
-                capabilities.setCapability("chromedriverExecutable", "\\src\\chromedriver.exe");
-                //capabilities.setCapability("chromedriverExecutable", "c:\\src\\chromedriver.exe");
+                capabilities.setCapability("chromedriverExecutable", mdr.getAbsolutePath());
+                // capabilities.setCapability("chromedriverExecutable", "c:\\src\\chromedriver.exe");
                 browserName = "Chrome";
                 break;
             case "IOS":
@@ -76,7 +77,6 @@ public class Driver extends TestProperties {
         if (waitSingle == null) {
             waitSingle = new WebDriverWait(driver(), 10);
         }
-
 
     }
 

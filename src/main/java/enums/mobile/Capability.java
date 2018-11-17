@@ -1,7 +1,5 @@
 package enums.mobile;
 
-import oracle.jrockit.jfr.StringConstantPool;
-
 public enum Capability {
     EMULATOR_5554("deviceName", "emulator-5554", "platformName", "Android");
 
