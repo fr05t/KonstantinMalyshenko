@@ -10,14 +10,17 @@
     <name>Konstantin Malyshenko Home Work</name>
 
     <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <suiteXmlFile>hw5_testng.xml</suiteXmlFile>
-        <allure.version>2.6.0</allure.version>
+        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+        <allure.version>2.0-BETA22</allure.version>
         <aspectj.version>1.8.12</aspectj.version>
-        <driver>chrome</driver>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>1.6</maven.compiler.source>
+        <maven.compiler.target>1.6</maven.compiler.target>
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
@@ -52,6 +55,7 @@
             </exclusions>
         </dependency>
 
+
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-java-commons</artifactId>
@@ -76,20 +80,6 @@
             </exclusions>
         </dependency>
 
-        <!--JDI-->
-        <dependency>
-            <groupId>com.epam.jdi</groupId>
-            <artifactId>jdi-uitest-web</artifactId>
-            <version>1.1.31</version>
-        </dependency>
-
-        <!--Allure-->
-        <dependency>
-            <groupId>ru.yandex.qatools.allure</groupId>
-            <artifactId>allure-testng-adaptor</artifactId>
-            <version>1.5.4</version>
-        </dependency>
-
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
@@ -109,11 +99,23 @@
         </dependency>
 
         <dependency>
-            <groupId>io.appium</groupId>
-            <artifactId>java-client</artifactId>
-            <version>6.1.0</version>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.5</version>
+            <scope>compile</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.epam.jdi</groupId>
+            <artifactId>jdi-uitest-web</artifactId>
+            <version>LATEST</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.appium</groupId>
+            <artifactId>java-client</artifactId>
+            <version>6.0.0</version>
+        </dependency>
 
     </dependencies>
 
@@ -121,19 +123,8 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.2</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <encoding>UTF-8</encoding>
-                </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.22.1</version>
+                <version>2.18</version>
                 <configuration>
                     <suiteXmlFiles>
                         <suiteXmlFile>src\test\resources\${suiteXmlFile}</suiteXmlFile>
@@ -142,9 +133,10 @@
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
                     <systemPropertyVariables>
-                       <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
                     </systemPropertyVariables>
                 </configuration>
+
                 <dependencies>
                     <dependency>
                         <groupId>org.aspectj</groupId>
@@ -152,10 +144,17 @@
                         <version>${aspectj.version}</version>
                     </dependency>
                 </dependencies>
-            </plugin>
 
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
         </plugins>
-        <!-- For using properties from pom -->
         <resources>
             <resource>
                 <directory>src/test/resources</directory>
@@ -163,6 +162,7 @@
             </resource>
         </resources>
     </build>
+
 
     <reporting>
         <excludeDefaults>true</excludeDefaults>
