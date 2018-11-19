@@ -58,24 +58,24 @@ public class SelenideHomePage {
     private SelenideElement headLine;
 
     @FindBy(css = ".main-txt.text-center")
-    private SelenideElement descriprion;
+    private SelenideElement description;
 
     @FindBy(css = ".icons-benefit")
     private ElementsCollection pictures;
 
     @FindBy(css = ".benefit-txt")
-    private ElementsCollection picturTexts;
+    private ElementsCollection pictureTexts;
 
 
     //================================methods===================================
 
-    @Step
+    @Step("Open home page")
     @Given("I am on \"Home Page\"")
     public void openPage() {
         open(URLs.HOME_PAGE_URL.getUrl());
     }
 
-    @Step
+    @Step("Check the title")
     @Then("^The browser title is '(.*)'$")
     public void checkPageTitle(String pageTitles) {
         assertEquals(getWebDriver().getTitle(), pageTitles);
@@ -99,14 +99,14 @@ public class SelenideHomePage {
         submit.click();
     }
 
-    @When("I click on \"Service\" button in Header")
     @Step("Click on Service dropdown Menu")
+    @When("I click on \"Service\" button in Header")
     public void serviceDropDownListClick() {
         serviceDropdownMenu.click();
     }
 
-    @Then("I click on the Service in the leftMenu")
     @Step("Click")
+    @Then("I click on the Service in the leftMenu")
     public void setServiceLeftMenuClick() {
         serviceLeftMenu.click();
     }
@@ -125,8 +125,8 @@ public class SelenideHomePage {
         assertEquals(userName.getText(), user);
     }
 
-    @When("Menu contains elements:")
     @Step("Check category from service dropdown menu")
+    @When("Menu contains elements:")
     public void checkServiceDropdownMenuSubcategory(List<String> subMenuItems) {
         assertTrue(this.serviceDropdownMenuItems.texts().containsAll(subMenuItems));
     }
@@ -140,10 +140,10 @@ public class SelenideHomePage {
     @And("Page contains all elements:")
     public void checkElements(Map<String, Integer> dataTable) {
         headLine.shouldBe(Condition.visible);
-        descriprion.shouldBe(Condition.visible);
+        description.shouldBe(Condition.visible);
 
         pictures.shouldHaveSize(dataTable.get("pictures"));
-        picturTexts.shouldHaveSize(dataTable.get("picturesTexts"));
+        pictureTexts.shouldHaveSize(dataTable.get("picturesTexts"));
     }
 
     @Then("\"(.*)\" page is opened")

@@ -141,9 +141,9 @@
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
-                    <!--<systemPropertyVariables>
-                       <allure.results.directory>${project.build.directory}/allure-results2</allure.results.directory>
-                    </systemPropertyVariables>-->
+                    <systemPropertyVariables>
+                       <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+                    </systemPropertyVariables>
                 </configuration>
                 <dependencies>
                     <dependency>
