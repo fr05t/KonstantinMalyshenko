@@ -55,7 +55,6 @@ public class ServicePageTest2 extends SelenideTestBase {
         selenideHomePage.serviceDropDownListClick();
         selenideHomePage.checkServiceDropdownMenuSubcategory();
 
-
         //6. Click on Service subcategory in the left section and check that drop down contains options
         selenideHomePage.setServiceLeftMenuClick();
         selenideHomePage.checkLeftServiceMenuItems();
@@ -64,7 +63,6 @@ public class ServicePageTest2 extends SelenideTestBase {
         selenideHomePage.serviceDropDownListClick();
         selenideHomePage.openDifferentElementsPage();
         selenideDifferentElements.checkTitle(DIFFERENT_ELEMENTS);
-
 
         //8. Check interface on Different elements page, it contains all needed elements
         selenideDifferentElements.checkCheckBoxItems();

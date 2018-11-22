@@ -51,6 +51,7 @@ Feature: ServicePageBDD
     Then Checked conditions are displayed:
       | Water |
       | Wind  |
+
     When I Select 'Selen'
     Then Selected metal is 'Selen'
 

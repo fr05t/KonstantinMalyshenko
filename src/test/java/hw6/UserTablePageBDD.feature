@@ -6,7 +6,7 @@ Feature: UserTablePageBDD
     When I click on "Service" button in Header
     And I click on "User Table" button in Service dropdown
     Then "User Table" page is opened
-    And 6 NumberType Dropdowns are displayed on Users Table on User Table Page
+    And 6 NumberType Dropdown's are displayed on Users Table on User Table Page
     And 6 User names are displayed on Users Table on User Table Page
     And 6 Description images are displayed on Users Table on User Table Page
     And 6 Description texts under images are displayed on Users Table on User Table Page

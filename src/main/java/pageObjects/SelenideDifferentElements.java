@@ -48,9 +48,7 @@ public class SelenideDifferentElements {
     @FindBy(css = ".panel-body-list.logs > li")
     private ElementsCollection logElements;
 
-
     //=================================methods===========================================
-
 
     @Step("Select checkboxes")
     public void selectCheckboxes(CheckboxItems... checkBoxItems) {

@@ -88,8 +88,8 @@ public class SelenideDifferentElements {
         }
     }
 
-    @Step("Get last event for metal")
-    public String getButtonLog() {
+
+    private String getButtonLog() {
 
         Pattern pattern = Pattern.compile(".+(metal).+(to )(.+)");
         Matcher matcher;
@@ -104,8 +104,8 @@ public class SelenideDifferentElements {
         return "";
     }
 
-    @Step("Get color log")
-    public String getColorsLog() {
+
+    private String getColorsLog() {
         String color = "";
         Pattern pattern = Pattern.compile("((\\d+:?)+)\\s(Colors).+to\\s(\\w+)");
         Matcher matcher;
@@ -121,8 +121,8 @@ public class SelenideDifferentElements {
         return color;
     }
 
-    @Step("Get checkbox log")
-    public List<String> getCheckboxLog(List<String> checkboxItems) {
+
+    private List<String> getCheckboxLog(List<String> checkboxItems) {
         List checkboxLog = new ArrayList();
         for (int i = 0; i < checkboxItems.size(); i++) {
             checkboxLog.add(logElements.get(i).getText());
@@ -202,9 +202,5 @@ public class SelenideDifferentElements {
         assertEquals(dropDownMenuItems, getColorsLog());
     }
 
-    @Step("Check page is open")
-    public void checkTitle(PageTitles pageTitle) {
-        assertEquals(getWebDriver().getTitle(), pageTitle.getTitle());
-    }
 
 }

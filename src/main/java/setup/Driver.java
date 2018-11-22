@@ -24,6 +24,7 @@ public class Driver extends TestProperties {
     protected String SUT;
     protected String TEST_PLATFORM;
     protected String DRIVER;
+    protected String DEVICE;
 
     //Initialize parameters from property file
     protected Driver() throws IOException {
@@ -33,6 +34,7 @@ public class Driver extends TestProperties {
         SUT = t_sut == null ? null : "http://" + t_sut;
         TEST_PLATFORM = getProp(platform.toString());
         DRIVER = getProp("driver");
+        DEVICE = getProp("device");
     }
 
 
@@ -43,10 +45,9 @@ public class Driver extends TestProperties {
         //Select platform Android or IOS, and drivers
         switch (TEST_PLATFORM) {
             case "Android":
-                File mdr = new File("src\\main\\resources\\mobdrv\\chromedriver.exe");
                 capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, EMULATOR_5554.getDevice());
-                capabilities.setCapability("chromedriverExecutable", mdr.getAbsolutePath());
-                // capabilities.setCapability("chromedriverExecutable", "c:\\src\\chromedriver.exe");
+                capabilities.setCapability("chromedriverExecutable", "\\src\\chromedriver.exe");
+                //capabilities.setCapability("chromedriverExecutable", "c:\\src\\chromedriver.exe");
                 browserName = "Chrome";
                 break;
             case "IOS":
@@ -77,6 +78,7 @@ public class Driver extends TestProperties {
         if (waitSingle == null) {
             waitSingle = new WebDriverWait(driver(), 10);
         }
+
 
     }
 

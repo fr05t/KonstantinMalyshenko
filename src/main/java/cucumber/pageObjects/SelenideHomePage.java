@@ -137,6 +137,7 @@ public class SelenideHomePage {
         assertTrue(leftServiceMenuItems.texts().containsAll(leftMenuItems));
     }
 
+    @Step("Check page elements")
     @And("Page contains all elements:")
     public void checkElements(Map<String, Integer> dataTable) {
         headLine.shouldBe(Condition.visible);

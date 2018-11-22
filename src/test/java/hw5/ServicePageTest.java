@@ -95,7 +95,7 @@ public class ServicePageTest extends SelenideTestBase {
         //16. Assert that for dropdown there is a log row and value is corresponded to the selected value. 
         selenideDifferentElements.checkColorLog(YELLOW);
 
-        //17. Unselect and assert checkboxes
+        //17. Uncheck and assert checkboxes
         selenideDifferentElements.selectCheckboxes(WATER, WIND);
 
         //18. Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
