@@ -81,7 +81,7 @@ public class SelenideHomePage {
         assertEquals(getWebDriver().getTitle(), pageTitles);
     }
 
-    @Step
+    @Step("Login")
     @When("I login as user (.+) with password (.+)")
     public void login(String user, String password) {
         profileButton.click();
