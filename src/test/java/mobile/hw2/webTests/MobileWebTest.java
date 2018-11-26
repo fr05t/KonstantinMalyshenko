@@ -1,6 +1,7 @@
 package mobile.hw2.webTests;
 
 
+import mobile.hw2.Hooks;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
@@ -13,34 +14,14 @@ import setup.Driver;
 import static enums.mobile.FieldTitles.IANA_HOMEPAGE_TITLE;
 import static java.lang.System.setProperty;
 
-public class MobileWebTest extends Driver {
+public class MobileWebTest extends Hooks {
 
-    protected MobileWebTest() throws Exception {
-        super();
-    }
-
-    @BeforeSuite(description = "Set property")
-    public void beforeSuite() {
-        setProperty("webdriver.chrome.driver", "src\\main\\resources\\mobdrv\\mchromedriver.exe");
-    }
-
-    @BeforeClass
-    public void setUp() throws Exception {
-        prepareDriver();
-    }
-
-    @AfterClass
-    public void tearDown() throws Exception {
-        driverSingle.quit();
-    }
 
     @Test(description = "Simple web tests", groups = "web")
     public void SimplestTest() {
 
         //=================MobileWebElements=================
         By introText = By.id("intro");
-
-
 
         //=================Methods===========================
         driverSingle.get(SUT);

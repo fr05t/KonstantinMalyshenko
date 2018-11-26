@@ -1,6 +1,7 @@
 package mobile.hw2.nativeTests;
 
 
+import mobile.hw2.Hooks;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -13,27 +14,8 @@ import static enums.mobile.FieldTitles.CONTACT_NAME;
 import static enums.mobile.FieldTitles.CONTACT_PHONE;
 import static java.lang.System.setProperty;
 
-public class MobileTest extends Driver {
+public class MobileTest extends Hooks {
 
-    protected MobileTest() throws Exception {
-        super();
-
-    }
-
-    @BeforeSuite(description = "Set property")
-    public void beforeSuite() {
-        setProperty("webdriver.chrome.driverSingle", "src\\main\\resources\\mobdrv\\mchromedriver.exe");
-    }
-
-    @BeforeClass
-    public void setUp() throws Exception {
-        prepareDriver();
-    }
-
-    @AfterClass
-    public void tearDown() throws Exception {
-        driverSingle.quit();
-    }
 
     @Test(description = "Simple native tests", groups = "native")
     public void SimplestTest() {

@@ -10,10 +10,11 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
+import static driversSetup.TestProperties.getProp;
 import static enums.mobile.Capability.EMULATOR_5554;
 import static enums.mobile.MobileProperties.*;
 
-public class Driver extends TestProperties {
+public class Driver {
 
     protected AppiumDriver driverSingle = null;
     protected static DesiredCapabilities capabilities;
@@ -26,15 +27,18 @@ public class Driver extends TestProperties {
     protected String DRIVER;
 
     //Initialize parameters from property file
-    protected Driver() throws IOException {
-        super();
+    protected Driver() {
+
+    }
+
+    protected void prepareConfig(String propFile) {
+        TestProperties testProperties = new TestProperties(propFile);
         AUT = getProp(aut.toString());
         String t_sut = getProp(sut.toString());
         SUT = t_sut == null ? null : "http://" + t_sut;
         TEST_PLATFORM = getProp(platform.toString());
         DRIVER = getProp("driver");
     }
-
 
     protected void prepareDriver() throws Exception {
         capabilities = new DesiredCapabilities();

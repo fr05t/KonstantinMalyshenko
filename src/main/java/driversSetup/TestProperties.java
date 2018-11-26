@@ -5,23 +5,26 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
+import static enums.mobile.SelectProperties.ANDROID_NATIVE;
 import static enums.mobile.SelectProperties.ANDROID_WEB;
 
 public class TestProperties {
 
-    Properties property = new Properties();
+    static Properties property = new Properties();
+    private static String path;
 
-    public TestProperties() {
+    public TestProperties(String path) {
+        this.path = path;
         getCurrentProperties();
     }
 
-    public Properties getCurrentProperties() {
+    public static Properties getCurrentProperties() {
 
         FileInputStream fis;
 
         try {
             //fis = new FileInputStream("src\\test\\resources\\mobile\\hw2.properties");
-            fis = new FileInputStream(ANDROID_WEB.getProFile());
+            fis = new FileInputStream(path);
             property.load(fis);
             fis.close();
 
@@ -31,7 +34,7 @@ public class TestProperties {
         return property;
     }
 
-    public String getProp(String propKey) {
+    public static String getProp(String propKey) {
         if (!propKey.contains(propKey)) {
             property = getCurrentProperties();
         }
